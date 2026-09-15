@@ -1,0 +1,305 @@
+{
+  "level": "cet4",
+  "articles": [
+    {
+      "title": "Why Sleep Matters",
+      "content": "Most adults need seven to nine hours of sleep every night, yet millions of people sleep far less than that. Modern life is partly to blame. Smartphones keep our brains busy late into the night, bright screens reduce the production of melatonin, the hormone that makes us sleepy, and work emails follow us home. Many people see sleep as wasted time, something to cut short so that they can do more.\n\nScience tells a different story. While we sleep, the brain is anything but idle. It strengthens the memories we formed during the day, clears out waste products that build up between brain cells, and prepares us to learn new information. Students who sleep well after studying remember more than those who stay up all night. Lack of sleep also affects the body. Studies link poor sleep to weight gain, heart disease, a weaker immune system and a higher risk of accidents. Tired drivers, for example, cause thousands of crashes every year.\n\nThe good news is that better sleep does not require medicine. Experts suggest keeping a regular schedule, avoiding coffee in the evening and putting phones away an hour before bed. A cool, dark and quiet bedroom also helps. Sleep is not a luxury. It is one of the cheapest and most powerful tools we have to protect our health, our memory and our mood.",
+      "questions": [
+        {
+          "question": "Why do bright screens make it harder to fall asleep?",
+          "options": ["They make noise at night", "They hurt our eyes", "They reduce the production of melatonin", "They keep the room too bright"],
+          "answer": 2,
+          "explanation": "原文：bright screens reduce the production of melatonin。"
+        },
+        {
+          "question": "What does the brain do while we sleep?",
+          "options": ["It does nothing at all", "It only produces dreams", "It strengthens memories and clears waste", "It learns completely new skills"],
+          "answer": 2,
+          "explanation": "原文：It strengthens the memories... clears out waste products... prepares us to learn。"
+        },
+        {
+          "question": "Which of the following do experts suggest?",
+          "options": ["Taking sleeping pills", "Keeping a regular schedule and avoiding evening coffee", "Exercising hard before bed", "Sleeping longer at weekends to catch up"],
+          "answer": 1,
+          "explanation": "原文：Experts suggest keeping a regular schedule, avoiding coffee in the evening...。"
+        },
+        {
+          "question": "What is the main idea of the passage?",
+          "options": ["Sleep is wasted time", "Modern people sleep too much", "Sleep is important and worth protecting", "Students should study instead of sleeping"],
+          "answer": 2,
+          "explanation": "全文论证睡眠的重要性并给出改善建议，最后一句点题。"
+        }
+      ]
+    },
+    {
+      "title": "The Rise of Short Videos",
+      "content": "In less than a decade, short videos have changed the way hundreds of millions of people spend their free time. On trains and buses, in restaurants and even in classrooms, faces glow over fifteen-second clips.\n\nThe success of short videos is easy to understand. They are free, endless and carefully recommended by algorithms that learn what each user likes. A video is over before we get bored, and the next one is already waiting. For creators, the bar to entry is low. A phone and an idea are enough, which is why farmers, teachers and doctors can now reach audiences of millions. Short videos have brought real benefits. They spread useful knowledge, give small businesses a way to sell products and connect people with similar interests.\n\nHowever, the same design that makes them attractive also makes them hard to put down. Many users report watching far longer than they planned, and some studies link heavy use to shorter attention spans and worse sleep. Schools and parents worry most about teenagers, whose self-control is still developing. Some platforms now offer time reminders or youth modes, but critics say the real test is whether companies are willing to give up viewing time. For users, the advice is simple: enjoy the videos, but decide in advance when to stop.",
+      "questions": [
+        {
+          "question": "According to the passage, why are short videos so attractive?",
+          "options": ["They are long and detailed", "They are free, endless and well recommended", "They are made by famous stars", "They are difficult to produce"],
+          "answer": 1,
+          "explanation": "原文：They are free, endless and carefully recommended by algorithms。"
+        },
+        {
+          "question": "What does the low bar to entry mean for creators?",
+          "options": ["Only professionals can make videos", "Anyone with a phone and an idea can reach a large audience", "Creators must pay high fees", "Only companies can open accounts"],
+          "answer": 1,
+          "explanation": "原文：A phone and an idea are enough, which is why farmers, teachers and doctors can now reach audiences of millions。"
+        },
+        {
+          "question": "What do critics say about platforms' time reminders?",
+          "options": ["They solve the problem completely", "They should be removed at once", "The real test is whether companies will give up viewing time", "They are required by law"],
+          "answer": 2,
+          "explanation": "原文：critics say the real test is whether companies are willing to give up viewing time。"
+        },
+        {
+          "question": "What advice does the author give to users?",
+          "options": ["Stop watching short videos completely", "Watch only educational content", "Decide in advance when to stop", "Avoid videos before exams"],
+          "answer": 2,
+          "explanation": "原文最后一句：enjoy the videos, but decide in advance when to stop。"
+        }
+      ]
+    },
+    {
+      "title": "Working from Home",
+      "content": "When offices closed during the pandemic, working from home changed from a rare benefit into a daily reality for millions. Years later, many companies and workers are still deciding what the future should look like.\n\nEmployees list clear advantages. There is no long commute, so people save hours every week and spend less on transport. Many feel they focus better without office noise and can manage family life more easily. A survey found that a large number of workers would even refuse a pay rise if it meant returning to the office full time. Companies see benefits too: smaller offices mean lower costs, and some reports suggest remote workers get more done.\n\nHowever, working from home is not perfect. New employees learn slower when nobody sits next to them, and junior staff miss the chance to learn from experienced colleagues. Team spirit can weaken when all communication happens through screens. Some managers also find it harder to trust what they cannot see, which leads to too many meetings and reports.\n\nAs a result, a middle way is becoming popular: the hybrid model. Employees come to the office two or three days a week for meetings and teamwork, and work from home on other days for deep, quiet work. The office is not dead, but its job has changed. It is now a place for cooperation, not just a desk.",
+      "questions": [
+        {
+          "question": "What advantages do employees mention about working from home?",
+          "options": ["Higher salary and longer holidays", "No long commute and better focus", "Free meals and gyms", "Shorter working hours"],
+          "answer": 1,
+          "explanation": "原文：There is no long commute... they focus better without office noise。"
+        },
+        {
+          "question": "Why do new employees suffer in remote work?",
+          "options": ["They have to work longer hours", "They get lower pay", "They learn slower without colleagues nearby", "They feel lonely at lunch"],
+          "answer": 2,
+          "explanation": "原文：New employees learn slower when nobody sits next to them。"
+        },
+        {
+          "question": "What is the hybrid model?",
+          "options": ["Working fully at home", "Working fully in the office", "Part office days and part home days each week", "Doing two jobs at the same time"],
+          "answer": 2,
+          "explanation": "原文：come to the office two or three days a week... and work from home on other days。"
+        },
+        {
+          "question": "What has changed about the office according to the passage?",
+          "options": ["It has completely disappeared", "It is now mainly a place for cooperation", "It is only for managers", "It has become cheaper to build"],
+          "answer": 1,
+          "explanation": "原文：It is now a place for cooperation, not just a desk。"
+        }
+      ]
+    },
+    {
+      "title": "Plastic in the Ocean",
+      "content": "Every year, millions of tonnes of plastic end up in the ocean. Some of it is thrown away directly, but most of it travels there through rivers, wind and rain. Because plastic does not fully break down, it only breaks into smaller and smaller pieces, called microplastics, which have now been found from the sea surface to the deepest trenches.\n\nThe harm is serious. Sea turtles mistake plastic bags for jellyfish and eat them. Seabirds feed plastic pieces to their chicks. Fish and shellfish absorb tiny plastic particles, which means the plastic we throw away may come back to our dinner table. Plastic pollution also damages the tourism and fishing industries that millions of people depend on.\n\nSolving the problem requires action at every level. Governments can ban single-use plastic bags and make companies responsible for the waste they produce. Scientists are developing materials that break down naturally and systems that catch river plastic before it reaches the sea. But individuals matter too. Using a cloth bag instead of a plastic one, refusing straws and recycling correctly are small actions, yet when millions of people repeat them every day, the difference is huge. The ocean connects every country, so this is not a problem any single nation can solve alone. What we need is a shared promise: nothing more goes in.",
+      "questions": [
+        {
+          "question": "How does most plastic reach the ocean?",
+          "options": ["Ships throw it into the water", "Through rivers, wind and rain", "Fish carry it to the shore", "Tourists leave it on beaches"],
+          "answer": 1,
+          "explanation": "原文：most of it travels there through rivers, wind and rain。"
+        },
+        {
+          "question": "What are microplastics?",
+          "options": ["Tiny machines that clean the sea", "The small pieces plastic breaks into", "A kind of sea plant", "Special cleaning materials"],
+          "answer": 1,
+          "explanation": "原文：it only breaks into smaller and smaller pieces, called microplastics。"
+        },
+        {
+          "question": "Why does plastic pollution matter to humans directly?",
+          "options": ["It makes the sea look dirty", "It enters the food chain through seafood", "It only affects tourism", "It increases the price of fish"],
+          "answer": 1,
+          "explanation": "原文：Fish and shellfish absorb tiny plastic particles... may come back to our dinner table。"
+        },
+        {
+          "question": "What does the author suggest individuals do?",
+          "options": ["Wait for governments to act", "Stop eating seafood completely", "Make small daily changes such as using cloth bags", "Clean the beach every week"],
+          "answer": 2,
+          "explanation": "原文：Using a cloth bag... refusing straws and recycling correctly are small actions。"
+        }
+      ]
+    },
+    {
+      "title": "How Coffee Conquered the World",
+      "content": "Coffee is now one of the most valuable products on earth, but its story began quietly in the highlands of Ethiopia. Legend says a goat keeper noticed his goats becoming lively after eating red berries from a certain tree, and he tried them himself. From Ethiopia, coffee travelled to Yemen, where monks drank it to stay awake during long prayers.\n\nBy the fifteenth century coffee had reached the Arab world, and coffee houses appeared in cities from Cairo to Istanbul. These places were soon called schools of the wise, because people met there to talk, argue and share news. European traders brought coffee home in the seventeenth century. At first some people feared it, but coffee houses spread quickly through London, Paris and Vienna. They became centres of business and science; some say the modern newspaper and even the stock exchange were born in them.\n\nAs demand grew, European powers planted coffee in their colonies, and the drink spread to every continent. Today, billions of cups are drunk daily, and coffee supports the jobs of about 125 million people worldwide. The next chapter may be the hardest: climate change is making some traditional growing regions too hot or too dry. Scientists are now racing to develop coffee plants that can survive, so that this centuries-old habit survives too.",
+      "questions": [
+        {
+          "question": "Where did coffee drinking spread after Ethiopia?",
+          "options": ["Yemen", "Brazil", "France", "China"],
+          "answer": 0,
+          "explanation": "原文：From Ethiopia, coffee travelled to Yemen。"
+        },
+        {
+          "question": "Why were coffee houses called schools of the wise?",
+          "options": ["Teachers gave lessons there", "People met there to talk, argue and share news", "They sold books and maps", "Monks studied there"],
+          "answer": 1,
+          "explanation": "原文：because people met there to talk, argue and share news。"
+        },
+        {
+          "question": "What helped coffee spread to every continent?",
+          "options": ["European powers planting it in their colonies", "The invention of the coffee machine", "Tourism between countries", "Its low price"],
+          "answer": 0,
+          "explanation": "原文：European powers planted coffee in their colonies, and the drink spread to every continent。"
+        },
+        {
+          "question": "What is the biggest challenge mentioned for coffee's future?",
+          "options": ["Too many coffee houses", "Falling prices", "Climate change affecting growing regions", "A shortage of workers"],
+          "answer": 2,
+          "explanation": "原文：climate change is making some traditional growing regions too hot or too dry。"
+        }
+      ]
+    },
+    {
+      "title": "Learning a Second Language",
+      "content": "Is learning a second language worth the effort in an age of instant translation apps? Millions of students around the world clearly think so. Apps make travel easier, but they cannot replace what happens in your brain when you learn a language yourself.\n\nResearch suggests that bilingual people are better at switching between tasks and filtering out distractions, because their brains practise controlling two language systems all the time. Some studies even link speaking two languages to a later start of age-related memory decline. Language learning also changes how we see the world. Each language organizes experience in its own way, and idioms carry the history and humour of a culture. A person who has learned to greet, joke and argue in another language often finds that people from that culture open up in a different way.\n\nOf course, the benefits come with effort. Grammar rules and vocabulary take time, and adults often feel embarrassed when they make mistakes. Teachers suggest treating mistakes as progress, setting small daily goals, and using the language for things you already enjoy, such as films, songs or games. Ten focused minutes a day works better than three hours once a week. Translation apps are useful tools, but a language you truly own opens doors no app can.",
+      "questions": [
+        {
+          "question": "What advantage do bilingual brains have according to research?",
+          "options": ["A better memory for numbers", "Better task switching and filtering distractions", "Faster reading speed", "Perfect pronunciation"],
+          "answer": 1,
+          "explanation": "原文：bilingual people are better at switching between tasks and filtering out distractions。"
+        },
+        {
+          "question": "Why does speaking another language open cultural doors?",
+          "options": ["Local people like tourists", "People from that culture open up when you speak their language", "Apps are too slow to use", "It is a rule of politeness"],
+          "answer": 1,
+          "explanation": "原文：people from that culture open up in a different way。"
+        },
+        {
+          "question": "What do teachers suggest for language learners?",
+          "options": ["Avoiding mistakes at all costs", "Studying three hours once a week", "Treating mistakes as progress and setting small daily goals", "Learning grammar only"],
+          "answer": 2,
+          "explanation": "原文：Teachers suggest treating mistakes as progress, setting small daily goals...。"
+        },
+        {
+          "question": "What is the author's attitude towards translation apps?",
+          "options": ["They are useless for travellers", "They are better than real learning", "They are helpful tools but cannot replace learning", "They are harmful to the brain"],
+          "answer": 2,
+          "explanation": "原文：Translation apps are useful tools, but a language you truly own opens doors no app can。"
+        }
+      ]
+    },
+    {
+      "title": "Shared Bikes in the City",
+      "content": "Ten years ago, few people imagined that bicycles would return to city centres in such a big way. Shared bikes, unlocked with a phone and left anywhere at the end of a ride, spread across Chinese cities within months, and the model soon reached Europe and America.\n\nFor commuters, shared bikes solved the last-mile problem, the gap between a bus or subway station and the final destination. They are cheap, produce no pollution and add exercise to daily routines. Cities noticed: some built protected bike lanes and parking areas to keep up with demand.\n\nYet the bike boom also created chaos. Piles of abandoned bikes blocked sidewalks, and damaged bikes were left for weeks. Several companies expanded too fast, burned through their money and disappeared, leaving cities to clean up thousands of rusting frames. The industry has since become more orderly. Operators use electronic fences to control where bikes may be parked, hire teams to move and repair them, and cities set quotas on the total number.\n\nThe lesson is bigger than bicycles. A good idea succeeds only when business innovation and city management grow together. Now, as cities try to cut traffic and carbon, the humble shared bike, once a symbol of chaos, has become a small but real part of the solution.",
+      "questions": [
+        {
+          "question": "What problem did shared bikes mainly solve for commuters?",
+          "options": ["Expensive taxi rides", "The last-mile problem", "Slow subway trains", "Dangerous roads"],
+          "answer": 1,
+          "explanation": "原文：shared bikes solved the last-mile problem。"
+        },
+        {
+          "question": "What chaos did the bike boom create?",
+          "options": ["Prices rose sharply", "Piles of abandoned bikes blocked sidewalks", "There were too many accidents", "People stole private bikes"],
+          "answer": 1,
+          "explanation": "原文：Piles of abandoned bikes blocked sidewalks。"
+        },
+        {
+          "question": "How has the industry become more orderly?",
+          "options": ["Bikes are now free to use", "Electronic fences, repair teams and city quotas are used", "Only tourists can rent bikes", "Companies raised the deposit"],
+          "answer": 1,
+          "explanation": "原文：Operators use electronic fences... hire teams... cities set quotas。"
+        },
+        {
+          "question": "What is the bigger lesson of the shared bike story?",
+          "options": ["Bikes will soon replace cars", "Business innovation must grow together with city management", "Startups always fail in the end", "Cities should ban shared bikes"],
+          "answer": 1,
+          "explanation": "原文：A good idea succeeds only when business innovation and city management grow together。"
+        }
+      ]
+    },
+    {
+      "title": "Green Spaces Make Cities Cooler",
+      "content": "On hot summer afternoons, the difference between a city square and a nearby park can be five degrees or more. This is the urban heat island effect: concrete, asphalt and buildings store heat during the day and release it slowly at night, making cities hotter than the surrounding countryside.\n\nAs heat waves become more frequent, cities are looking for relief, and one of the cheapest tools is simply more green. Trees cool the air in two ways. Their leaves block sunlight before it reaches the ground, and water released from leaves lowers the temperature like a natural air conditioner. Grass and soil, unlike concrete, let rain soak in, which reduces both floods and heat. The benefits go beyond temperature. Green spaces clean the air, reduce noise, support birds and insects, and give residents places to exercise and meet. Studies have even found that spending twenty minutes in a park measurably lowers stress hormones.\n\nNot every neighbourhood has room for a big park, but planners have learned to be creative: pocket parks on empty lots, green roofs on bus stops, climbing plants on sun-facing walls and trees along every possible street. The challenge is fairness. Poorer districts often have the fewest trees and suffer the most from heat. A city that plants wisely is not just decorating itself; it is protecting the health of all its residents.",
+      "questions": [
+        {
+          "question": "What is the urban heat island effect?",
+          "options": ["Cities are hotter than the surrounding countryside", "Islands have more heat than mainland", "Parks become too hot in summer", "Buildings block the wind"],
+          "answer": 0,
+          "explanation": "原文：making cities hotter than the surrounding countryside。"
+        },
+        {
+          "question": "How do trees cool the air?",
+          "options": ["By blocking wind and noise", "By blocking sunlight and releasing water", "By absorbing carbon dioxide only", "By making the soil wet"],
+          "answer": 1,
+          "explanation": "原文：Their leaves block sunlight... water released from leaves lowers the temperature。"
+        },
+        {
+          "question": "What have studies found about parks and stress?",
+          "options": ["Parks have no effect on stress", "Twenty minutes in a park lowers stress hormones", "Only children feel less stress in parks", "Exercise in parks increases stress"],
+          "answer": 1,
+          "explanation": "原文：spending twenty minutes in a park measurably lowers stress hormones。"
+        },
+        {
+          "question": "What fairness problem does the passage mention?",
+          "options": ["Parks cost too much to build", "Poorer districts have fewer trees and suffer more heat", "Rich people dislike green spaces", "Tourists damage the parks"],
+          "answer": 1,
+          "explanation": "原文：Poorer districts often have the fewest trees and suffer the most from heat。"
+        }
+      ]
+    },
+    {
+      "title": "How Online Shopping Changed Retail",
+      "content": "Twenty years ago, shopping meant going to a store, comparing goods by hand and paying cash at a counter. Today, a large share of retail happens on phones, and the change has reshaped not only how we buy but also what we expect.\n\nOnline platforms offer endless choice, transparent prices and reviews from other buyers. Delivery networks make next-day arrival normal. For consumers, this is mostly good news: comparison is easier, small brands can find customers, and people in small towns get access to goods once limited to big cities. For traditional shops, the pressure is heavy. Department stores and small retailers that failed to move online have closed in large numbers.\n\nYet the story is not simply physical versus digital. Successful shops now use stores differently: as showrooms where customers can touch products, get advice and pick up online orders. Some brands that were born online are opening physical shops for the same reason. Technology keeps pushing further. Recommendation systems guess what we want before we search, and live-stream selling turns shopping into entertainment.\n\nBut new problems follow: packages create mountains of cardboard, returned goods are often thrown away, and impulse buying is easier than ever. The future of retail is neither pure online nor pure offline, but a blend, with the customer moving smoothly between screens and shelves.",
+      "questions": [
+        {
+          "question": "What do consumers gain from online shopping?",
+          "options": ["Longer queues at counters", "Endless choice, transparent prices and reviews", "Cheaper rent in small towns", "More exercise"],
+          "answer": 1,
+          "explanation": "原文：Online platforms offer endless choice, transparent prices and reviews。"
+        },
+        {
+          "question": "How do successful physical stores adapt to the new situation?",
+          "options": ["They close earlier than before", "They act as showrooms and pickup points", "They sell only food and drinks", "They refuse online brands"],
+          "answer": 1,
+          "explanation": "原文：Successful shops now use stores differently: as showrooms... pick up online orders。"
+        },
+        {
+          "question": "Which new problems has online shopping brought?",
+          "options": ["Fewer choices for buyers", "Cardboard waste, discarded returns and impulse buying", "Higher taxes on goods", "Slower delivery services"],
+          "answer": 1,
+          "explanation": "原文：packages create mountains of cardboard, returned goods are often thrown away, and impulse buying is easier than ever。"
+        },
+        {
+          "question": "What does the author predict for the future of retail?",
+          "options": ["Everything will move online", "Physical stores will disappear", "A blend of online and offline", "Nothing will change"],
+          "answer": 2,
+          "explanation": "原文：The future of retail is neither pure online nor pure offline, but a blend。"
+        }
+      ]
+    },
+    {
+      "title": "The Story of Instant Noodles",
+      "content": "Instant noodles are one of the most successful foods in modern history: around the world, about one hundred billion servings are eaten every year. The story began in 1958, in post-war Japan, where Momofuku Ando wanted to create a cheap, filling meal that people could prepare at home.\n\nAfter months of experiments in a garden shed, he discovered that steaming and frying noodles removed their moisture, letting them keep for months and soften again in hot water. His first product, Chicken Ramen, seemed expensive at first, but it caught on, and a food revolution followed. Cup noodles, invented in 1971, made instant noodles truly portable, and demand exploded across Asia and later the world.\n\nThe reasons for their success go beyond convenience. They are cheap, taste familiar, last long without refrigeration and need nothing but boiling water, which makes them essential for students, busy workers, travellers and disaster relief. After earthquakes, millions of servings are sent to affected areas because they can feed people without kitchens.\n\nIn recent years, the industry has faced new competition from food delivery and health concerns about salt and fat. Makers have responded with premium flavours, whole grain versions and lower-sodium recipes. Instant noodles may never be health food, but as a symbol of affordable convenience, they have earned their place in food history.",
+      "questions": [
+        {
+          "question": "Who invented instant noodles?",
+          "options": ["A chef in China", "Momofuku Ando in Japan", "An American company", "A Korean businessman"],
+          "answer": 1,
+          "explanation": "原文：The story began in 1958, in post-war Japan, where Momofuku Ando...。"
+        },
+        {
+          "question": "What discovery allowed noodles to keep for months?",
+          "options": ["Freezing them at low temperature", "Steaming and frying to remove moisture", "Adding special salt", "Drying them under the sun"],
+          "answer": 1,
+          "explanation": "原文：steaming and frying noodles removed their moisture, letting them keep for months。"
+        },
+        {
+          "question": "Why are instant noodles important in disaster relief?",
+          "options": ["They taste better than other food", "They need no kitchen, only boiling water", "They are given free by companies", "They stay hot for a long time"],
+          "answer": 1,
+          "explanation": "原文：they can feed people without kitchens。"
+        },
+        {
+          "question": "How has the industry responded to health concerns?",
+          "options": ["It stopped producing traditional noodles", "It offers whole grain versions and lower-sodium recipes", "It raised the prices", "It made larger portions"],
+          "answer": 1,
+          "explanation": "原文：Makers have responded with premium flavours, whole grain versions and lower-sodium recipes。"
+        }
+      ]
+    }
+  ]
+}

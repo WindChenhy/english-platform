@@ -1,0 +1,305 @@
+{
+  "level": "cet6",
+  "articles": [
+    {
+      "title": "AI in Medicine: Promise and Caution",
+      "content": "Artificial intelligence is quietly transforming medicine. Algorithms trained on millions of scans can now detect early signs of cancer on X-rays, flag strokes in seconds and predict which patients in a ward are likely to deteriorate overnight. In some narrow tasks, machines have matched or exceeded the accuracy of experienced specialists, and unlike humans they never tire at the end of a long shift. For rural hospitals with few doctors, AI triage tools may mean the difference between an early diagnosis and a late one.\n\nYet enthusiasm needs to be tempered by caution. Diagnostic models learn from historical data, and historical data reflects historical inequalities. A system trained mostly on patients from one population may perform poorly on others, a risk that has already been documented in dermatology and pulse-oximetry research. There is also the black-box problem: when a model recommends a treatment but cannot explain its reasoning, doctors must decide how much authority to delegate to an opaque process. Liability remains unresolved, too. If an algorithm errs, is the hospital, the developer or the physician responsible?\n\nThe most promising path is collaboration rather than replacement. Used well, AI absorbs routine screening work, giving clinicians more time for conversation, judgement and care, the parts of medicine patients value most. Regulators are now requiring validation on diverse populations, monitoring after deployment and clear documentation of limitations. The technology is advancing faster than the governance around it, but the direction is clear: AI should augment human judgement, never quietly overrule it.",
+      "questions": [
+        {
+          "question": "What advantage of AI in medicine does the passage emphasise?",
+          "options": ["It is cheaper than nurses", "It never tires and works accurately on narrow tasks", "It can replace all specialists", "It understands patients' feelings"],
+          "answer": 1,
+          "explanation": "原文：In some narrow tasks, machines have matched or exceeded... unlike humans they never tire。"
+        },
+        {
+          "question": "Why may a diagnostic model perform poorly on some populations?",
+          "options": ["It is trained on historical data that reflects past inequalities", "It refuses to answer difficult questions", "It requires expensive hardware", "Doctors ignore its output"],
+          "answer": 0,
+          "explanation": "原文：historical data reflects historical inequalities... may perform poorly on others。"
+        },
+        {
+          "question": "What does the black-box problem refer to?",
+          "options": ["Machines are physically hidden from patients", "Models cannot explain their reasoning", "Hospitals keep algorithms secret from doctors", "Data is stored in dark servers"],
+          "answer": 1,
+          "explanation": "原文：when a model recommends a treatment but cannot explain its reasoning。"
+        },
+        {
+          "question": "What is the author's conclusion about AI in medicine?",
+          "options": ["It should fully replace routine doctors", "It should augment human judgement, not overrule it", "Its risks outweigh its benefits", "Governance will soon stop its progress"],
+          "answer": 1,
+          "explanation": "原文最后一句：AI should augment human judgement, never quietly overrule it。"
+        }
+      ]
+    },
+    {
+      "title": "The Paradox of Choice",
+      "content": "Conventional wisdom holds that more options make us better off. A supermarket with forty kinds of jam, a streaming service with ten thousand films, a dating app with infinite swipes, surely freedom means abundance. Yet psychologists have challenged this assumption with a series of elegant experiments. In a famous study, shoppers presented with twenty-four varieties of jam were far less likely to buy any than those shown only six. More options did not liberate them; it paralysed them.\n\nResearchers explain the paradox in several ways. First, evaluating many alternatives consumes cognitive resources, and the fear of missing out turns every decision into an anxious audit of roads not taken. Second, abundant choice raises expectations. With only six jams, a decent one satisfies us; with twenty-four, we expect to find the perfect one, and when we do not, we blame ourselves. This helps explain why students choosing from hundreds of courses, and employees weighing dozens of career paths, often end up less satisfied than those with narrower menus.\n\nThe lesson is not that choice is bad, but that choice has diminishing returns. Some people, whom psychologists call maximisers, insist on examining every option and pay for that thoroughness with regret. Satisficers, by contrast, settle for good enough and move on, and studies suggest they are generally happier. Practical strategies follow: narrow options in advance, decide which decisions truly deserve deep analysis, and accept that a good outcome need not be the optimal one. In a world of endless catalogues, knowing when to stop choosing is itself a skill.",
+      "questions": [
+        {
+          "question": "What did the famous jam experiment demonstrate?",
+          "options": ["People prefer expensive jam", "More options can reduce the likelihood of purchase", "Six jams are not enough for customers", "Supermarkets should display more goods"],
+          "answer": 1,
+          "explanation": "原文：shoppers presented with twenty-four varieties of jam were far less likely to buy any than those shown only six。"
+        },
+        {
+          "question": "According to the passage, why does abundant choice raise dissatisfaction?",
+          "options": ["It makes goods more expensive", "It raises expectations of finding the perfect option", "It wastes storage space", "It encourages impulsive buying"],
+          "answer": 1,
+          "explanation": "原文：abundant choice raises expectations... we expect to find the perfect one, and when we do not, we blame ourselves。"
+        },
+        {
+          "question": "What does the passage say about maximisers?",
+          "options": ["They are always more successful", "They examine every option and pay with regret", "They never make decisions", "They prefer narrow menus by nature"],
+          "answer": 1,
+          "explanation": "原文：maximisers... insist on examining every option and pay for that thoroughness with regret。"
+        },
+        {
+          "question": "Which strategy does the author recommend?",
+          "options": ["Outsourcing decisions to algorithms", "Accepting that a good outcome need not be optimal", "Always choosing the first option", "Avoiding decisions whenever possible"],
+          "answer": 1,
+          "explanation": "原文：accept that a good outcome need not be the optimal one。"
+        }
+      ]
+    },
+    {
+      "title": "The Attention Economy",
+      "content": "Herbert Simon, a Nobel-winning economist, observed decades ago that a wealth of information creates a poverty of attention. His insight has become the operating principle of the modern internet. Because human attention is finite while content is infinite, platforms compete to capture and hold our focus for as long as possible, and the most sophisticated engineering of our era is deployed towards that single goal.\n\nThe mechanics are well documented. Infinite feeds remove natural stopping points. Autoplay removes the decision to continue. Notifications arrive in red badges engineered to trigger urgency. Recommendation systems, trained on billions of sessions, have learned precisely which combinations of novelty, outrage and novelty again will keep a thumb scrolling. None of this is accidental; engagement metrics drive advertising revenue, so every design choice is optimised, tested and refined against our behaviour.\n\nCritics do not simply blame weakness of will. They argue that an environment deliberately built to exploit psychological vulnerabilities deserves scrutiny, just as food safety rules limit what can be added to what we eat. Some countries have passed laws restricting addictive design features for minors, and a growing right-to-disconnect movement challenges the expectation of constant availability at work.\n\nIndividuals are not powerless. Reclaiming attention can be structural rather than heroic: deleting apps that exploit compulsion loops, silencing non-human notifications, keeping phones outside bedrooms, and scheduling deliberate boredom, the mental white space in which reflection and creativity occur. Attention, as Simon foresaw, is the scarce resource of the information age. How we spend it, collectively and individually, will shape not only our schedules but the quality of our minds.",
+      "questions": [
+        {
+          "question": "What does Herbert Simon's observation imply?",
+          "options": ["Information should be taxed", "Abundant information makes attention the scarce resource", "Economists misunderstand the internet", "Information creates wealth"],
+          "answer": 1,
+          "explanation": "原文：a wealth of information creates a poverty of attention。"
+        },
+        {
+          "question": "Why do platforms design infinite feeds and autoplay?",
+          "options": ["To save users' battery", "To remove natural stopping points and maximise engagement", "To reduce server costs", "To follow government regulations"],
+          "answer": 1,
+          "explanation": "原文：Infinite feeds remove natural stopping points. Autoplay removes the decision to continue。"
+        },
+        {
+          "question": "How do critics justify regulating addictive design?",
+          "options": ["They compare it to food safety rules limiting additives", "They claim all advertising is illegal", "They want to ban the internet", "They argue screens damage eyesight"],
+          "answer": 0,
+          "explanation": "原文：just as food safety rules limit what can be added to what we eat。"
+        },
+        {
+          "question": "What does the author suggest about reclaiming attention?",
+          "options": ["It requires extraordinary willpower", "Structural changes can work better than heroic effort", "It is impossible in modern life", "Only governments can achieve it"],
+          "answer": 1,
+          "explanation": "原文：Reclaiming attention can be structural rather than heroic。"
+        }
+      ]
+    },
+    {
+      "title": "Deep-Sea Exploration",
+      "content": "We have mapped the surfaces of Mars and the Moon in remarkable detail, yet more than three quarters of Earth's ocean floor remains uncharted. The deep sea, the zone below two hundred metres where sunlight cannot reach, is the largest habitat on the planet and among the least explored. Every expedition returns with species unknown to science: translucent fish, gutless worms sustained by chemical energy, corals older than the pyramids.\n\nThe deep ocean matters far beyond its mystery. Currents generated there regulate the global climate, storing heat and carbon dioxide on a planetary scale. Its microbes have already yielded compounds used in anticancer drugs and industrial enzymes. Hydrothermal vents, where mineral-rich water erupts through the seafloor, host ecosystems that live without photosynthesis, rewriting biology textbooks after their discovery only in 1977.\n\nBut the deep sea now faces pressure before we even understand it. Mining companies eye seabed deposits of nickel, cobalt and copper, metals essential for batteries; trawlers drag nets across seamounts, destroying slow-growing coral communities that took centuries to form; and plastic has been found in the Mariana Trench itself. Scientists warn that recovery from such damage operates on geological timescales.\n\nInternational negotiations over seabed mining rules have repeatedly stalled, exposing a gap between technological capability and collective governance. The tools for exploration, autonomous submarines, eDNA sampling, open-access sonar data, are advancing rapidly and, encouragingly, lowering the cost of knowing what lives down there. The question is whether we will study the deep sea as a library to be read, or exploit it as a warehouse to be emptied.",
+      "questions": [
+        {
+          "question": "What does the passage say about our knowledge of the ocean floor?",
+          "options": ["It has been fully mapped", "More than three quarters of it remains uncharted", "It is better mapped than Mars", "Only the Mariana Trench is unexplored"],
+          "answer": 1,
+          "explanation": "原文：more than three quarters of Earth's ocean floor remains uncharted。"
+        },
+        {
+          "question": "Why do hydrothermal vents matter to biology?",
+          "options": ["They produce fresh water", "They host ecosystems that live without photosynthesis", "They power underwater cities", "They create ocean currents"],
+          "answer": 1,
+          "explanation": "原文：host ecosystems that live without photosynthesis, rewriting biology textbooks。"
+        },
+        {
+          "question": "Which pressure on the deep sea is NOT mentioned?",
+          "options": ["Seabed mining for battery metals", "Trawling that destroys coral communities", "Plastic pollution reaching the trench", "Tourist submarines disturbing habitats"],
+          "answer": 3,
+          "explanation": "前三项均被提及，旅游潜艇未出现在文中。"
+        },
+        {
+          "question": "What does the author's final metaphor contrast?",
+          "options": ["Rich and poor countries", "Studying the deep sea carefully versus exploiting it", "Old and new exploration tools", "Shallow and deep waters"],
+          "answer": 1,
+          "explanation": "结尾：study the deep sea as a library to be read, or exploit it as a warehouse to be emptied。"
+        }
+      ]
+    },
+    {
+      "title": "Misinformation and How to Fight It",
+      "content": "False information is not new. Rumours, forgeries and conspiracy theories have circulated for as long as people have told stories. What is new is the velocity and scale that social media grants them. A fabricated claim, polished with a compelling image and a confident tone, can cross the globe before the first correction appears, and corrections rarely travel as far as the lie.\n\nResearch complicates the common assumption that only the gullible fall for misinformation. Psychologists find that intelligent, careful people are also vulnerable when a false story aligns with their political identity or flatters their group, a phenomenon called identity-protective cognition. We are not primarily truth-seekers; we are social creatures who use beliefs, sometimes unconsciously, as badges of belonging.\n\nThe most effective responses work with human nature rather than against it. Prebunking, exposing people to weakened doses of manipulation techniques before they encounter them in the wild, has shown measurable results in field studies. Friction helps too: prompts asking users to read an article before sharing it, or accuracy reminders that shift attention from identity to truth, reduce reposting without censorship. Fact-checking remains valuable, but as a delayed repair rather than a vaccine.\n\nPlatform design carries much of the responsibility. Recommender systems that reward outrage and novelty are, in effect, misinformation engines with profit motives. Regulators in several jurisdictions now require risk assessments and researcher access to data. None of these measures is sufficient alone. The realistic goal is not a world without falsehood, which has never existed, but an information ecosystem in which truth is not permanently outcompeted.",
+      "questions": [
+        {
+          "question": "What is new about misinformation in the social media era?",
+          "options": ["People tell more lies than before", "The speed and scale at which it spreads", "It is easier to detect", "It only appears in politics"],
+          "answer": 1,
+          "explanation": "原文：What is new is the velocity and scale that social media grants them。"
+        },
+        {
+          "question": "What is identity-protective cognition?",
+          "options": ["Protecting personal data online", "Believing false stories that align with one's group identity", "Learning faster within groups", "Forgetting inconvenient facts"],
+          "answer": 1,
+          "explanation": "原文：a false story aligns with their political identity... we use beliefs as badges of belonging。"
+        },
+        {
+          "question": "What does prebunking mean?",
+          "options": ["Deleting false posts before they spread", "Exposing people to weakened manipulation techniques in advance", "Banning suspicious accounts", "Requiring identity verification"],
+          "answer": 1,
+          "explanation": "原文：Prebunking, exposing people to weakened doses of manipulation techniques before they encounter them。"
+        },
+        {
+          "question": "What is the author's realistic goal in fighting misinformation?",
+          "options": ["Eliminating all falsehood", "An ecosystem where truth is not permanently outcompeted", "Closing social media platforms", "Making everyone a fact-checker"],
+          "answer": 1,
+          "explanation": "原文：The realistic goal is not a world without falsehood... but an information ecosystem in which truth is not permanently outcompeted。"
+        }
+      ]
+    },
+    {
+      "title": "The Ethics of Gene Editing",
+      "content": "The arrival of CRISPR, a gene-editing tool that is cheap, precise and relatively easy to use, has moved humanity from reading the genome to rewriting it. In medicine, the prospects are extraordinary. Clinical trials have produced functional cures for sickle-cell disease, and researchers are pursuing therapies for inherited blindness, muscular dystrophy and certain cancers. Editing somatic cells, those of a patient's body, affects only the individual treated, and most ethicists accept such therapy under proper oversight.\n\nThe sharper controversy concerns germline editing, changes to embryos that would be inherited by every future generation. In principle, germline editing could eliminate devastating genetic diseases from family lines entirely. In practice, it raises questions no parliament has fully answered. Who decides which traits are diseases rather than differences? Could editing for health slide into editing for height, intelligence or appearance? And what of consent, since no future person can agree to the alteration of their own genome?\n\nThese concerns became concrete in 2018, when a researcher announced the birth of gene-edited babies in China, triggering international condemnation and, eventually, a prison sentence. The episode revealed how thin the line is between technical capability and ethical readiness. Scientific bodies have called for moratoria and for public deliberation, insisting that societal consensus must precede clinical application. The technology will not wait politely, but governance need not lag by default. Editing the human germline may one day be defensible for narrowly defined diseases under strict regulation. Until then, restraint is not an obstacle to progress; it is a component of it.",
+      "questions": [
+        {
+          "question": "Why do most ethicists accept somatic cell editing?",
+          "options": ["It is cheap and painless", "It affects only the treated individual", "It has no side effects", "It is required by law"],
+          "answer": 1,
+          "explanation": "原文：Editing somatic cells... affects only the individual treated, and most ethicists accept such therapy。"
+        },
+        {
+          "question": "What distinguishes germline editing from somatic editing?",
+          "options": ["It is cheaper to perform", "Changes are inherited by all future generations", "It only works on embryos", "It cannot treat diseases"],
+          "answer": 1,
+          "explanation": "原文：germline editing, changes to embryos that would be inherited by every future generation。"
+        },
+        {
+          "question": "What does the 2018 case of gene-edited babies illustrate?",
+          "options": ["The technology was not yet real", "Technical capability can outrun ethical readiness", "China approves of germline editing", "Courts cannot punish scientists"],
+          "answer": 1,
+          "explanation": "原文：The episode revealed how thin the line is between technical capability and ethical readiness。"
+        },
+        {
+          "question": "What is the author's position on germline editing?",
+          "options": ["It must be banned forever", "It should be commercialised at once", "Restraint now, with possible narrow use under strict regulation later", "Public opinion is irrelevant"],
+          "answer": 2,
+          "explanation": "原文：restraint is not an obstacle to progress; it is a component of it。"
+        }
+      ]
+    },
+    {
+      "title": "Reforestation from the Air",
+      "content": "The arithmetic of global reforestation is brutal. Restoring degraded forests at the scale climate targets demand would require planting billions of trees a year, while traditional hand-planting is slow, expensive and often short of workers. This gap has inspired a fleet of startups that plant from the sky. Drones, loaded with seed pods pre-mixed with nutrients and mycorrhizal fungi, can fire thousands of pods per hour across terrain too steep or too dangerous for human crews. Artificial intelligence maps the land first, identifying soil types, moisture and the species most likely to survive in each micro-zone.\n\nEarly results are promising but sobering. Drone seeding costs a fraction of manual planting and can restore remote areas quickly, yet survival rates vary widely, in some trials as low as twenty percent, because seeds dry out, get eaten or land in shade. Seeds, after all, lack the developed root systems of nursery saplings. Practitioners are learning to hedge: firing denser pods, timing drops to rainy seasons, coating seeds with protective gels and mixing pioneer species that shade and nurse the more valuable trees.\n\nExperts insist that aerial planting complements rather than replaces the slower work of engaging local communities, because forests fail when people who live nearby have no stake in them. Monoculture drone forests, like monoculture plantations, create ecological deserts. Done well, though, the combination of satellite data, drones and community stewardship can scale restoration in ways the twentieth century never managed. The sky, it turns out, is not the limit; it is the delivery method.",
+      "questions": [
+        {
+          "question": "Why did startups start planting trees with drones?",
+          "options": ["Drones are cheaper to buy than shovels", "The scale needed exceeds what hand-planting can achieve", "Governments banned manual planting", "Seeds grow faster when dropped from above"],
+          "answer": 1,
+          "explanation": "原文：would require planting billions of trees a year, while traditional hand-planting is slow, expensive...。"
+        },
+        {
+          "question": "What limitation do aerial seeding trials reveal?",
+          "options": ["Drones cannot fly over forests", "Survival rates of seeds are often low", "AI cannot map soil types", "Seed pods are illegal in most countries"],
+          "answer": 1,
+          "explanation": "原文：survival rates vary widely, in some trials as low as twenty percent。"
+        },
+        {
+          "question": "Why do practitioners mix pioneer species into pod payloads?",
+          "options": ["They are cheaper to produce", "They shade and nurse more valuable trees", "They attract rain clouds", "They prevent forest fires"],
+          "answer": 1,
+          "explanation": "原文：mixing pioneer species that shade and nurse the more valuable trees。"
+        },
+        {
+          "question": "What role do experts assign to local communities in reforestation?",
+          "options": ["They should move away from forest areas", "They must have a stake, or forests will fail", "They should manage the drones", "Their knowledge is outdated"],
+          "answer": 1,
+          "explanation": "原文：forests fail when people who live nearby have no stake in them。"
+        }
+      ]
+    },
+    {
+      "title": "Space Tourism's Environmental Cost",
+      "content": "For decades, space travel was a government monopoly reserved for a tiny corps of astronauts. Commercial rockets have changed that. Wealthy customers now buy minutes of weightlessness or seats on orbital flights, and the industry promises that prices will fall, as they did for air travel, until space opens to the middle class. The engineering achievements are real and impressive: reusable boosters that land themselves have genuinely cut launch costs.\n\nYet the environmental ledger is drawing scrutiny. A single rocket launch injects hundreds of tonnes of carbon dioxide and black soot, or black carbon, directly into the upper atmosphere, where particles linger far longer than they do at ground level. Stratospheric soot is unusually effective at absorbing sunlight and altering temperature patterns. Research estimates that the climate impact of one space tourist can be a hundred times that of a long-haul flight per passenger. Beyond carbon, rocket exhaust deposits aluminium oxides and chlorine compounds that may accelerate ozone thinning, precisely in the layer that shields us from ultraviolet radiation.\n\nThe industry's counter-argument is scale: all rocket launches today contribute a vanishingly small share of global emissions, far less than aviation, let alone shipping or road transport. That is currently true, but analysts note it is the trajectory that matters; some firms envision thousands of launches a year. Regulation remains embryonic. International space law was written for states, not for tourism, and no binding framework restricts launch emissions. Whether space tourism matures responsibly may depend on applying the same pressure that forced aviation to improve: transparency about impact, cleaner fuels and a public that asks what its dreams cost.",
+      "questions": [
+        {
+          "question": "What genuine achievement does the passage credit the space industry with?",
+          "options": ["Building orbital hotels", "Reusable boosters that cut launch costs", "Colonising Mars", "Cleaning the atmosphere"],
+          "answer": 1,
+          "explanation": "原文：reusable boosters that land themselves have genuinely cut launch costs。"
+        },
+        {
+          "question": "Why is black carbon from rockets especially harmful?",
+          "options": ["It smells unpleasant", "It lingers in the upper atmosphere and absorbs sunlight effectively", "It falls on cities", "It kills birds"],
+          "answer": 1,
+          "explanation": "原文：particles linger far longer... Stratospheric soot is unusually effective at absorbing sunlight。"
+        },
+        {
+          "question": "How does the industry respond to environmental criticism?",
+          "options": ["It denies rockets produce emissions", "It argues current launches are a tiny share of global emissions", "It pays carbon taxes already", "It claims tourists plant trees"],
+          "answer": 1,
+          "explanation": "原文：all rocket launches today contribute a vanishingly small share of global emissions。"
+        },
+        {
+          "question": "What regulatory gap does the passage point out?",
+          "options": ["No law restricts launch emissions", "Only Europe regulates rockets", "Space law bans tourism", "Ozone laws do not apply to rockets"],
+          "answer": 0,
+          "explanation": "原文：no binding framework restricts launch emissions。"
+        }
+      ]
+    },
+    {
+      "title": "The Right to Repair",
+      "content": "When a smartphone screen cracks or a tractor's sensor fails, the manufacturer's advice is usually the same: take it to an authorised service centre. For a growing coalition of consumers, farmers and independent repair shops, that advice embodies a problem. Products are glued shut, parts are paired to the device by software, diagnostics are locked away, and manuals are unavailable. Repair, once a normal act of ownership, has been engineered into a service you must buy.\n\nThe right-to-repair movement argues that ownership should include the ability to fix, and legislation is starting to agree. The European Union now requires manufacturers of many appliances to supply spare parts for years after sale, and rules for smartphones mandate replaceable batteries and access to repair information. Several American states have passed digital repair laws, and even manufacturers that once lobbied against them now advertise self-repair programmes, an implicit acknowledgment that the political wind has turned.\n\nIndustry objections deserve a hearing. Safety risks are real, particularly in high-voltage vehicles; security can suffer when repair tools leak into criminal hands; and authorised networks protect intellectual property. Yet critics note these arguments have historically travelled further than the evidence, and that similar warnings accompanied earlier repair laws without catastrophe.\n\nThe stakes extend past convenience. Electronic waste is the fastest-growing domestic waste stream on the planet, and lengthening device lifetimes is among the cheapest forms of climate policy available. A repairable product is also, often, a better product: modular design invites upgrades rather than obsolescence. The right to repair is, at bottom, a question about who owns the objects we buy, the person who paid for them, or the company that made them.",
+      "questions": [
+        {
+          "question": "What barriers to repair does the passage list?",
+          "options": ["High taxes on tools", "Glued designs, parts pairing, locked diagnostics and missing manuals", "Shortage of repair shops", "Consumers' lack of interest"],
+          "answer": 1,
+          "explanation": "原文：Products are glued shut, parts are paired... diagnostics are locked away, and manuals are unavailable。"
+        },
+        {
+          "question": "What does EU legislation now require?",
+          "options": ["Free repairs for life", "Spare parts supply, replaceable batteries and repair information", "Bans on all glued phones", "Government-owned repair centres"],
+          "answer": 1,
+          "explanation": "原文：The European Union now requires... spare parts... replaceable batteries and access to repair information。"
+        },
+        {
+          "question": "How does the author treat industry objections?",
+          "options": ["They are all fabricated", "They deserve a hearing but have historically overreached", "They have been proven correct", "They are irrelevant to policy"],
+          "answer": 1,
+          "explanation": "原文：Industry objections deserve a hearing... these arguments have historically travelled further than the evidence。"
+        },
+        {
+          "question": "What deeper issue does the right to repair raise?",
+          "options": ["Whether products should be cheaper", "Who truly owns the objects we buy", "Whether repair shops need licences", "How to recycle cardboard"],
+          "answer": 1,
+          "explanation": "原文结尾：a question about who owns the objects we buy。"
+        }
+      ]
+    },
+    {
+      "title": "Urban Farms of the Future",
+      "content": "By 2050, roughly two thirds of humanity will live in cities, and feeding urban populations will strain supply chains that already fail during crises. One response growing in popularity, sometimes literally, is the urban farm: rooftops converted to vegetable beds, shipping containers refitted as vertical farms, and warehouses glowing magenta with LED light. The technology is advancing quickly. Hydroponics grows plants in nutrient solutions instead of soil, aeroponics mists the roots directly, and closed-loop water systems use up to ninety-five percent less water than open fields. Because crops grow beside their customers, transport shrinks, spoilage drops and freshness improves; some vertical farms deliver greens harvested the same morning.\n\nSceptics raise fair objections. Vertical farms are energy-hungry, and if that electricity comes from fossil fuels, the carbon maths may still work out worse than a truck from the countryside. Leafy greens and herbs grow well under LEDs, but staple crops such as wheat, rice and potatoes remain economically out of reach, which is why no vertical farm will feed a city alone. Capital costs are high, and many celebrated startups have failed commercially.\n\nThe most convincing case for urban agriculture is therefore not total replacement but integration. Community gardens deliver cheap nutrition along with social cohesion and, researchers find, measurable mental health benefits. School farms teach children where food originates. Rooftop greenery cools buildings and absorbs storm water, services that conventional infrastructure would otherwise provide at cost. Cities that treat food as part of urban design, alongside housing and transport, gain resilience: when borders close or roads flood, the nearest farm is suddenly up the street and upstairs.",
+      "questions": [
+        {
+          "question": "What resource advantage do closed-loop hydroponic systems offer?",
+          "options": ["They use no electricity", "They can use far less water than open fields", "They need no workers", "They produce their own nutrients"],
+          "answer": 1,
+          "explanation": "原文：closed-loop water systems use up to ninety-five percent less water than open fields。"
+        },
+        {
+          "question": "Why may vertical farms still have a poor carbon footprint?",
+          "options": ["They waste water", "Their energy may come from fossil fuels", "They grow only flowers", "They require long transport"],
+          "answer": 1,
+          "explanation": "原文：if that electricity comes from fossil fuels, the carbon maths may still work out worse。"
+        },
+        {
+          "question": "Why can't vertical farms feed a whole city?",
+          "options": ["Cities dislike their appearance", "Staple crops remain economically unviable under LEDs", "They produce too much food", "Restaurants refuse to buy from them"],
+          "answer": 1,
+          "explanation": "原文：staple crops such as wheat, rice and potatoes remain economically out of reach。"
+        },
+        {
+          "question": "What is the author's overall view of urban agriculture?",
+          "options": ["It will fully replace rural farming", "It is a commercial failure", "It should be integrated into urban design for resilience", "It mainly benefits wealthy residents"],
+          "answer": 2,
+          "explanation": "原文：not total replacement but integration... gain resilience。"
+        }
+      ]
+    }
+  ]
+}

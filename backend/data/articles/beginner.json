@@ -1,0 +1,305 @@
+{
+  "level": "beginner",
+  "articles": [
+    {
+      "title": "My Morning Routine",
+      "content": "I get up at half past six every morning. First, I wash my face and brush my teeth. Then I drink a glass of warm water. My mother makes breakfast for the family. We usually have eggs, bread and milk.\n\nAt seven o'clock, I put on my school uniform and pack my schoolbag. I check my timetable to make sure I have all my books. I leave home at twenty past seven and walk to school with my friend Ben. The walk takes about fifteen minutes. We talk about football and films on the way.\n\nSchool starts at eight o'clock. Before the first class, I often read English aloud for ten minutes. It helps me remember new words. I like my quiet mornings because they make me feel ready for the day.",
+      "questions": [
+        {
+          "question": "What time does the writer get up?",
+          "options": ["At 6:00", "At 6:30", "At 7:00", "At 7:20"],
+          "answer": 1,
+          "explanation": "原文第一句：I get up at half past six，即六点半。"
+        },
+        {
+          "question": "What does the family usually have for breakfast?",
+          "options": ["Noodles and tea", "Rice and eggs", "Eggs, bread and milk", "Bread and juice"],
+          "answer": 2,
+          "explanation": "原文：We usually have eggs, bread and milk。"
+        },
+        {
+          "question": "How long does the walk to school take?",
+          "options": ["About ten minutes", "About fifteen minutes", "About twenty minutes", "About half an hour"],
+          "answer": 1,
+          "explanation": "原文：The walk takes about fifteen minutes。"
+        },
+        {
+          "question": "Why does the writer read English aloud before class?",
+          "options": ["To make new friends", "To feel less sleepy", "To help remember new words", "To prepare for the football game"],
+          "answer": 2,
+          "explanation": "原文：It helps me remember new words。"
+        }
+      ]
+    },
+    {
+      "title": "A Trip to the City Park",
+      "content": "Last Saturday, the weather was fine, so my family went to the city park. We took the bus because the park is a little far from our home. In the park, many people were enjoying the sunshine. Some children were flying kites, and some old people were dancing to music near the lake.\n\nMy little sister wanted to see the ducks, so we bought a bag of bread and fed them by the water. The ducks swam quickly to us and ate all the bread. Then we walked along a small river. There were many beautiful flowers next to the path, and my father took a lot of photos of us.\n\nAt noon, we sat on the grass and had a picnic. Mum made sandwiches and Dad made tea. After lunch, I played badminton with my sister. We went home at four o'clock in the afternoon. We were all tired but very happy. I hope we can go again next weekend.",
+      "questions": [
+        {
+          "question": "How did the family go to the park?",
+          "options": ["On foot", "By bike", "By bus", "By car"],
+          "answer": 2,
+          "explanation": "原文：We took the bus because the park is a little far。"
+        },
+        {
+          "question": "What did the little sister want to do?",
+          "options": ["Fly a kite", "See the ducks", "Dance to music", "Swim in the lake"],
+          "answer": 1,
+          "explanation": "原文：My little sister wanted to see the ducks。"
+        },
+        {
+          "question": "What did the writer do after lunch?",
+          "options": ["Played badminton with his sister", "Took photos of flowers", "Fed the ducks again", "Made tea for everyone"],
+          "answer": 0,
+          "explanation": "原文：After lunch, I played badminton with my sister。"
+        },
+        {
+          "question": "How did the family feel when they went home?",
+          "options": ["Angry", "Sad", "Tired but happy", "Hungry"],
+          "answer": 2,
+          "explanation": "原文：We were all tired but very happy。"
+        }
+      ]
+    },
+    {
+      "title": "My Best Friend Lisa",
+      "content": "I have many friends at school, but my best friend is Lisa. We have known each other since Grade Three. Lisa is tall and has short black hair. She wears glasses because she reads a lot. She is the top student in our class, but she is never proud.\n\nWhen I have problems with my homework, she always explains everything slowly until I understand. Lisa also loves sports. She plays table tennis very well and taught me how to play last term. Now we play together every Friday afternoon.\n\nLisa wants to be a doctor in the future because she wants to help sick people. I think she will make her dream come true, because she studies hard and never gives up. A friend like Lisa is like a light in my life. I hope we will be friends forever.",
+      "questions": [
+        {
+          "question": "When did the writer meet Lisa?",
+          "options": ["Last term", "In Grade Three", "Last year", "At a sports club"],
+          "answer": 1,
+          "explanation": "原文：We have known each other since Grade Three。"
+        },
+        {
+          "question": "Why does Lisa wear glasses?",
+          "options": ["She watches too much TV", "Her eyes were hurt", "She reads a lot", "She thinks glasses are cool"],
+          "answer": 2,
+          "explanation": "原文：She wears glasses because she reads a lot。"
+        },
+        {
+          "question": "What does Lisa want to be in the future?",
+          "options": ["A doctor", "A table tennis player", "A teacher", "A scientist"],
+          "answer": 0,
+          "explanation": "原文：Lisa wants to be a doctor in the future。"
+        },
+        {
+          "question": "What does the writer think about Lisa's dream?",
+          "options": ["It is too difficult", "It may change one day", "It is not clear yet", "It will come true"],
+          "answer": 3,
+          "explanation": "原文：I think she will make her dream come true。"
+        }
+      ]
+    },
+    {
+      "title": "Making Dumplings with Grandma",
+      "content": "Last Friday evening, my grandma taught me how to make dumplings. First, we made the dough with flour and water. Grandma said the dough must rest for half an hour. While we waited, we prepared the filling with pork, cabbage and onions. Grandma cut everything into small pieces and mixed them in a big bowl.\n\nThen she showed me how to roll the wrappers. My first wrapper was too thick and looked like a small map. Grandma laughed and showed me again. Slowly, my wrappers got better. The most difficult part was closing the dumplings. My first one opened in the boiling water! But by the end, I made twenty dumplings, and only two of them broke.\n\nWhen the dumplings were ready, the whole family ate together. My parents said my dumplings tasted great. I felt proud of myself. Making dumplings is not easy, but it is really fun.",
+      "questions": [
+        {
+          "question": "What did they use to make the dough?",
+          "options": ["Flour and water", "Rice and water", "Flour and milk", "Flour and eggs"],
+          "answer": 0,
+          "explanation": "原文：we made the dough with flour and water。"
+        },
+        {
+          "question": "What was wrong with the writer's first wrapper?",
+          "options": ["It was too thin", "It was too small", "It was too thick", "It was too round"],
+          "answer": 2,
+          "explanation": "原文：My first wrapper was too thick。"
+        },
+        {
+          "question": "How many dumplings broke in the end?",
+          "options": ["One", "Two", "Twenty", "None"],
+          "answer": 1,
+          "explanation": "原文：only two of them broke。"
+        },
+        {
+          "question": "How did the writer feel at the end?",
+          "options": ["Sad", "Angry", "Tired", "Proud"],
+          "answer": 3,
+          "explanation": "原文：I felt proud of myself。"
+        }
+      ]
+    },
+    {
+      "title": "My Cat Mimi",
+      "content": "Mimi is my cat. She is two years old and has white fur with black ears. My aunt gave her to me on my tenth birthday. Mimi sleeps a lot during the day. Her favourite place is the sofa near the window, where she can watch birds outside.\n\nBut when I come home from school, she always runs to the door and makes small sounds, as if she is saying hello. Mimi loves fish best. Every Sunday, Mum buys a small fish for her, and Mimi waits by her bowl long before dinner. She is also very clean. She washes her face with her paw many times a day.\n\nSometimes Mimi is naughty. Last week, she pushed my cup off the desk and broke it. I was angry, but when she looked at me with her big eyes, I could not stay angry. I love Mimi, and I think she loves me too.",
+      "questions": [
+        {
+          "question": "Who gave Mimi to the writer?",
+          "options": ["His mother", "His father", "His aunt", "His friend"],
+          "answer": 2,
+          "explanation": "原文：My aunt gave her to me on my tenth birthday。"
+        },
+        {
+          "question": "Where does Mimi like to sleep?",
+          "options": ["On the bed", "On the sofa near the window", "Under the table", "In a box"],
+          "answer": 1,
+          "explanation": "原文：Her favourite place is the sofa near the window。"
+        },
+        {
+          "question": "What does Mimi love to eat best?",
+          "options": ["Bread", "Milk", "Fish", "Eggs"],
+          "answer": 2,
+          "explanation": "原文：Mimi loves fish best。"
+        },
+        {
+          "question": "What did Mimi do last week?",
+          "options": ["She broke the writer's cup", "She caught a bird", "She ran away", "She lost her toy"],
+          "answer": 0,
+          "explanation": "原文：she pushed my cup off the desk and broke it。"
+        }
+      ]
+    },
+    {
+      "title": "A Rainy Sunday",
+      "content": "It was Sunday, but it rained heavily all day. We could not go out, so we stayed at home. At first, I felt bored and watched the rain run down the window. Then Mum had a good idea. Why don't we make a cake?\n\nWe found flour, sugar, eggs and milk in the kitchen. Dad helped us mix everything, and I beat the eggs. Mum said beating eggs was the most important step. We put the mixture into the oven and waited. The whole house smelled wonderful.\n\nWhile we waited, we played a card game at the table. Dad told us stories about his childhood, and we laughed a lot. Finally, the cake was ready. It was not as beautiful as the cakes in the shop, but it tasted delicious. The rain did not stop all day, but we had a wonderful time at home. Sometimes a rainy day can be a happy day.",
+      "questions": [
+        {
+          "question": "Why did the family stay at home?",
+          "options": ["It was too hot outside", "It rained heavily", "Mum was tired", "Dad was busy"],
+          "answer": 1,
+          "explanation": "原文：it rained heavily all day. We could not go out。"
+        },
+        {
+          "question": "Who beat the eggs?",
+          "options": ["Mum", "Dad", "The writer", "The sister"],
+          "answer": 2,
+          "explanation": "原文：and I beat the eggs，I 指作者本人。"
+        },
+        {
+          "question": "What did they do while waiting for the cake?",
+          "options": ["Watched TV", "Played a card game", "Went to bed", "Read books"],
+          "answer": 1,
+          "explanation": "原文：we played a card game at the table。"
+        },
+        {
+          "question": "How was the cake?",
+          "options": ["Beautiful but not tasty", "Not beautiful but delicious", "Both beautiful and delicious", "Bad"],
+          "answer": 1,
+          "explanation": "原文：It was not as beautiful... but it tasted delicious。"
+        }
+      ]
+    },
+    {
+      "title": "The School Library",
+      "content": "Our school library is a quiet and bright place. It is on the second floor of the red building. There are more than twenty thousand books in it, and new books arrive every month. The library has two big rooms. In one room, there are long tables where students can read and do homework. In the other room, there are bookshelves full of books about science, history, art and sports.\n\nMy favourite corner is near the window, because the light is good and I can see the trees outside. Students can borrow three books each time and keep them for two weeks. If you need more time, you can renew them online. Miss Gao, the librarian, is kind and helpful. She always knows where to find the books we need.\n\nI go to the library three times a week. Reading there after class makes me calm and happy. Books are like friends to me.",
+      "questions": [
+        {
+          "question": "Where is the school library?",
+          "options": ["On the first floor", "On the second floor", "On the third floor", "Next to the gate"],
+          "answer": 1,
+          "explanation": "原文：It is on the second floor of the red building。"
+        },
+        {
+          "question": "How many books can a student borrow each time?",
+          "options": ["One", "Two", "Three", "Five"],
+          "answer": 2,
+          "explanation": "原文：Students can borrow three books each time。"
+        },
+        {
+          "question": "How long can students keep the books?",
+          "options": ["One week", "Two weeks", "One month", "Three days"],
+          "answer": 1,
+          "explanation": "原文：keep them for two weeks。"
+        },
+        {
+          "question": "Why does the writer like the corner near the window?",
+          "options": ["It is quiet and dark", "The light is good and he can see trees", "It is close to the door", "It has new books"],
+          "answer": 1,
+          "explanation": "原文：because the light is good and I can see the trees outside。"
+        }
+      ]
+    },
+    {
+      "title": "Shopping for a Jacket",
+      "content": "Winter was coming, so Mum took me to the shopping centre to buy a new jacket. There were so many shops and clothes that I did not know where to start. In the first shop, I saw a blue jacket. It looked cool, but it was too expensive. It cost eight hundred yuan! Mum said we could find something just as good for less money.\n\nIn the next shop, I tried on a black jacket. It was warm, but the sleeves were too long, and I looked like I was wearing my father's clothes. Finally, in the third shop, I found a green jacket in the sale. It fitted me well and cost only two hundred and sixty yuan. Mum said green was a good colour for me. I looked in the mirror and agreed.\n\nWe also bought a warm scarf. On the way home, I wore my new jacket, and I felt like the happiest boy in the world.",
+      "questions": [
+        {
+          "question": "Why did they go shopping?",
+          "options": ["To buy school shoes", "Because winter was coming", "For a birthday gift", "For a school trip"],
+          "answer": 1,
+          "explanation": "原文：Winter was coming, so Mum took me to... buy a new jacket。"
+        },
+        {
+          "question": "What was wrong with the blue jacket?",
+          "options": ["It was too big", "It was too cheap", "It was too expensive", "The colour was bad"],
+          "answer": 2,
+          "explanation": "原文：it was too expensive. It cost eight hundred yuan。"
+        },
+        {
+          "question": "How much was the green jacket?",
+          "options": ["800 yuan", "600 yuan", "260 yuan", "160 yuan"],
+          "answer": 2,
+          "explanation": "原文：cost only two hundred and sixty yuan。"
+        },
+        {
+          "question": "What else did they buy?",
+          "options": ["A hat", "A scarf", "A pair of gloves", "A bag"],
+          "answer": 1,
+          "explanation": "原文：We also bought a warm scarf。"
+        }
+      ]
+    },
+    {
+      "title": "My Favorite Season",
+      "content": "Of all the four seasons, autumn is my favourite. The weather in autumn is neither too hot nor too cold. The sky is often blue and clear, and a cool wind makes people feel comfortable.\n\nAutumn is also the season of colours. The leaves turn yellow, orange and red, and they fall from the trees like butterflies. Our school looks beautiful in October. After class, I often take a walk and enjoy the falling leaves. Autumn is the harvest season, too. Farmers are busy in the fields, and the markets are full of fresh fruit. My favourite fruits, pears and grapes, are sweetest at this time of year.\n\nThere is also an important festival in autumn, the Mid-Autumn Festival. My family get together, eat mooncakes and enjoy the full moon. Some people like spring because everything begins to grow, but I love autumn best. To me, autumn means harvest, beauty and family time.",
+      "questions": [
+        {
+          "question": "What is the writer's favourite season?",
+          "options": ["Spring", "Summer", "Autumn", "Winter"],
+          "answer": 2,
+          "explanation": "原文第一句：autumn is my favourite。"
+        },
+        {
+          "question": "What do the falling leaves look like?",
+          "options": ["Snow", "Butterflies", "Birds", "Rain"],
+          "answer": 1,
+          "explanation": "原文：they fall from the trees like butterflies。"
+        },
+        {
+          "question": "Which fruits does the writer like most in autumn?",
+          "options": ["Apples and bananas", "Oranges", "Pears and grapes", "Watermelons"],
+          "answer": 2,
+          "explanation": "原文：My favourite fruits, pears and grapes。"
+        },
+        {
+          "question": "What do families do at the Mid-Autumn Festival?",
+          "options": ["Eat dumplings together", "Fly kites in the fields", "Get together and enjoy the moon", "Go swimming"],
+          "answer": 2,
+          "explanation": "原文：My family get together, eat mooncakes and enjoy the full moon。"
+        }
+      ]
+    },
+    {
+      "title": "A Phone Call to Grandpa",
+      "content": "Grandpa lives in a small village far from the city, so I cannot see him often. Every Sunday evening, I call him and we talk for about half an hour. Yesterday, I called him as usual. He told me that the rice in the fields was growing well and that he had picked fresh vegetables in the morning.\n\nHe asked me about my school life. I told him I got full marks in the maths test. Grandpa was so happy that he laughed like a child. Then he told me an old story about the village, the same story he tells every time, but I never get tired of it. Before we said goodbye, he reminded me to eat well and sleep early, and I asked him not to work too hard in the fields.\n\nAfter the call, I felt warm. Although we are far from each other, our hearts are close. I am going to visit him during the winter holiday.",
+      "questions": [
+        {
+          "question": "How often does the writer call Grandpa?",
+          "options": ["Every day", "Every week", "Every month", "Every year"],
+          "answer": 1,
+          "explanation": "原文：Every Sunday evening, I call him。"
+        },
+        {
+          "question": "What good news did the writer share?",
+          "options": ["He won a football game", "He got full marks in maths", "He got a new bike", "His class won a prize"],
+          "answer": 1,
+          "explanation": "原文：I told him I got full marks in the maths test。"
+        },
+        {
+          "question": "What did Grandpa remind the writer to do?",
+          "options": ["Study harder", "Eat well and sleep early", "Call more often", "Help his parents"],
+          "answer": 1,
+          "explanation": "原文：he reminded me to eat well and sleep early。"
+        },
+        {
+          "question": "When will the writer visit Grandpa?",
+          "options": ["During the winter holiday", "Next month", "On Grandpa's birthday", "Next summer"],
+          "answer": 0,
+          "explanation": "原文：I am going to visit him during the winter holiday。"
+        }
+      ]
+    }
+  ]
+}
