@@ -28,16 +28,12 @@ import {
   Tag,
   Typography,
 } from 'antd';
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { api, SpeakingLine, SpeakingScenarioDetail } from '../api';
-import {
-  recognizeEnglish,
-  scorePronunciation,
-  speechRecognitionSupported,
-  type PronounceResult,
-} from '../pronounce';
-import { blobUrl, mediaRecorderSupported, startRecording } from '../record';
+import { speechRecognitionSupported } from '../pronounce';
+import { useAudioRecorder } from '../hooks/useAudioRecorder';
+import { usePronouncePractice } from '../hooks/usePronouncePractice';
 import { speak } from '../speech';
 import WordPractice from './WordPractice';
 
@@ -64,14 +60,9 @@ export default function Speaking() {
   const [scene, setScene] = useState<string | undefined>();
   const [scenario, setScenario] = useState<SpeakingScenarioDetail | null>(null);
   const [lineIdx, setLineIdx] = useState(0);
-  const [rec, setRec] = useState<{ recording: boolean; url?: string; blob?: Blob; ms: number }>({
-    recording: false,
-    ms: 0,
-  });
-  const [pron, setPron] = useState<PronounceResult | null>(null);
-  const [busy, setBusy] = useState(false);
-  const recorderRef = useRef<Awaited<ReturnType<typeof startRecording>> | null>(null);
-  const recUrlRef = useRef<string | null>(null);
+
+  const recorder = useAudioRecorder();
+  const pronounce = usePronouncePractice();
 
   const { data: scenarios, isLoading } = useQuery({
     queryKey: ['speaking-scenarios', scene],
@@ -87,20 +78,13 @@ export default function Speaking() {
     queryFn: api.speakingStats,
   });
 
-  useEffect(() => {
-    return () => {
-      recorderRef.current?.cancel();
-      if (recUrlRef.current) URL.revokeObjectURL(recUrlRef.current);
-    };
-  }, []);
-
   async function openScenario(id: number) {
     try {
       const d = await api.speakingScenario(id);
       setScenario(d);
       setLineIdx(0);
-      setPron(null);
-      setRec({ recording: false, ms: 0 });
+      pronounce.clear();
+      recorder.reset();
       setPhase('practice');
     } catch (e) {
       message.error((e as Error).message);
@@ -108,11 +92,7 @@ export default function Speaking() {
   }
 
   function exitPractice() {
-    recorderRef.current?.cancel();
-    if (recUrlRef.current) {
-      URL.revokeObjectURL(recUrlRef.current);
-      recUrlRef.current = null;
-    }
+    recorder.reset();
     setScenario(null);
     setPhase('list');
   }
@@ -121,47 +101,19 @@ export default function Speaking() {
 
   async function practicePronounce() {
     if (!line || !scenario) return;
-    if (!speechRecognitionSupported()) {
-      message.warning(t('speaking.asrUnsupported'));
-      return;
-    }
-    setBusy(true);
-    try {
-      const text = await recognizeEnglish();
-      const result = scorePronunciation(line.en, text);
-      setPron(result);
-      await api.saveSpeakingRecord({
-        target_text: line.en,
-        transcript: text,
-        score: result.score,
-        scenario_id: scenario.id,
-        line_id: line.id,
-      });
-      queryClient.invalidateQueries({ queryKey: ['speaking-records'] });
-      message.success(t('speaking.scored', { n: result.score }));
-    } catch (e) {
-      const msg = (e as Error).message;
-      message.error(
-        msg === 'UNSUPPORTED' ? t('speaking.asrUnsupported') : t('speaking.asrFailed', { msg }),
-      );
-    } finally {
-      setBusy(false);
-    }
+    await pronounce.practice(line.en, { scenarioId: scenario.id, lineId: line.id });
+    queryClient.invalidateQueries({ queryKey: ['speaking-records'] });
   }
 
   async function toggleRecord() {
     if (!line || !scenario) return;
-    if (rec.recording) {
-      const r = await recorderRef.current!.stop();
-      const url = blobUrl(r.blob);
-      if (recUrlRef.current) URL.revokeObjectURL(recUrlRef.current);
-      recUrlRef.current = url;
-      setRec({ recording: false, url, blob: r.blob, ms: r.durationMs });
+    if (recorder.recording) {
+      const r = await recorder.stop();
       try {
         await api.saveSpeakingRecord({
           target_text: line.en,
-          transcript: pron?.transcript ?? '',
-          score: pron?.score ?? 0,
+          transcript: pronounce.result?.transcript ?? '',
+          score: pronounce.result?.score ?? 0,
           scenario_id: scenario.id,
           line_id: line.id,
           duration_ms: r.durationMs,
@@ -174,14 +126,12 @@ export default function Speaking() {
       }
       return;
     }
-    if (!mediaRecorderSupported()) {
+    if (!recorder.supported) {
       message.warning(t('speaking.micUnsupported'));
       return;
     }
     try {
-      const r = await startRecording();
-      recorderRef.current = r;
-      setRec({ recording: true, ms: 0 });
+      await recorder.start();
     } catch (e) {
       message.error(t('speaking.micDenied', { msg: (e as Error).message }));
     }
@@ -279,37 +229,43 @@ export default function Speaking() {
                   <Button
                     type="primary"
                     icon={<AudioOutlined />}
-                    loading={busy}
+                    loading={pronounce.busy}
                     onClick={practicePronounce}
                   >
                     {t('speaking.practiceBtn')}
                   </Button>
                   <Button
-                    danger={rec.recording}
-                    icon={rec.recording ? <StopOutlined /> : <AudioOutlined />}
+                    danger={recorder.recording}
+                    icon={recorder.recording ? <StopOutlined /> : <AudioOutlined />}
                     onClick={toggleRecord}
                   >
-                    {rec.recording ? t('speaking.stopRec') : t('speaking.startRec')}
+                    {recorder.recording ? t('speaking.stopRec') : t('speaking.startRec')}
                   </Button>
                 </>
               )}
             </Space>
 
-            {rec.url && !rec.recording && (
+            {recorder.url && !recorder.recording && (
               <div>
                 <Typography.Text type="secondary">{t('speaking.myVoice')}</Typography.Text>
-                <audio controls src={rec.url} style={{ display: 'block', width: '100%', marginTop: 6 }} />
+                <audio controls src={recorder.url} style={{ display: 'block', width: '100%', marginTop: 6 }} />
               </div>
             )}
 
-            {pron && (
-              <Card size="small" title={t('speaking.scoreTitle', { n: pron.score })}>
+            {pronounce.result && (
+              <Card size="small" title={t('speaking.scoreTitle', { n: pronounce.result.score })}>
                 <Progress
-                  percent={pron.score}
-                  strokeColor={pron.score >= 80 ? '#3b8c5a' : pron.score >= 60 ? '#d98f2b' : '#d64550'}
+                  percent={pronounce.result.score}
+                  strokeColor={
+                    pronounce.result.score >= 80
+                      ? '#3b8c5a'
+                      : pronounce.result.score >= 60
+                        ? '#d98f2b'
+                        : '#d64550'
+                  }
                 />
                 <div style={{ marginTop: 10, fontSize: 17, lineHeight: 1.8 }}>
-                  {pron.words.map((w, i) => (
+                  {pronounce.result.words.map((w, i) => (
                     <span
                       key={i}
                       style={{
@@ -324,11 +280,11 @@ export default function Speaking() {
                   ))}
                 </div>
                 <Typography.Text type="secondary" style={{ display: 'block', marginTop: 8 }}>
-                  {t('speaking.transcript')}：{pron.transcript || '—'}
+                  {t('speaking.transcript')}：{pronounce.result.transcript || '—'}
                 </Typography.Text>
-                {pron.missing.length > 0 && (
+                {pronounce.result.missing.length > 0 && (
                   <Typography.Text type="danger" style={{ display: 'block' }}>
-                    {t('speaking.missing')}：{pron.missing.join(', ')}
+                    {t('speaking.missing')}：{pronounce.result.missing.join(', ')}
                   </Typography.Text>
                 )}
               </Card>
@@ -339,7 +295,7 @@ export default function Speaking() {
                 disabled={lineIdx === 0}
                 onClick={() => {
                   setLineIdx((i) => i - 1);
-                  setPron(null);
+                  pronounce.clear();
                 }}
               >
                 {t('speaking.prev')}
@@ -349,7 +305,7 @@ export default function Speaking() {
                 disabled={lineIdx >= scenario.lines.length - 1}
                 onClick={() => {
                   setLineIdx((i) => i + 1);
-                  setPron(null);
+                  pronounce.clear();
                 }}
               >
                 {t('speaking.next')}

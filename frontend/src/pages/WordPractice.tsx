@@ -2,7 +2,7 @@
  * 口语单词练习（由 Speaking 页以「单词练习」模式挂载，无独立路由）。
  * 流程：选词源 → 生成词表 → 逐词播放标准音 / 发音评分 / 录音对比。
  */
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import {
   AudioOutlined,
   PlayCircleOutlined,
@@ -10,7 +10,6 @@ import {
   StopOutlined,
 } from '@ant-design/icons';
 import {
-  Alert,
   App,
   Button,
   Card,
@@ -24,16 +23,11 @@ import {
   Tag,
   Typography,
 } from 'antd';
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { api, Book, DictationItem } from '../api';
-import {
-  recognizeEnglish,
-  scorePronunciation,
-  speechRecognitionSupported,
-  type PronounceResult,
-} from '../pronounce';
-import { blobUrl, mediaRecorderSupported, startRecording } from '../record';
+import { useAudioRecorder } from '../hooks/useAudioRecorder';
+import { usePronouncePractice } from '../hooks/usePronouncePractice';
 import { speak } from '../speech';
 
 type Source = 'book' | 'wordlist' | 'weak';
@@ -54,19 +48,10 @@ export default function WordPractice() {
   const [loading, setLoading] = useState(false);
   const [items, setItems] = useState<DictationItem[]>([]);
   const [idx, setIdx] = useState(0);
-  const [pron, setPron] = useState<PronounceResult | null>(null);
-  const [busy, setBusy] = useState(false);
-  const [rec, setRec] = useState<{ recording: boolean; url?: string }>({ recording: false });
-  const recorderRef = useRef<Awaited<ReturnType<typeof startRecording>> | null>(null);
-  const recUrlRef = useRef<string | null>(null);
   const [scores, setScores] = useState<number[]>([]);
 
-  useEffect(() => {
-    return () => {
-      recorderRef.current?.cancel();
-      if (recUrlRef.current) URL.revokeObjectURL(recUrlRef.current);
-    };
-  }, []);
+  const recorder = useAudioRecorder();
+  const pronounce = usePronouncePractice();
 
   const current = items[idx];
 
@@ -92,9 +77,9 @@ export default function WordPractice() {
       }
       setItems(r.items);
       setIdx(0);
-      setPron(null);
+      pronounce.clear();
       setScores([]);
-      setRec({ recording: false });
+      recorder.reset();
     } catch (e) {
       message.error((e as Error).message);
     } finally {
@@ -104,50 +89,26 @@ export default function WordPractice() {
 
   async function practicePronounce() {
     if (!current) return;
-    if (!speechRecognitionSupported()) {
-      message.warning(t('speaking.asrUnsupported'));
-      return;
-    }
-    setBusy(true);
-    try {
-      const text = await recognizeEnglish();
-      const result = scorePronunciation(current.answer, text);
-      setPron(result);
+    const result = await pronounce.practice(current.answer);
+    if (result) {
       setScores((s) => {
         const n = [...s];
         n[idx] = result.score;
         return n;
       });
-      await api.saveSpeakingRecord({
-        target_text: current.answer,
-        transcript: text,
-        score: result.score,
-      });
       queryClient.invalidateQueries({ queryKey: ['speaking-stats'] });
-      message.success(t('speaking.scored', { n: result.score }));
-    } catch (e) {
-      const msg = (e as Error).message;
-      message.error(
-        msg === 'UNSUPPORTED' ? t('speaking.asrUnsupported') : t('speaking.asrFailed', { msg }),
-      );
-    } finally {
-      setBusy(false);
     }
   }
 
   async function toggleRecord() {
     if (!current) return;
-    if (rec.recording) {
-      const r = await recorderRef.current!.stop();
-      const url = blobUrl(r.blob);
-      if (recUrlRef.current) URL.revokeObjectURL(recUrlRef.current);
-      recUrlRef.current = url;
-      setRec({ recording: false, url });
+    if (recorder.recording) {
+      const r = await recorder.stop();
       try {
         await api.saveSpeakingRecord({
           target_text: current.answer,
-          transcript: pron?.transcript ?? '',
-          score: pron?.score ?? 0,
+          transcript: pronounce.result?.transcript ?? '',
+          score: pronounce.result?.score ?? 0,
           duration_ms: r.durationMs,
           audio: r.blob,
         });
@@ -158,14 +119,12 @@ export default function WordPractice() {
       }
       return;
     }
-    if (!mediaRecorderSupported()) {
+    if (!recorder.supported) {
       message.warning(t('speaking.micUnsupported'));
       return;
     }
     try {
-      const r = await startRecording();
-      recorderRef.current = r;
-      setRec({ recording: true });
+      await recorder.start();
     } catch (e) {
       message.error(t('speaking.micDenied', { msg: (e as Error).message }));
     }
@@ -180,12 +139,12 @@ export default function WordPractice() {
       }
       setItems([]);
       setIdx(0);
-      setPron(null);
+      pronounce.clear();
       return;
     }
     setIdx(idx + 1);
-    setPron(null);
-    setRec({ recording: false });
+    pronounce.clear();
+    recorder.reset();
   }
 
   if (!current) {
@@ -242,7 +201,7 @@ export default function WordPractice() {
     );
   }
 
-  const isDone = !!pron;
+  const isDone = !!pronounce.result;
   const nextLabel = idx + 1 >= items.length ? t('speaking.finish') : t('speaking.next');
 
   return (
@@ -284,35 +243,53 @@ export default function WordPractice() {
             <Button icon={<SoundOutlined />} onClick={() => speak(current.answer)}>
               {t('speaking.playStd')}
             </Button>
-            <Button type="primary" icon={<AudioOutlined />} loading={busy} onClick={practicePronounce}>
+            <Button
+              type="primary"
+              icon={<AudioOutlined />}
+              loading={pronounce.busy}
+              onClick={practicePronounce}
+            >
               {t('speaking.practiceBtn')}
             </Button>
             <Button
-              danger={rec.recording}
-              icon={rec.recording ? <StopOutlined /> : <AudioOutlined />}
+              danger={recorder.recording}
+              icon={recorder.recording ? <StopOutlined /> : <AudioOutlined />}
               onClick={toggleRecord}
             >
-              {rec.recording ? t('speaking.stopRec') : t('speaking.startRec')}
+              {recorder.recording ? t('speaking.stopRec') : t('speaking.startRec')}
             </Button>
-            {rec.url && !rec.recording && (
-              <Button icon={<PlayCircleOutlined />} onClick={() => void new Audio(rec.url!).play()}>
+            {recorder.url && !recorder.recording && (
+              <Button
+                icon={<PlayCircleOutlined />}
+                onClick={() => void new Audio(recorder.url!).play()}
+              >
                 {t('speaking.myVoice')}
               </Button>
             )}
           </Space>
 
-          {pron && (
-            <Card size="small" title={t('speaking.scoreTitle', { n: pron.score })} style={{ textAlign: 'left' }}>
+          {pronounce.result && (
+            <Card
+              size="small"
+              title={t('speaking.scoreTitle', { n: pronounce.result.score })}
+              style={{ textAlign: 'left' }}
+            >
               <Progress
-                percent={pron.score}
-                strokeColor={pron.score >= 80 ? '#3b8c5a' : pron.score >= 60 ? '#d98f2b' : '#d64550'}
+                percent={pronounce.result.score}
+                strokeColor={
+                  pronounce.result.score >= 80
+                    ? '#3b8c5a'
+                    : pronounce.result.score >= 60
+                      ? '#d98f2b'
+                      : '#d64550'
+                }
               />
               <Typography.Text type="secondary" style={{ display: 'block', marginTop: 8 }}>
-                {t('speaking.transcript')}：{pron.transcript || '—'}
+                {t('speaking.transcript')}：{pronounce.result.transcript || '—'}
               </Typography.Text>
-              {pron.missing.length > 0 && (
+              {pronounce.result.missing.length > 0 && (
                 <Typography.Text type="danger" style={{ display: 'block' }}>
-                  {t('speaking.missing')}：{pron.missing.join(', ')}
+                  {t('speaking.missing')}：{pronounce.result.missing.join(', ')}
                 </Typography.Text>
               )}
             </Card>
