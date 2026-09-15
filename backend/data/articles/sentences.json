@@ -61,6 +61,20 @@
     { "article_title": "The Right to Repair", "en": "Repair, once a normal act of ownership, has been engineered into a service you must buy.", "zh": "修理，曾经是所有权的一种正常行为，如今却被设计成一项你必须购买的服务。" },
     { "article_title": "The Right to Repair", "en": "A repairable product is also, often, a better product: modular design invites upgrades rather than obsolescence.", "zh": "可维修的产品往往也是更好的产品：模块化设计带来的是升级，而不是淘汰。" },
     { "article_title": "Urban Farms of the Future", "en": "Community gardens deliver cheap nutrition along with social cohesion and, researchers find, measurable mental health benefits.", "zh": "研究人员发现，社区花园在提供廉价营养的同时，还带来了社会凝聚力和可测量的心理健康益处。" },
-    { "article_title": "Urban Farms of the Future", "en": "The technology is advancing quickly.", "zh": "这项技术进步很快。" }
+    { "article_title": "Urban Farms of the Future", "en": "The technology is advancing quickly.", "zh": "这项技术进步很快。" },
+    { "article_title": "The Productivity Paradox of Remote Work", "en": "For tasks that can be measured cleanly—software commits, call-centre resolutions, written reports—remote teams often match or exceed office performance.", "zh": "对于可以清晰衡量的任务——软件提交、客服工单处理、书面报告——远程团队往往能达到甚至超过办公室绩效。" },
+    { "article_title": "The Productivity Paradox of Remote Work", "en": "The deepest lesson of remote work is not that offices are obsolete, but that productivity was never a single number.", "zh": "远程工作最深刻的教训并不是办公室已经过时，而是生产力从来不是单一的数字。" },
+    { "article_title": "Open Science and the Cost of Paywalls", "en": "findings that cannot be read cannot be built upon", "zh": "无法被阅读的研究成果，也就无法被继续推进。" },
+    { "article_title": "Open Science and the Cost of Paywalls", "en": "Reform, in other words, is not merely technical.", "zh": "换言之，改革并不仅仅是技术问题。" },
+    { "article_title": "Cities, Heat, and the Politics of Shade", "en": "Heat, in this sense, is not only a climate problem but a map of past decisions.", "zh": "从这个意义上说，高温不仅是气候问题，更是过往决策的地图。" },
+    { "article_title": "Cities, Heat, and the Politics of Shade", "en": "Shade, then, is a public resource, and its distribution is a matter of justice as much as engineering.", "zh": "因此，树荫是一种公共资源，其分配既是工程问题，也是正义问题。" },
+    { "article_title": "What Algorithms Cannot See in Hiring", "en": "Bias is not a bug that appears; it is a pattern that is reproduced.", "zh": "偏见并非突然出现的故障，而是被不断复现的模式。" },
+    { "article_title": "What Algorithms Cannot See in Hiring", "en": "Improving hiring therefore starts with defining competence carefully, measuring it honestly, and auditing outcomes over time.", "zh": "因此，改进招聘首先要认真界定胜任力，诚实测量，并持续审计结果。" },
+    { "article_title": "The Quiet Return of the Night Train", "en": "Technologies rarely disappear because a newer mode appears; they survive where they fit a purpose the newcomer does not serve well.", "zh": "技术很少因为更新的形态出现就消失；它们会在自身仍契合、而新事物服务不好的场景中延续。" },
+    { "article_title": "Antibiotic Stewardship Beyond the Hospital", "en": "Resistance is not a distant catastrophe; it is already shortening the useful life of drugs discovered decades ago.", "zh": "耐药性并非遥远的灾难；它已经在缩短几十年前发现的药物的可用寿命。" },
+    { "article_title": "Memory, Forgetting, and the Learning Brain", "en": "The goal is not to make study unpleasant, but to align practice with how memory actually works.", "zh": "目的不是让学习变得难受，而是让练习与记忆的真实运作方式一致。" },
+    { "article_title": "Housing as Infrastructure", "en": "Treating housing as infrastructure means planning for capacity, location, and running costs—decades ahead of the next crisis, not only in response to it.", "zh": "把住房当作基础设施，意味着要提前数十年规划容量、区位与使用成本，而不只是在危机来临时被动应对。" },
+    { "article_title": "The Limits of Personal Carbon Footprints", "en": "Climate outcomes will be decided less by the sum of private virtue than by the institutions that structure everyday life.", "zh": "气候结果将更少取决于个人美德的总和，而更多取决于塑造日常生活的制度。" },
+    { "article_title": "Why Translation Still Needs Humans", "en": "Technology that removes drudgery is welcome; technology that pretends nuance is optional is not.", "zh": "能消除苦役的技术值得欢迎；假装细微差别可有可无的技术则不然。" }
   ]
 }

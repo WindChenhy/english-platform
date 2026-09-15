@@ -1,20 +1,38 @@
 /**
  * 全局客户端状态（zustand + localStorage 持久化）。
- * 只放需要跨页面/跨会话记住的轻量偏好，业务数据一律走后端。
+ * 轻量偏好 + 背单词会话快照（中断恢复），业务数据一律走后端。
  */
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
+import type { QueueItem } from './api';
+
+export interface StudySessionSnapshot {
+  bookId: number | null;
+  mode: 'normal' | 'weak';
+  items: QueueItem[];
+  idx: number;
+  counts: { review: number; new: number };
+  answers: Record<number, { choice: number; correct: boolean }>;
+  reveals: Record<number, boolean>;
+  newRight: number;
+  newWrong: number;
+  reviewDone: number;
+  savedAt: number;
+}
 
 interface StudyStore {
-  /** 每日学习的新词数量上限 */
   newLimit: number;
   setNewLimit: (n: number) => void;
-  /** 背单词新词方向：e2c 英→中 / c2e 中→英 / mixed 混合 */
   newDirection: 'e2c' | 'c2e' | 'mixed';
   setNewDirection: (d: 'e2c' | 'c2e' | 'mixed') => void;
-  /** 对战模式下用户选择的角色 emoji */
+  reviewLimit: number;
+  setReviewLimit: (n: number) => void;
   battleAvatar: string;
   setBattleAvatar: (a: string) => void;
+  /** 未完成的背单词会话快照，刷新/关闭页面后可继续 */
+  studySession: StudySessionSnapshot | null;
+  saveStudySession: (s: StudySessionSnapshot) => void;
+  clearStudySession: () => void;
 }
 
 export const useStudyStore = create<StudyStore>()(
@@ -24,8 +42,13 @@ export const useStudyStore = create<StudyStore>()(
       setNewLimit: (n) => set({ newLimit: n }),
       newDirection: 'e2c',
       setNewDirection: (d) => set({ newDirection: d }),
+      reviewLimit: 60,
+      setReviewLimit: (n) => set({ reviewLimit: n }),
       battleAvatar: '👤',
       setBattleAvatar: (a) => set({ battleAvatar: a }),
+      studySession: null,
+      saveStudySession: (s) => set({ studySession: s }),
+      clearStudySession: () => set({ studySession: null }),
     }),
     { name: 'study-settings' },
   ),

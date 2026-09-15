@@ -1,11 +1,44 @@
 """词典查询接口（ECDICT 本地库）。"""
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Query
+from sqlalchemy import or_, select
 from sqlalchemy.orm import Session
 
 from .. import models
 from ..db import get_db
 
 router = APIRouter(prefix="/api/dictionary", tags=["dictionary"])
+
+
+@router.get("/search")
+def search(
+    q: str = Query(min_length=1, max_length=64),
+    limit: int = Query(default=20, ge=1, le=50),
+    db: Session = Depends(get_db),
+):
+    """前缀/包含模糊搜词，按词频与词典序排序，供全局搜索框使用。"""
+    kw = q.strip().lower()
+    if not kw:
+        return {"items": []}
+    like_prefix = f"{kw}%"
+    like_any = f"%{kw}%"
+    stmt = (
+        select(models.DictWord)
+        .where(or_(models.DictWord.word.like(like_prefix), models.DictWord.word.like(like_any)))
+        .order_by(
+            (models.DictWord.word.not_like(like_prefix)),
+            models.DictWord.frq.is_(None),
+            models.DictWord.frq.asc(),
+            models.DictWord.word.asc(),
+        )
+        .limit(limit)
+    )
+    items = [{
+        "word": d.word,
+        "phonetic": d.phonetic,
+        "translation": (d.translation or "")[:120],
+        "tag": d.tag,
+    } for d in db.scalars(stmt)]
+    return {"items": items}
 
 
 @router.get("/{word}")

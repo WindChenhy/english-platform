@@ -1,33 +1,36 @@
 # 英语学习平台
 
-自用英语学习平台：背单词（间隔重复）+ 分级阅读（点词查词、生词本）+ 错题本与学习统计。
-纯本地运行，单用户、无登录，数据存 SQLite，内容全部为种子数据、不依赖任何外部服务或 AI API。
+自用英语学习平台：背单词（FSRS 间隔重复）+ 默写/听写 + 分级阅读 + **真题题型训练** + **日常口语/发音模仿/录音** + 错题本与统计 + 人机拼写对战。
+纯本地运行，单用户、无登录，数据存 SQLite，内容以种子数据为主，不依赖外部 AI API。
 
 ## 功能
 
-- **背单词**：四本词书（中考 1987 词 / 高考 3743 词 / 四级 4544 词 / 六级 3991 词）。
-  新词方向可选 英→中 / 中→英 / 混合（四选一），复习翻面三档自评（忘了/模糊/记得），
-  手写简化 SM-2 算法安排复习间隔；支持 Anki 风格键盘快捷键（空格翻面/继续、1-3 评分、A-D 选项）；
-  词条自带例句、短语、近义词、同根词；发音用浏览器 Web Speech API。
-- **默写拼写**：三种模式——看中文释义默写单词（来源可选词书或生词本，错词一键收进生词本）、
-  看中文意思默写词书短语（3 万+ 条）、看中文译文默写文章原句（60 句）；
-  提示方式可选 中文提示 / **发音听写**（自动播放读音）/ 混合，可选首字母提示，
-  判分带逐词批改（写错标红删除线、漏写标绿补出），支持重练错题。
-- **分级阅读**：30 篇文章（入门/四级/六级 各 10 篇，共 120 道理解题）。
-  点击单词即查释义（ECDICT 词典 5.7 万高频/考纲词），一键收进生词本——生词自动进入当天复习队列。
-- **错题本**：阅读理解答错自动收进，重练答对自动移出。
-- **统计图表**：每日学习量（近 30 天堆叠柱图）、词汇增长曲线、打卡热力图（约 26 周）、
-  未来 14 天到期预测（recharts + 自绘 SVG 热力图）。
-- **统计面板**：今日新学/复习、待复习数、连续打卡、词汇量估算（间隔≥21 天的词数）、阅读完成度与正确率。
-- **备份**：一键导出全部学习数据为 JSON（v2 格式）；支持导入备份文件**整库恢复**（覆盖当前记录，事务保护）。
-- **多语言**：界面中英双语，默认跟随操作系统语言，页头可切换并持久化（i18next）。
-- **数据安全**：数据就是一个 SQLite 文件（`backend/data/app.db`），复制即备份。
+- **背单词**：五本词书（中考 / 高考 / 四级 / 六级 / **考研**）。新词方向可选 英→中 / 中→英 / 混合；
+  复习三档自评（忘了/模糊/记得），由 **FSRS** 调度间隔；支持 Anki 风格键盘快捷键；
+  可设每日新词与复习上限；**弱项训练**优先练习易错词；会话可中断后**本地恢复**；
+  复习卡支持**挂起/埋藏**；词条自带例句、短语、近义词、同根词；发音用浏览器 Web Speech API。
+- **默写拼写**：单词（词书/生词本/**弱项**）/ 短语 / 文章句子三模式；
+  中文提示 / 发音听写 / 混合，首字母遮罩，LCS 逐词批改，错词一键入生词本；**结果落库**。
+- **真题演练**：入门 2 篇 + 四级 3 篇 + 六级 3 篇 + 考研 3 篇 **阅读题型训练**（原创仿真材料，
+  按考试级别筛选，含理解题与解析；不使用受版权保护的原卷扫描件）。
+- **日常口语**：机场 / 餐厅 / 酒店 / 购物 / 诊所 / **职场** / **家庭** / **学校** 等 **14 个场景**；
+  播放标准音（TTS）→ **发音模仿**（浏览器语音识别 + 词级评分）→ **录音回放对比**（音频落盘可删）。
+  另支持 **单词发音练习**：从词书 / 生词本 / 弱项词抽取单词，逐词跟读评分与录音。
+- **人机对战**：拼写 PVE，按近 20 局胜率自适应推荐难度，战绩落库。
+- **分级阅读**：40 篇种子文章 + **自贴英文材料**；点词查 ECDICT，一键收进生词本。
+- **搜索**：生词本关键词搜索与多字段排序；词典前缀模糊搜索。
+- **每日目标**：首页显示今日新词/复习进度，可自定义目标。
+- **统计图表**：每日学习量、词汇增长、打卡热力图、14 天到期预测、默写正确率、口语练习次数。
+- **备份**：v3 JSON 导出/导入；**多语言**界面；数据即一个 SQLite 文件 + `data/recordings/` 音频目录。
+
+> 口语发音识别与评分依赖浏览器 **Chrome / Edge** 的 Web Speech API；录音使用 MediaRecorder。其它浏览器可播放标准音，但无法跟读识别。
 
 ## 技术栈
 
-- 后端：Python 3.11 + FastAPI + SQLAlchemy 2.0 + Alembic + SQLite（响应启用 gzip）
+- 后端：Python 3.11 + FastAPI + SQLAlchemy 2.0 + Alembic + SQLite + python-multipart（录音上传）
 - 前端：Vite + React 18 + TypeScript + Ant Design 5 + TanStack Query + Zustand + recharts + i18next
-- 内容来源：词书 [kajweb/dict](https://github.com/kajweb/dict)（有道词书 JSON）、词典 [ECDICT](https://github.com/skywind3000/ECDICT)（MIT）、文章为自建种子数据
+- 语音：浏览器 SpeechSynthesis（TTS）/ SpeechRecognition（ASR）/ MediaRecorder（录音）
+- 内容来源：词书 [kajweb/dict](https://github.com/kajweb/dict)、词典 [ECDICT](https://github.com/skywind3000/ECDICT)（MIT）、文章与对话为自建种子数据
 
 ## 目录结构
 
@@ -37,68 +40,57 @@ english-platform/
 ├── backend/
 │   ├── app/
 │   │   ├── main.py        # FastAPI 入口（含前端静态托管）
-│   │   ├── models.py      # 9 张表
-│   │   ├── srs.py         # 简化 SM-2 算法
-│   │   ├── grade 逻辑在前端：frontend/src/grade.ts（默写判分/逐词对比/首字母遮罩）
-│   │   ├── seed.py        # 种子数据导入（python -m app.seed）
-│   │   └── api/           # books / study / dictionary / articles / mistakes / stats / dictation
+│   │   ├── models.py      # 全部表（含 Speaking*）
+│   │   ├── srs.py         # FSRS 简化实现
+│   │   ├── seed.py        # 种子数据导入（词书/文章/真题/口语场景）
+│   │   └── api/           # books / study / dictionary / articles / mistakes / stats /
+│   │                      # dictation / battle / settings / speaking
 │   ├── migrations/        # Alembic
-│   ├── tests/test_srs.py  # 算法单元测试
-│   └── data/              # app.db + 种子数据（词书 zip、词典 CSV、文章与默写句子 JSON）
+│   ├── tests/             # 算法 + 接口测试（含口语/真题）
+│   └── data/              # app.db + 种子数据 + recordings/ 录音
 └── frontend/
-    └── src/pages/         # Dashboard / Study / Dictation / Reading / ReadingArticle / Wordlist / Mistakes
+    └── src/
+        ├── pronounce.ts   # 语音识别与词级评分
+        ├── record.ts      # MediaRecorder 录音
+        └── pages/         # Dashboard / Study / Dictation / Exam / Speaking / Battle /
+                           # Reading / Wordlist / Mistakes / Charts
 ```
 
 ## 从零搭建（新机器）
 
 ```bash
-# 后端（推荐 uv：自动创建 .venv、解析依赖并生成 uv.lock）
+# 后端
 cd backend
-uv init --bare --name english-platform-backend   # 首次初始化（已有 pyproject.toml 可跳过）
-# 修改 pyproject.toml 的 requires-python 为 ">=3.11"
-uv add "fastapi>=0.115" "uvicorn[standard]>=0.30" "sqlalchemy>=2.0.30" "alembic>=1.13" "pydantic>=2.7" "pydantic-settings>=2.3" "pytest>=8.0" "httpx>=0.27"
-# 下载种子数据（词书 zip + ECDICT CSV），放到 backend/data/ 下：
-#   data/books/{CET4_1,CET4_2,CET4_3,CET6_1,CET6_2,CET6_3,ChuZhong_2,ChuZhong_3,GaoZhong_2,GaoZhong_3}.zip
-#   data/ecdict.csv
+uv sync   # 或 pip install -r requirements.txt
+# 放置种子数据后：
 uv run alembic upgrade head
 uv run python -m app.seed
 
 # 前端
 cd ../frontend
 npm install
-npm run build        # 产物 dist/ 由后端托管
+npm run build
 
 # 启动
-cd .. && start.bat   # 或 cd backend && uv run uvicorn app.main:app --port 8000
+cd .. && start.bat
 ```
-
-> 也可以不用 uv：`python -m venv .venv` + `pip install -r requirements.txt`（requirements.txt 保留）。
 
 打开 http://127.0.0.1:8000 即可使用。
 
 ## 日常开发
 
 ```bash
-# 终端 1：后端（热重载）
+# 后端热重载
 cd backend && .venv\Scripts\python -m uvicorn app.main:app --reload --port 8000
-# 终端 2：前端 dev server（/api 自动代理到 8000）
-cd frontend && npm run dev     # http://localhost:5173
+# 前端
+cd frontend && npm run dev
 
 # 测试
-
-```bash
-# 后端：算法单测 + 全接口测试（内存库 + 最小种子，37 个用例）
 cd backend && .venv\Scripts\python -m pytest tests -q
-# 前端：判分工具 / i18n 键一致性 / 状态持久化 / 应用集成冒烟（21 个用例）
 cd frontend && npm test
 ```
 
-## SM-2 简化算法（app/srs.py）
+## FSRS 调度（app/srs.py）
 
-复习三档自评驱动，粒度为天：
-
-- **记得**：间隔阶梯增长 1 天 → 6 天 → `interval × ease`，ease 上调（上限 2.8）
-- **模糊**：间隔 ×1.2，ease 下调
-- **忘了**：间隔归 1 天，reps 清零，ease 下调（下限 1.3），计一次遗忘
-
-词汇量估算 = 复习间隔 ≥ 21 天的卡片数。
+rating：1=Again / 2=Hard / 3=Good（映射 FSRS grade 1/2/4）。
+卡片维护 stability / difficulty / state；interval ≥ 21 视为已掌握。

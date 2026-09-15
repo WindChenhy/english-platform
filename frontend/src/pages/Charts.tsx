@@ -1,4 +1,4 @@
-/** 统计图表页：每日学习量、词汇增长曲线、打卡热力图、到期预测（recharts + 自绘热力图）。 */
+/** 统计图表页：每日学习量、词汇增长曲线、打卡热力图、到期预测、默写正确率（recharts + 自绘热力图）。 */
 import { useQuery } from '@tanstack/react-query';
 import { Card, Col, Row, Tooltip, Typography } from 'antd';
 import {
@@ -46,13 +46,13 @@ function Heatmap({ data }: { data: { date: string; n: number }[] }) {
   start.setDate(start.getDate() - 182);
   while (start.getDay() !== 1) start.setDate(start.getDate() - 1);
 
-  const cols: { date: string; n: number; future: boolean }[][] = [];
+  const cols: { date: string; n: number }[][] = [];
   const cur = new Date(start);
   while (cur <= today) {
-    const col: { date: string; n: number; future: boolean }[] = [];
+    const col: { date: string; n: number }[] = [];
     for (let i = 0; i < 7 && cur <= today; i++) {
       const ds = fmtLocal(cur);
-      col.push({ date: ds, n: byDate.get(ds) ?? 0, future: false });
+      col.push({ date: ds, n: byDate.get(ds) ?? 0 });
       cur.setDate(cur.getDate() + 1);
     }
     cols.push(col);
@@ -70,13 +70,6 @@ function Heatmap({ data }: { data: { date: string; n: number }[] }) {
             ))}
           </div>
         ))}
-      </div>
-      <div className="hm-legend">
-        <span className="detail-cn">{t('charts.less')}</span>
-        {[0, 2, 5, 9, 12].map((n) => (
-          <div key={n} className="hm-cell" style={{ background: heatColor(n) }} />
-        ))}
-        <span className="detail-cn">{t('charts.more')}</span>
       </div>
     </div>
   );
@@ -140,6 +133,22 @@ export default function Charts() {
         </Col>
       </Row>
 
+      {data.dictation_daily && data.dictation_daily.some((d) => d.correct + d.wrong > 0) && (
+        <Card title={t('charts.dictation30')} style={{ background: '#fff' }}>
+          <ResponsiveContainer width="100%" height={230}>
+            <BarChart data={data.dictation_daily} margin={{ top: 4, right: 8, left: -18, bottom: 0 }}>
+              <CartesianGrid strokeDasharray="3 3" stroke="#e7ecf2" />
+              <XAxis dataKey="date" tickFormatter={(v: string) => v.slice(5)} tick={AXIS_TICK} interval={2} />
+              <YAxis tick={AXIS_TICK} allowDecimals={false} />
+              <RTooltip contentStyle={TOOLTIP_STYLE} />
+              <Legend />
+              <Bar dataKey="correct" name={t('charts.dictCorrect')} stackId="d" fill="#3b8c5a" radius={[0, 0, 0, 0]} />
+              <Bar dataKey="wrong" name={t('charts.dictWrong')} stackId="d" fill="#d64550" radius={[4, 4, 0, 0]} />
+            </BarChart>
+          </ResponsiveContainer>
+        </Card>
+      )}
+
       <Card
         title={t('charts.heatmap')}
         style={{ background: '#fff' }}
@@ -165,7 +174,7 @@ export default function Charts() {
   );
 }
 
-/** 占位包装：统一竖向间距（antd Space 的简写用法）。 */
+/** 竖向 16px 间距容器：用 flex gap，避免嵌套 antd Space 带来额外节点。 */
 function Space16({ children }: { children: ReactNode }) {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>{children}</div>

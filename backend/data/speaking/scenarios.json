@@ -1,0 +1,234 @@
+{
+  "scenarios": [
+    {
+      "code": "airport_checkin",
+      "title": "机场值机与安检",
+      "scene": "airport",
+      "level": "beginner",
+      "description": "办理登机牌、托运行李、通过安检的常用表达。",
+      "lines": [
+        { "role": "partner", "en": "Good morning. May I see your passport and booking reference, please?", "zh": "早上好。可以看一下您的护照和订座编号吗？", "tip": "booking reference 也可说 confirmation number。" },
+        { "role": "you", "en": "Here you are. I have one bag to check in.", "zh": "给您。我有一件行李要托运。", "tip": "check in a bag = 托运行李。" },
+        { "role": "partner", "en": "Please put your suitcase on the belt. Any carry-on luggage?", "zh": "请把行李箱放到传送带上。有随身行李吗？", "tip": "belt 指行李传送带；carry-on = 随身行李。" },
+        { "role": "you", "en": "Just this backpack. Is the flight on time?", "zh": "只有这个双肩包。航班准点吗？", "tip": "on time 准点；delayed 延误。" },
+        { "role": "partner", "en": "Yes. Boarding starts at gate B12 at ten forty. Have a nice trip.", "zh": "准点。10:40 在 B12 登机口开始登机。旅途愉快。", "tip": "gate = 登机口；boarding = 登机。" },
+        { "role": "you", "en": "Thank you. Where is the security check?", "zh": "谢谢。安检怎么走？", "tip": "security check / security checkpoint。" },
+        { "role": "partner", "en": "Go straight and turn left after the shops.", "zh": "直走，过了商店左转。", "tip": "指路常用：go straight, turn left/right。" },
+        { "role": "you", "en": "Got it. Thanks for your help.", "zh": "明白了，谢谢您的帮助。", "tip": "Got it = 明白了，口语很常用。" }
+      ]
+    },
+    {
+      "code": "airport_delay",
+      "title": "航班延误与改签",
+      "scene": "airport",
+      "level": "cet4",
+      "description": "询问延误原因、改签与餐食补偿。",
+      "lines": [
+        { "role": "you", "en": "Excuse me, the board says my flight to Shanghai is delayed. Do you know why?", "zh": "打扰一下，显示屏说我去上海的航班延误了。请问是什么原因？", "tip": "the board = 航班显示屏。" },
+        { "role": "partner", "en": "There is heavy rain over the route. The new departure time is four thirty.", "zh": "航路上有大雨。新的起飞时间是 4:30。", "tip": "departure / arrival 是机场核心词。" },
+        { "role": "you", "en": "That is more than three hours. Can I rebook an earlier connection?", "zh": "超过三小时了。我能改签更早的衔接航班吗？", "tip": "rebook = 改签；connection = 衔接航班。" },
+        { "role": "partner", "en": "I am afraid that flight is full. I can put you on the seven o'clock service instead.", "zh": "恐怕那班已经满了。我可以帮您改到七点那班。", "tip": "put you on a flight = 帮您安排航班。" },
+        { "role": "you", "en": "That works. Will the airline provide a meal voucher?", "zh": "可以。航空公司会提供餐券吗？", "tip": "meal voucher = 餐券；compensation = 赔偿。" },
+        { "role": "partner", "en": "Yes, for delays over three hours. Please collect it at the transfer desk.", "zh": "会的，延误超过三小时可以领取。请到中转柜台领取。", "tip": "transfer desk = 中转柜台。" },
+        { "role": "you", "en": "Could you also check whether my suitcase is still on the original plane?", "zh": "能帮我也确认一下行李是否还在原航班上吗？", "tip": "suitcase / checked luggage。" },
+        { "role": "partner", "en": "It will be transferred automatically. Here is your new boarding pass.", "zh": "行李会自动转运。这是您的新登机牌。", "tip": "automatically = 自动地。" }
+      ]
+    },
+    {
+      "code": "restaurant_order",
+      "title": "餐厅点餐",
+      "scene": "restaurant",
+      "level": "beginner",
+      "description": "入座、点菜、询问忌口与结账。",
+      "lines": [
+        { "role": "partner", "en": "Good evening. A table for two?", "zh": "晚上好。两位吗？", "tip": "A table for two, please. 是最常用开场。" },
+        { "role": "you", "en": "Yes, please. Could we sit by the window?", "zh": "是的。可以坐靠窗的位置吗？", "tip": "by the window = 靠窗。" },
+        { "role": "partner", "en": "Of course. Here is the menu. Are you ready to order?", "zh": "当然。这是菜单。现在点餐吗？", "tip": "ready to order = 可以点餐了。" },
+        { "role": "you", "en": "We would like the chicken curry and a tomato salad, please.", "zh": "我们想要咖喱鸡和一份番茄沙拉。", "tip": "We would like... 比 We want... 更礼貌。" },
+        { "role": "partner", "en": "Anything to drink? We have fresh juice and green tea.", "zh": "喝点什么？我们有鲜榨果汁和绿茶。", "tip": "Anything to drink? 餐厅高频问句。" },
+        { "role": "you", "en": "Two glasses of orange juice, please. Is the curry very spicy?", "zh": "两杯橙汁，谢谢。咖喱很辣吗？", "tip": "spicy 辣；not spicy = 不辣。" },
+        { "role": "partner", "en": "It is mildly spicy. I can ask the kitchen to make it milder.", "zh": "微辣。我可以请厨房做得更淡一些。", "tip": "mild = 温和/不辣。" },
+        { "role": "you", "en": "That would be great. Could we have the bill after the meal?", "zh": "那太好了。饭后可以结账吗？", "tip": "the bill / check = 账单。" }
+      ]
+    },
+    {
+      "code": "restaurant_complaint",
+      "title": "餐厅反馈与退换",
+      "scene": "restaurant",
+      "level": "cet4",
+      "description": "礼貌反馈上菜错误或口味问题。",
+      "lines": [
+        { "role": "you", "en": "Sorry to bother you, but I ordered the grilled fish, not the fried chicken.", "zh": "不好意思打扰一下，我点的是烤鱼，不是炸鸡。", "tip": "Sorry to bother you... 先缓和语气再指出问题。" },
+        { "role": "partner", "en": "I am terribly sorry for the mix-up. I will take this back right away.", "zh": "非常抱歉弄混了。我马上撤走这道菜。", "tip": "mix-up = 搞混；terribly sorry 语气更重。" },
+        { "role": "you", "en": "Thank you. Also, the soup is a little cold. Could you heat it up?", "zh": "谢谢。另外汤有点凉，能加热一下吗？", "tip": "heat it up = 加热。" },
+        { "role": "partner", "en": "Of course. Would you like a complimentary dessert while you wait?", "zh": "当然。等待期间需要一份免费甜点吗？", "tip": "complimentary = 免费的。" },
+        { "role": "you", "en": "That is very kind. How long will the fish take?", "zh": "太客气了。烤鱼大概要多久？", "tip": "How long will it take? 时间类必会句。" },
+        { "role": "partner", "en": "About ten minutes. I will bring it as soon as it is ready.", "zh": "大约十分钟。一做好我就送来。", "tip": "as soon as = 一…就…。" },
+        { "role": "you", "en": "Perfect. We appreciate your quick response.", "zh": "很好。谢谢你们这么快处理。", "tip": "appreciate 比 thank 更正式一点。" }
+      ]
+    },
+    {
+      "code": "hotel_checkin",
+      "title": "酒店入住",
+      "scene": "hotel",
+      "level": "beginner",
+      "description": "预订确认、登记入住、询问设施。",
+      "lines": [
+        { "role": "you", "en": "Hello, I have a reservation under the name Li.", "zh": "你好，我用 Li 这个名字订了房。", "tip": "under the name... = 以…名义预订。" },
+        { "role": "partner", "en": "Welcome. May I see your ID, please? A double room for three nights?", "zh": "欢迎。可以看一下证件吗？大床房住三晚？", "tip": "double room 大床房；twin room 两张单人床。" },
+        { "role": "you", "en": "Yes. Does the room include breakfast?", "zh": "是的。房间含早餐吗？", "tip": "include breakfast / breakfast included。" },
+        { "role": "partner", "en": "Yes, from seven to ten on the second floor. Here is your key card.", "zh": "含的，早上七点到十点在二楼。这是您的房卡。", "tip": "key card = 房卡。" },
+        { "role": "you", "en": "Is there a gym in the hotel? And what time is check-out?", "zh": "酒店有健身房吗？退房时间是几点？", "tip": "check-in 入住；check-out 退房。" },
+        { "role": "partner", "en": "The gym is on the top floor. Check-out is at noon.", "zh": "健身房在顶层。退房时间是中午十二点。", "tip": "top floor = 顶层。" },
+        { "role": "you", "en": "Great. Could I get a wake-up call at six thirty tomorrow?", "zh": "好的。明天六点半能叫醒我吗？", "tip": "wake-up call = 叫醒服务。" },
+        { "role": "partner", "en": "Certainly. Enjoy your stay with us.", "zh": "当然。祝您入住愉快。", "tip": "Enjoy your stay! 酒店标准结束语。" }
+      ]
+    },
+    {
+      "code": "hotel_problem",
+      "title": "酒店设施问题",
+      "scene": "hotel",
+      "level": "cet4",
+      "description": "房间设施故障、换房与投诉处理。",
+      "lines": [
+        { "role": "you", "en": "Front desk? This is room 806. The air conditioner is not working.", "zh": "前台吗？这里是 806 房。空调坏了。", "tip": "This is room 806. 电话里表明房间号。" },
+        { "role": "partner", "en": "I am sorry to hear that. I will send maintenance up in fifteen minutes.", "zh": "很抱歉。我十五分钟内安排维修人员上去。", "tip": "maintenance = 维修。" },
+        { "role": "you", "en": "Thank you. Also, the Wi-Fi keeps dropping in the room.", "zh": "谢谢。另外房间 Wi-Fi 经常掉线。", "tip": "keep dropping = 频繁掉线。" },
+        { "role": "partner", "en": "Would you prefer a room closer to the router? We have one available.", "zh": "您愿意换到离路由器更近的房间吗？现在有一间空房。", "tip": "available = 可用的、空着的。" },
+        { "role": "you", "en": "That sounds good, as long as it is on a high floor and quiet.", "zh": "那不错，只要楼层高一些、安静就可以。", "tip": "as long as = 只要。" },
+        { "role": "partner", "en": "It is room 1204. We can move your luggage for you.", "zh": "是 1204 房。我们可以帮您搬行李。", "tip": "move your luggage = 搬运行李。" },
+        { "role": "you", "en": "I appreciate it. Should I pack my things now?", "zh": "谢谢。我现在需要收拾东西吗？", "tip": "pack = 打包。" },
+        { "role": "partner", "en": "Yes, please. The bellman will knock in ten minutes.", "zh": "麻烦您。行李员十分钟后敲门。", "tip": "bellman = 行李员。" }
+      ]
+    },
+    {
+      "code": "shopping_return",
+      "title": "购物退换货",
+      "scene": "shopping",
+      "level": "cet4",
+      "description": "出示小票、说明问题、协商退款或换货。",
+      "lines": [
+        { "role": "you", "en": "Hi, I bought this sweater yesterday, but the sleeve is damaged.", "zh": "你好，我昨天买了这件毛衣，但是袖子有破损。", "tip": "damaged = 破损的；defective 有瑕疵的。" },
+        { "role": "partner", "en": "I am sorry about that. Do you have the receipt with you?", "zh": "很抱歉。您带小票了吗？", "tip": "receipt = 购物小票。" },
+        { "role": "you", "en": "Yes, here it is. Can I exchange it for the same size?", "zh": "带了，给你。可以换同款同码吗？", "tip": "exchange A for B = 用 A 换 B。" },
+        { "role": "partner", "en": "Let me check stock. We have the same item in medium.", "zh": "我查一下库存。同款有中码。", "tip": "in stock 有货；out of stock 缺货。" },
+        { "role": "you", "en": "Perfect. If not, I would like a full refund.", "zh": "太好了。如果没有的话，我希望全额退款。", "tip": "full refund = 全额退款。" },
+        { "role": "partner", "en": "We can process the exchange now. Would you like to try it on?", "zh": "现在就可以办理换货。您要试穿一下吗？", "tip": "try on = 试穿。" },
+        { "role": "you", "en": "Yes, please. Where is the fitting room?", "zh": "好的。试衣间在哪里？", "tip": "fitting room / dressing room。" },
+        { "role": "partner", "en": "Behind you, on the left. Take your time.", "zh": "在您身后左边。慢慢试。", "tip": "Take your time. = 不着急。" }
+      ]
+    },
+    {
+      "code": "doctor_visit",
+      "title": "看医生",
+      "scene": "clinic",
+      "level": "cet6",
+      "description": "描述症状、询问用药与休息建议。",
+      "lines": [
+        { "role": "partner", "en": "What seems to be the problem today?", "zh": "今天哪里不舒服？", "tip": "医生开场高频问句。" },
+        { "role": "you", "en": "I have had a sore throat and a dry cough for three days.", "zh": "我嗓子疼、干咳已经三天了。", "tip": "sore throat 嗓子疼；dry cough 干咳。" },
+        { "role": "partner", "en": "Any fever or shortness of breath?", "zh": "有发烧或呼吸急促吗？", "tip": "shortness of breath = 呼吸急促。" },
+        { "role": "you", "en": "A mild fever last night, around thirty-eight degrees.", "zh": "昨晚有点低烧，大概 38 度。", "tip": "mild fever 低烧；high fever 高烧。" },
+        { "role": "partner", "en": "Please open your mouth. The throat looks inflamed, but the lungs are clear.", "zh": "请张开嘴。咽部有些发炎，但肺部清晰。", "tip": "inflamed 发炎的；lungs 肺。" },
+        { "role": "you", "en": "Do I need antibiotics?", "zh": "我需要用抗生素吗？", "tip": "antibiotics = 抗生素。" },
+        { "role": "partner", "en": "Not yet. Rest, drink warm fluids, and take this lozenge twice a day.", "zh": "暂时不用。多休息、喝温水，这个含片一天两次。", "tip": "fluids = 水分；lozenge 含片。" },
+        { "role": "you", "en": "If it gets worse, should I come back?", "zh": "如果加重了，需要再来吗？", "tip": "get worse 加重；get better 好转。" }
+      ]
+    },
+    {
+      "code": "work_meeting",
+      "title": "职场：开会与汇报",
+      "scene": "work",
+      "level": "cet4",
+      "description": "会议开场、进度汇报、征求反馈。",
+      "lines": [
+        { "role": "partner", "en": "Let's get started. Today we will review the project timeline.", "zh": "我们开始吧。今天复盘项目时间线。", "tip": "Let's get started. 会议常用开场。" },
+        { "role": "you", "en": "Sure. The design phase is finished, and testing starts next Monday.", "zh": "好的。设计阶段已完成，测试下周一启动。", "tip": "phase 阶段；kick off 启动。" },
+        { "role": "partner", "en": "Any risks we should flag before the launch?", "zh": "上线前有哪些风险需要标注？", "tip": "flag a risk = 标记/提出风险。" },
+        { "role": "you", "en": "Mainly the server capacity. We may need a temporary upgrade during peak hours.", "zh": "主要是服务器容量。高峰期可能需要临时扩容。", "tip": "capacity 容量；peak hours 高峰时段。" },
+        { "role": "partner", "en": "Could you send a short summary after the meeting?", "zh": "会后能发一份简短纪要吗？", "tip": "summary / minutes 都可表示纪要。" },
+        { "role": "you", "en": "Of course. I will share it before five this afternoon.", "zh": "当然。我下午五点前发出。", "tip": "before five 在五点前。" },
+        { "role": "partner", "en": "Great. Any other comments from the team?", "zh": "很好。团队还有其它意见吗？", "tip": "comments / feedback。" },
+        { "role": "you", "en": "I suggest we keep a one-hour buffer before the deadline.", "zh": "我建议截止前预留一小时缓冲。", "tip": "buffer = 缓冲时间。" }
+      ]
+    },
+    {
+      "code": "work_email_call",
+      "title": "职场：邮件确认与电话沟通",
+      "scene": "work",
+      "level": "cet6",
+      "description": "确认邮件内容、改约时间、礼貌催办。",
+      "lines": [
+        { "role": "you", "en": "Hi Anna, I am calling to confirm the details in my email about Friday's workshop.", "zh": "你好 Anna，我来电确认邮件里周五工作坊的细节。", "tip": "confirm 确认；workshop 工作坊/研讨。" },
+        { "role": "partner", "en": "Thanks. I saw it. Could we move the session to two o'clock?", "zh": "谢谢。我看到了。能改到两点开始吗？", "tip": "move the session 改时间。" },
+        { "role": "you", "en": "Two works for me. Shall I update the calendar invite?", "zh": "两点可以。需要我更新日历邀请吗？", "tip": "calendar invite = 日历邀请。" },
+        { "role": "partner", "en": "Yes, please. Also attach the latest slide deck.", "zh": "麻烦了。也请附上最新幻灯片。", "tip": "slide deck = 幻灯片组。" },
+        { "role": "you", "en": "Will do. Have you had a chance to review the budget draft?", "zh": "好的。预算草稿您抽空看了吗？", "tip": "Have you had a chance to... 委婉催办。" },
+        { "role": "partner", "en": "I am looking at it now. I will send comments by noon.", "zh": "我正在看。中午前会发意见。", "tip": "by noon 截止到中午。" },
+        { "role": "you", "en": "Perfect. If anything is unclear, feel free to call me.", "zh": "太好了。若有不清楚的，随时打给我。", "tip": "feel free to... 随时可以。" }
+      ]
+    },
+    {
+      "code": "family_dinner",
+      "title": "家庭：晚餐闲聊",
+      "scene": "family",
+      "level": "beginner",
+      "description": "询问一天过得如何、分享家常话题。",
+      "lines": [
+        { "role": "you", "en": "How was your day, Mom?", "zh": "妈妈，今天过得怎么样？", "tip": "How was your day? 家庭高频问句。" },
+        { "role": "partner", "en": "Busy but fine. Did you finish your homework?", "zh": "忙但还好。作业写完了吗？", "tip": "homework 不可数，不说 a homework。" },
+        { "role": "you", "en": "Almost. I need help with two maths problems.", "zh": "差不多了。有两道数学题想请教。", "tip": "need help with... 在某方面需要帮助。" },
+        { "role": "partner", "en": "After dinner, then. Wash your hands first.", "zh": "那就晚饭后。先去洗手。", "tip": "After dinner, then. 省略句很自然。" },
+        { "role": "you", "en": "Okay. What are we having tonight?", "zh": "好的。今晚吃什么？", "tip": "What are we having? 比 What do we eat? 更口语。" },
+        { "role": "partner", "en": "Tomato eggs and some green vegetables. Dad will be home late.", "zh": "番茄炒蛋和青菜。爸爸会晚点回。", "tip": "be home late 晚归。" },
+        { "role": "you", "en": "Can we save some food for him?", "zh": "能给他留点菜吗？", "tip": "save some food = 留菜。" }
+      ]
+    },
+    {
+      "code": "family_plan",
+      "title": "家庭：周末计划",
+      "scene": "family",
+      "level": "cet4",
+      "description": "商量周末安排、分工与出行。",
+      "lines": [
+        { "role": "partner", "en": "Any ideas for the weekend? Grandma is visiting.", "zh": "周末有什么想法？奶奶要来。", "tip": "visiting = 来做客。" },
+        { "role": "you", "en": "How about the science museum on Saturday morning?", "zh": "周六上午去科技馆怎么样？", "tip": "How about...? 提建议。" },
+        { "role": "partner", "en": "Sounds good. I can book tickets online tonight.", "zh": "听起来不错。我今晚可以网上订票。", "tip": "book tickets 订票。" },
+        { "role": "you", "en": "I will cook lunch on Sunday if you handle the dishes.", "zh": "周日我来做午饭，你洗碗怎么样？", "tip": "handle = 负责处理。" },
+        { "role": "partner", "en": "Deal. Should we invite Uncle Chen too?", "zh": "成交。要请陈叔叔吗？", "tip": "Deal! 口语「一言为定」。" },
+        { "role": "you", "en": "Yes, if he is free. We have enough chairs.", "zh": "好啊，他有空的话。椅子够坐。", "tip": "if he is free 有空的话。" },
+        { "role": "partner", "en": "Then I will message him after work.", "zh": "那我下班后发消息给他。", "tip": "message him = 发信息。" }
+      ]
+    },
+    {
+      "code": "school_class",
+      "title": "学校：课堂与作业",
+      "scene": "school",
+      "level": "beginner",
+      "description": "请假、交作业、问老师问题。",
+      "lines": [
+        { "role": "partner", "en": "Please hand in your exercise books before the bell.", "zh": "请在铃响前交上练习册。", "tip": "hand in = 上交。" },
+        { "role": "you", "en": "Sorry, I left mine at home. May I bring it tomorrow?", "zh": "抱歉，我落在家里了。明天带来可以吗？", "tip": "leave something at home 落在家里。" },
+        { "role": "partner", "en": "All right, but do not forget next time. Any questions?", "zh": "好吧，下次别忘。有问题吗？", "tip": "All right 在此表示勉强同意。" },
+        { "role": "you", "en": "Yes. Could you explain the third question again?", "zh": "有。第三题能再讲一遍吗？", "tip": "explain ... again。" },
+        { "role": "partner", "en": "Of course. Look at the example on page twelve.", "zh": "当然。看第十二页的例子。", "tip": "page twelve 序数可说 the twelfth page。" },
+        { "role": "you", "en": "I see now. Thank you, teacher.", "zh": "我明白了。谢谢老师。", "tip": "I see. = 我懂了。" }
+      ]
+    },
+    {
+      "code": "school_club",
+      "title": "学校：社团与小组合作",
+      "scene": "school",
+      "level": "cet4",
+      "description": "报名社团、讨论分工、约自习。",
+      "lines": [
+        { "role": "partner", "en": "We are recruiting new members for the drama club this week.", "zh": "本周话剧社在招新。", "tip": "recruit = 招募。" },
+        { "role": "you", "en": "I am interested. What do I need to prepare for the audition?", "zh": "我有兴趣。试镜要准备什么？", "tip": "audition = 试镜/面试。" },
+        { "role": "partner", "en": "A short monologue, about one minute. No costumes needed.", "zh": "一段约一分钟的独白。不需要服装。", "tip": "monologue 独白；costume 服装。" },
+        { "role": "you", "en": "Got it. Can we rehearse together after class?", "zh": "明白了。下课能一起排练吗？", "tip": "rehearse = 排练。" },
+        { "role": "partner", "en": "Sure. Let us meet in Room 204 at four thirty.", "zh": "可以。四点半在 204 见。", "tip": "Let us = Let's 的完整形。" },
+        { "role": "you", "en": "I will bring the script and print two copies.", "zh": "我带剧本并打印两份。", "tip": "copy 份数：two copies。" }
+      ]
+    }
+  ]
+}

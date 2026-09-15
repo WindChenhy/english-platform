@@ -1,0 +1,97 @@
+{
+  "level": "kaoyan",
+  "category": "exam",
+  "exam_label": "考研阅读 · 真题题型",
+  "articles": [
+    {
+      "title": "Standards, Networks, and Market Power",
+      "content": "Technical standards look neutral: a file format, a charging port, a wireless protocol. Yet standards shape markets. Once a design wins broad adoption, competitors must either comply or accept isolation. Incumbents that helped write a standard may later control essential patents, extracting rents long after the original innovation.\n\nRegulators therefore face a dilemma. Enforcing a single standard can lower consumer costs and reduce electronic waste, as debates over common chargers illustrate. But rigid mandates may freeze technology before a better alternative matures. Flexible rules that set performance outcomes—safety, interoperability, efficiency—leave room for competing designs while still protecting the public interest.\n\nThere is also a geopolitical layer. Nations that host standard-setting bodies or supply critical components can translate technical leadership into strategic leverage. For smaller economies, participation is costly but abstention is riskier. The lesson for policy is not to worship standards, nor to dismiss them, but to treat them as instruments of industrial and social choice.",
+      "questions": [
+        {
+          "question": "How can incumbents benefit after a standard wins?",
+          "options": ["By abandoning patents", "By controlling essential patents and collecting rents", "By refusing all interoperability", "By lowering consumer costs immediately"],
+          "answer": 1,
+          "explanation": "原文：control essential patents, extracting rents long after the original innovation."
+        },
+        {
+          "question": "What is the regulator's dilemma?",
+          "options": ["Standards always fail", "A single standard cuts costs but may freeze better technology", "Consumers reject all rules", "Patents expire too early"],
+          "answer": 1,
+          "explanation": "原文对比统一标准降低成本与可能锁死更优技术。"
+        },
+        {
+          "question": "What do outcome-based flexible rules do?",
+          "options": ["Ban competing designs", "Set performance goals while allowing design competition", "Ignore public interest", "Transfer power to one firm"],
+          "answer": 1,
+          "explanation": "原文：set performance outcomes... leave room for competing designs."
+        },
+        {
+          "question": "Why is participation costly for smaller economies?",
+          "options": ["Because standards are illegal", "Because technical leadership confers strategic leverage on powerful nations", "Because consumers refuse chargers", "Because patents always fail"],
+          "answer": 1,
+          "explanation": "原文：translate technical leadership into strategic leverage；对小国参与成本高、缺席风险更大。"
+        }
+      ]
+    },
+    {
+      "title": "Reproducibility and the Culture of Science",
+      "content": "Failed replications are often reported as scandals, yet they are ordinary features of a living science. When a celebrated result collapses under re-examination, the public may conclude that experts are unreliable. A more accurate reading is that knowledge advances by narrowing error, including errors that once looked like breakthroughs.\n\nBarriers to replication are practical and social. Original data may be locked behind privacy rules or simply lost. Methods sections omit tacit steps that labs learn through apprenticeship. Careers still reward novelty over confirmation, so few researchers invest months to check someone else's finding. Funders have begun to support replication studies and data-sharing infrastructure, but incentives remain skewed.\n\nNone of this excuses carelessness. Fraud must be punished, and sloppy reporting should be corrected. Still, a field that treats every failed replication as betrayal will hide problems rather than solve them. Mature science distinguishes between dishonesty, ordinary error, and the slow grinding work of making claims more precise.",
+      "questions": [
+        {
+          "question": "How does the author view failed replications?",
+          "options": ["As proof science is worthless", "As ordinary features that narrow error", "As rare scandals", "As grounds to abandon research"],
+          "answer": 1,
+          "explanation": "原文：ordinary features of a living science... knowledge advances by narrowing error."
+        },
+        {
+          "question": "Which barrier is described as social?",
+          "options": ["Privacy rules", "Lost data", "Careers rewarding novelty over confirmation", "Complex statistics"],
+          "answer": 2,
+          "explanation": "原文：Careers still reward novelty over confirmation."
+        },
+        {
+          "question": "What have funders begun to do?",
+          "options": ["Ban data sharing", "Support replication and data infrastructure", "Fine failed replications", "Shorten methods sections"],
+          "answer": 1,
+          "explanation": "原文：support replication studies and data-sharing infrastructure."
+        },
+        {
+          "question": "What distinction does mature science maintain?",
+          "options": ["Between theft and purchase", "Between dishonesty, ordinary error, and incremental precision", "Between theory and experiment only", "Between domestic and foreign labs"],
+          "answer": 1,
+          "explanation": "末段：distinguishes between dishonesty, ordinary error, and the slow grinding work of making claims more precise."
+        }
+      ]
+    },
+    {
+      "title": "Insurance, Risk, and Moral Hazard",
+      "content": "Insurance pools uncertainty: many pay small premiums so that the unlucky few can recover from large losses. The model depends on estimating risk honestly and on policyholders remaining reasonably careful after they are covered. When protection weakens incentives to prevent harm, economists call the effect moral hazard.\n\nInsurers respond with deductibles, co-payments, and monitoring. Drivers with higher excesses may park more carefully; patients with co-pays may think twice before unnecessary visits. Yet imperfect information cuts both ways. Adverse selection occurs when high-risk individuals buy more coverage, driving average costs up and pushing low-risk customers out of the market.\n\nDigital data intensify both problems and solutions. Telematics can reward safe driving, while genetic information could exclude the vulnerable if left unchecked. Regulation therefore walks a line: allow risk-based pricing that keeps pools solvent, but prevent discrimination that destroys the social purpose of insurance—which is not profit alone, but shared resilience.",
+      "questions": [
+        {
+          "question": "What is moral hazard in this context?",
+          "options": ["Selling fake policies", "Weakened incentives to prevent harm after coverage", "Overcharging premiums", "Refusing all claims"],
+          "answer": 1,
+          "explanation": "原文：protection weakens incentives to prevent harm... moral hazard."
+        },
+        {
+          "question": "How do deductibles and co-pays address risk?",
+          "options": ["They eliminate all losses", "They restore some personal incentive to avoid claims", "They raise taxes", "They ban insurance"],
+          "answer": 1,
+          "explanation": "原文以驾驶与就医为例说明自付额恢复防范动机。"
+        },
+        {
+          "question": "What is adverse selection?",
+          "options": ["Low-risk customers buying more", "High-risk individuals dominating the pool and raising costs", "Insurers refusing digital tools", "Governments setting fixed prices"],
+          "answer": 1,
+          "explanation": "原文：high-risk individuals buy more coverage, driving average costs up."
+        },
+        {
+          "question": "What social purpose of insurance does regulation protect?",
+          "options": ["Profit alone", "Shared resilience", "Genetic exclusion", "Telematics sales"],
+          "answer": 1,
+          "explanation": "末句：which is not profit alone, but shared resilience."
+        }
+      ]
+    }
+  ]
+}

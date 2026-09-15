@@ -63,15 +63,28 @@ def seed_db():
         db.add(models.ArticleQuestion(
             article_id=art.id, question="Q2?", options_json='["a","b","c","d"]', answer=2, explanation="e2"))
         db.add(models.ArticleSentence(article_id=art.id, en=art.content, zh="这是一个关于苹果和香蕉的测试文章。"))
+        db.add(models.SpeakingScenario(
+            code="test_airport", title="测试机场", scene="airport", level="beginner",
+            description="测试用场景",
+        ))
+        db.flush()
+        db.add(models.SpeakingLine(
+            scenario_id=1, ord=0, role="you",
+            en="Where is the gate?", zh="登机口在哪里？", tip="gate 登机口",
+        ))
         db.commit()
     yield
 
 
 @pytest.fixture(autouse=True)
 def clean_user_tables():
-    """每个用例前清空学习/做题记录，保证用例之间互不影响。"""
+    """每个用例前清空学习/做题记录，保证用例之间互不影响（场景台词为种子数据保留）。"""
     with TestingSession() as db:
-        for m in (models.Mistake, models.ReadingAttempt, models.ReviewLog, models.Card):
+        for m in (
+            models.Mistake, models.ReadingAttempt, models.ReviewLog, models.Card,
+            models.DictationLog, models.BattleLog, models.UserArticle, models.AppSetting,
+            models.SpeakingRecord,
+        ):
             db.query(m).delete()
         db.commit()
     yield

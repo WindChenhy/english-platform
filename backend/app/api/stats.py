@@ -1,4 +1,5 @@
 """学习统计接口：仪表盘统计、图表数据、备份导出与导入恢复。"""
+import json
 from datetime import date, datetime, timedelta
 
 from fastapi import APIRouter, Depends, HTTPException
@@ -8,13 +9,14 @@ from sqlalchemy.orm import Session
 
 from .. import models
 from ..db import get_db
+from .settings import GOALS_KEY, get_goals
 
 router = APIRouter(tags=["stats"])
 
 
 @router.get("/api/stats")
 def stats(db: Session = Depends(get_db)):
-    """首页仪表盘统计：今日学习量、待复习数、连续打卡、词汇量估算与阅读进度。"""
+    """首页仪表盘统计：今日学习量、目标进度、待复习数、连续打卡、词汇量与阅读。"""
     today = date.today()
 
     def count(stmt) -> int:
@@ -28,6 +30,9 @@ def stats(db: Session = Depends(get_db)):
     due_today = count(select(models.Card).where(models.Card.due <= today))
     vocab_estimate = count(select(models.Card).where(models.Card.interval >= 21))
     wordlist_count = count(select(models.Card).where(models.Card.source == "wordlist"))
+    goals = get_goals(db)
+    dictation_today = count(select(models.DictationLog).where(models.DictationLog.study_date == today))
+    battle_today = count(select(models.BattleLog).where(models.BattleLog.study_date == today))
 
     # 连续打卡：从今天（或昨天）往前数有学习记录的连续天数
     dates = {d for (d,) in db.execute(select(models.ReviewLog.study_date).distinct()).all()}
@@ -54,6 +59,9 @@ def stats(db: Session = Depends(get_db)):
         "streak_days": streak,
         "vocab_estimate": vocab_estimate,
         "wordlist_count": wordlist_count,
+        "goals": goals,
+        "dictation_today": dictation_today,
+        "battle_today": battle_today,
         "reading": {
             "articles_done": articles_done,
             "articles_total": articles_total,
@@ -118,24 +126,40 @@ def charts(db: Session = Depends(get_db)):
         n = overdue if i == 0 else fm.get(d, 0)
         forecast.append({"date": str(d), "n": n})
 
+    dict_rows = db.execute(
+        select(models.DictationLog.study_date, models.DictationLog.correct, func.count())
+        .where(models.DictationLog.study_date >= today - timedelta(days=29))
+        .group_by(models.DictationLog.study_date, models.DictationLog.correct)
+    ).all()
+    dmap: dict[str, dict[str, int]] = {}
+    for d, correct, n in dict_rows:
+        key = str(d)
+        dmap.setdefault(key, {"correct": 0, "wrong": 0})
+        dmap[key]["correct" if correct else "wrong"] += n
+    dictation_daily = []
+    for i in range(30):
+        d = str(today - timedelta(days=29 - i))
+        dictation_daily.append({"date": d, **dmap.get(d, {"correct": 0, "wrong": 0})})
+
     return {
         "daily": daily,
         "cumulative": cumulative,
         "heatmap": heatmap,
         "forecast": forecast,
+        "dictation_daily": dictation_daily,
     }
 
 
 @router.get("/api/export")
 def export(db: Session = Depends(get_db)):
-    """导出全部学习数据（v2 格式）为可下载的 JSON 文件。
+    """导出全部学习数据（v3 格式）为可下载的 JSON 文件。
 
-    v2 变更：携带 version 字段；cards 包含 id/book_id/phonetic/last_review_at、
-    mistakes 包含 article_id，保证 /api/import 恢复后外键关联完整。
+    v3 变更：携带 FSRS 字段、默写/对战流水、自贴文章与每日目标。
     """
     data = {
-        "version": 2,
+        "version": 3,
         "exported_at": datetime.now().isoformat(),
+        "goals": get_goals(db),
         "cards": [{
             "id": c.id, "word": c.word, "meaning": c.meaning, "phonetic": c.phonetic,
             "book_id": c.book_id, "source": c.source,
@@ -143,6 +167,9 @@ def export(db: Session = Depends(get_db)):
             "lapses": c.lapses, "due": str(c.due),
             "created_at": str(c.created_at),
             "last_review_at": str(c.last_review_at) if c.last_review_at else None,
+            "stability": c.stability, "difficulty": c.difficulty, "state": c.state,
+            "last_review_date": str(c.last_review_date) if c.last_review_date else None,
+            "lapses_window": c.lapses_window,
         } for c in db.scalars(select(models.Card)).all()],
         "review_logs": [{
             "card_id": l.card_id, "rating": l.rating, "kind": l.kind,
@@ -158,6 +185,19 @@ def export(db: Session = Depends(get_db)):
             "user_answer": m.user_answer, "resolved": m.resolved,
             "created_at": str(m.created_at),
         } for m in db.scalars(select(models.Mistake)).all()],
+        "dictation_logs": [{
+            "kind": l.kind, "answer": l.answer, "correct": l.correct,
+            "word": l.word, "study_date": str(l.study_date),
+        } for l in db.scalars(select(models.DictationLog)).all()],
+        "battle_logs": [{
+            "difficulty": b.difficulty, "result": b.result,
+            "user_correct": b.user_correct, "total_rounds": b.total_rounds,
+            "avg_seconds": b.avg_seconds, "study_date": str(b.study_date),
+        } for b in db.scalars(select(models.BattleLog)).all()],
+        "user_articles": [{
+            "id": a.id, "title": a.title, "content": a.content,
+            "word_count": a.word_count, "created_at": str(a.created_at),
+        } for a in db.scalars(select(models.UserArticle)).all()],
     }
     return JSONResponse(
         content=data,
@@ -167,26 +207,33 @@ def export(db: Session = Depends(get_db)):
 
 @router.post("/api/import")
 def import_data(payload: dict, db: Session = Depends(get_db)):
-    """从导出的 JSON 备份恢复学习数据（整库覆盖：卡片/复习流水/做题记录/错题）。
+    """从导出的 JSON 备份恢复学习数据（整库覆盖）。
 
-    要求 v2 格式（cards 带 id，恢复后复习流水的外键才能对上）。
+    兼容 v2 与 v3；v3 额外恢复默写/对战流水、自贴文章与目标。
     全部写入在同一个事务中完成，任一步失败即整体回滚。
     """
-    if payload.get("version") != 2:
+    version = payload.get("version")
+    if version not in (2, 3):
         raise HTTPException(400, "备份文件版本过旧或格式不符，请重新导出")
     cards = payload.get("cards")
     logs = payload.get("review_logs") or []
     attempts = payload.get("reading_attempts") or []
     mistakes = payload.get("mistakes") or []
+    dictation_logs = payload.get("dictation_logs") or []
+    battle_logs = payload.get("battle_logs") or []
+    user_articles = payload.get("user_articles") or []
     if not isinstance(cards, list) or not cards:
         raise HTTPException(400, "备份中没有卡片数据")
 
     try:
         # 清空旧记录（顺序：先子表后主表）
+        db.execute(delete(models.BattleLog))
+        db.execute(delete(models.DictationLog))
         db.execute(delete(models.Mistake))
         db.execute(delete(models.ReadingAttempt))
         db.execute(delete(models.ReviewLog))
         db.execute(delete(models.Card))
+        db.execute(delete(models.UserArticle))
 
         for c in cards:
             db.add(models.Card(
@@ -203,6 +250,11 @@ def import_data(payload: dict, db: Session = Depends(get_db)):
                 due=date.fromisoformat(c["due"]),
                 created_at=datetime.fromisoformat(c["created_at"]) if c.get("created_at") else datetime.now(),
                 last_review_at=datetime.fromisoformat(c["last_review_at"]) if c.get("last_review_at") else None,
+                stability=c.get("stability"),
+                difficulty=c.get("difficulty"),
+                state=c.get("state") or "new",
+                last_review_date=date.fromisoformat(c["last_review_date"]) if c.get("last_review_date") else None,
+                lapses_window=int(c.get("lapses_window", 0)),
             ))
         for l in logs:
             db.add(models.ReviewLog(
@@ -227,6 +279,40 @@ def import_data(payload: dict, db: Session = Depends(get_db)):
                 resolved=bool(m.get("resolved", False)),
                 created_at=datetime.fromisoformat(m["created_at"]) if m.get("created_at") else datetime.now(),
             ))
+        for l in dictation_logs:
+            db.add(models.DictationLog(
+                kind=l.get("kind") or "word",
+                answer=str(l.get("answer") or "")[:200],
+                correct=bool(l.get("correct")),
+                word=l.get("word"),
+                study_date=date.fromisoformat(l["study_date"]),
+            ))
+        for b in battle_logs:
+            db.add(models.BattleLog(
+                difficulty=b.get("difficulty") or "normal",
+                result=b.get("result") or "draw",
+                user_correct=int(b.get("user_correct", 0)),
+                total_rounds=int(b.get("total_rounds", 0)),
+                avg_seconds=float(b.get("avg_seconds", 0) or 0),
+                study_date=date.fromisoformat(b["study_date"]),
+            ))
+        for a in user_articles:
+            ua = models.UserArticle(
+                title=str(a.get("title") or "Untitled"),
+                content=str(a.get("content") or ""),
+                word_count=int(a.get("word_count", 0)),
+                created_at=datetime.fromisoformat(a["created_at"]) if a.get("created_at") else datetime.now(),
+            )
+            if a.get("id"):
+                ua.id = int(a["id"])
+            db.add(ua)
+        if payload.get("goals"):
+            g = payload["goals"]
+            row = db.get(models.AppSetting, GOALS_KEY)
+            if row:
+                row.value = json.dumps(g)
+            else:
+                db.add(models.AppSetting(key=GOALS_KEY, value=json.dumps(g)))
         db.commit()
     except Exception:
         db.rollback()
@@ -237,4 +323,7 @@ def import_data(payload: dict, db: Session = Depends(get_db)):
         "review_logs": len(logs),
         "reading_attempts": len(attempts),
         "mistakes": len(mistakes),
+        "dictation_logs": len(dictation_logs),
+        "battle_logs": len(battle_logs),
+        "user_articles": len(user_articles),
     }

@@ -1,9 +1,27 @@
-/** 首页仪表盘：问候语 + 统计盒 + 背单词/阅读双卡片 + 图表入口 + 备份导入/导出。 */
+/** 首页仪表盘：问候语 + 统计盒 + 每日目标进度 + 背单词/阅读双卡片 + 图表入口 + 备份导入/导出。 */
 import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { BarChartOutlined, BookOutlined, ExportOutlined, ImportOutlined, ReadOutlined } from '@ant-design/icons';
-import { App, Button, Card, Col, Progress, Row, Typography } from 'antd';
+import {
+  BarChartOutlined,
+  BookOutlined,
+  ExportOutlined,
+  ImportOutlined,
+  ReadOutlined,
+  SettingOutlined,
+} from '@ant-design/icons';
+import {
+  App,
+  Button,
+  Card,
+  Col,
+  InputNumber,
+  Modal,
+  Progress,
+  Row,
+  Space,
+  Typography,
+} from 'antd';
 import dayjs from 'dayjs';
-import { useRef, type ChangeEvent } from 'react';
+import { useRef, useState, type ChangeEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { api } from '../api';
@@ -33,6 +51,26 @@ export default function Dashboard() {
   const { message, modal } = App.useApp();
   const fileRef = useRef<HTMLInputElement>(null);
   const { data: stats, isLoading } = useQuery({ queryKey: ['stats'], queryFn: api.stats });
+  const [goalOpen, setGoalOpen] = useState(false);
+  const [draftNew, setDraftNew] = useState(10);
+  const [draftReview, setDraftReview] = useState(60);
+
+  function openGoals() {
+    setDraftNew(stats?.goals?.daily_new ?? 10);
+    setDraftReview(stats?.goals?.daily_review ?? 60);
+    setGoalOpen(true);
+  }
+
+  async function saveGoals() {
+    try {
+      await api.saveGoals({ daily_new: draftNew, daily_review: draftReview });
+      message.success(t('dash.goalsSaved'));
+      setGoalOpen(false);
+      queryClient.invalidateQueries({ queryKey: ['stats'] });
+    } catch (e) {
+      message.error((e as Error).message);
+    }
+  }
 
   /** 读取备份文件 → 确认覆盖 → 提交 /api/import → 刷新全部缓存。 */
   function onImportFile(e: ChangeEvent<HTMLInputElement>) {
@@ -118,9 +156,87 @@ export default function Dashboard() {
             <ImportOutlined />
             {t('dash.importChip')}
           </button>
+          <button className="export-chip" onClick={openGoals} title={t('dash.goalsTitle')}>
+            <SettingOutlined />
+            {t('dash.goalsChip')}
+          </button>
           <input ref={fileRef} type="file" accept=".json,application/json" hidden onChange={onImportFile} />
         </div>
       </div>
+
+      <Card size="small" style={{ marginBottom: 14, background: '#fff' }}>
+        <Row gutter={16} align="middle">
+          <Col flex="auto">
+            <Typography.Text strong>{t('dash.goalsTitle')}</Typography.Text>
+            <div style={{ marginTop: 8 }}>
+              <Space size="large" wrap>
+                <span>
+                  <Typography.Text type="secondary">{t('dash.goalNew')} </Typography.Text>
+                  <b>
+                    {stats.new_today}/{stats.goals?.daily_new ?? 0}
+                  </b>
+                  <Progress
+                    percent={Math.min(100, Math.round((stats.new_today / Math.max(stats.goals?.daily_new || 1, 1)) * 100))}
+                    showInfo={false}
+                    size="small"
+                    style={{ width: 120, display: 'inline-block', marginLeft: 8, verticalAlign: 'middle' }}
+                  />
+                </span>
+                <span>
+                  <Typography.Text type="secondary">{t('dash.goalReview')} </Typography.Text>
+                  <b>
+                    {stats.review_today}/{stats.goals?.daily_review ?? 0}
+                  </b>
+                  <Progress
+                    percent={Math.min(
+                      100,
+                      Math.round((stats.review_today / Math.max(stats.goals?.daily_review || 1, 1)) * 100),
+                    )}
+                    showInfo={false}
+                    size="small"
+                    style={{ width: 120, display: 'inline-block', marginLeft: 8, verticalAlign: 'middle' }}
+                  />
+                </span>
+                <Typography.Text type="secondary">
+                  {t('dash.extraToday', { d: stats.dictation_today, b: stats.battle_today })}
+                </Typography.Text>
+              </Space>
+            </div>
+          </Col>
+        </Row>
+      </Card>
+
+      <Modal
+        open={goalOpen}
+        title={t('dash.goalsTitle')}
+        okText={t('common.confirm')}
+        cancelText={t('common.cancel')}
+        onOk={saveGoals}
+        onCancel={() => setGoalOpen(false)}
+      >
+        <Space direction="vertical" size={12} style={{ width: '100%', marginTop: 8 }}>
+          <div>
+            <Typography.Text type="secondary">{t('dash.goalNew')}</Typography.Text>
+            <InputNumber
+              min={0}
+              max={200}
+              value={draftNew}
+              onChange={(v) => setDraftNew(v ?? 10)}
+              style={{ width: '100%' }}
+            />
+          </div>
+          <div>
+            <Typography.Text type="secondary">{t('dash.goalReview')}</Typography.Text>
+            <InputNumber
+              min={0}
+              max={500}
+              value={draftReview}
+              onChange={(v) => setDraftReview(v ?? 60)}
+              style={{ width: '100%' }}
+            />
+          </div>
+        </Space>
+      </Modal>
 
       <Row gutter={[14, 14]}>
         <Col xs={12} sm={8} md={4} flex="1">

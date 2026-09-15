@@ -9,6 +9,7 @@ dependencies = [
     "pydantic>=2.7",
     "pydantic-settings>=2.3",
     "pytest>=8.0",
+    "python-multipart>=0.0.9",
     "sqlalchemy>=2.0.30",
     "uvicorn[standard]>=0.30",
 ]

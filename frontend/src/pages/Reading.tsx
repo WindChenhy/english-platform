@@ -1,29 +1,49 @@
-/** 阅读列表页：按难度分级筛选文章，显示词数与练习成绩。 */
-import { useQuery } from '@tanstack/react-query';
-import { Button, Card, Empty, List, Space, Tag, Typography } from 'antd';
+/** 阅读列表页：分级文章 + 用户自贴材料。 */
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { App, Button, Card, Empty, Input, List, Modal, Popconfirm, Space, Tag, Typography } from 'antd';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { api, Level } from '../api';
-
-const LEVEL_COLOR: Record<string, string> = { beginner: '#3b8c5a', cet4: '#2b4c7e', cet6: '#6b4fa0' };
-
-/** 难度标签（墨色系描边风格，与全站纸墨设计一致）。 */
-function LevelTag({ level }: { level: Level }) {
-  const { t } = useTranslation();
-  const c = LEVEL_COLOR[level];
-  return (
-    <Tag style={{ color: c, borderColor: c, background: '#fff' }}>{t(`common.level.${level}`)}</Tag>
-  );
-}
+import { api } from '../api';
+import LevelTag from '../components/LevelTag';
 
 export default function Reading() {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
+  const { message } = App.useApp();
   const [level, setLevel] = useState<string | undefined>(undefined);
+  const [pasteOpen, setPasteOpen] = useState(false);
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
   const { data, isLoading } = useQuery({
     queryKey: ['articles', level],
     queryFn: () => api.articles(level),
+  });
+  const { data: userArts } = useQuery({
+    queryKey: ['user-articles'],
+    queryFn: api.userArticles,
+  });
+
+  const createArt = useMutation({
+    mutationFn: () => api.createUserArticle(title.trim() || t('reading.untitled'), content),
+    onSuccess: (r) => {
+      message.success(t('reading.pasteSaved', { n: r.word_count }));
+      setPasteOpen(false);
+      setTitle('');
+      setContent('');
+      queryClient.invalidateQueries({ queryKey: ['user-articles'] });
+    },
+    onError: (e) => message.error((e as Error).message),
+  });
+
+  const removeArt = useMutation({
+    mutationFn: (id: number) => api.deleteUserArticle(id),
+    onSuccess: () => {
+      message.success(t('reading.pasteDeleted'));
+      queryClient.invalidateQueries({ queryKey: ['user-articles'] });
+    },
+    onError: (e) => message.error((e as Error).message),
   });
 
   const tabs = [
@@ -31,7 +51,84 @@ export default function Reading() {
     { key: 'beginner', label: t('common.level.beginner') },
     { key: 'cet4', label: t('common.level.cet4') },
     { key: 'cet6', label: t('common.level.cet6') },
+    { key: 'kaoyan', label: t('common.level.kaoyan') },
+    { key: 'mine', label: t('reading.tabMine') },
   ];
+
+  if (level === 'mine') {
+    return (
+      <Card
+        title={t('reading.title')}
+        tabList={tabs.map((tb) => ({ key: tb.key, tab: tb.label }))}
+        activeTabKey="mine"
+        onTabChange={(k) => setLevel(k || undefined)}
+        extra={
+          <Button type="primary" onClick={() => setPasteOpen(true)}>
+            {t('reading.pasteBtn')}
+          </Button>
+        }
+      >
+        <List
+          locale={{ emptyText: <Empty description={t('reading.mineEmpty')} /> }}
+          dataSource={userArts ?? []}
+          renderItem={(a) => (
+            <List.Item
+              actions={[
+                <Button key="go" type="link" onClick={() => navigate(`/reading/user/${a.id}`)}>
+                  {t('reading.start')}
+                </Button>,
+                <Popconfirm
+                  key="del"
+                  title={t('reading.pasteDelTitle')}
+                  onConfirm={() => removeArt.mutate(a.id)}
+                >
+                  <Button type="link" danger>
+                    {t('reading.pasteDel')}
+                  </Button>
+                </Popconfirm>,
+              ]}
+            >
+              <List.Item.Meta
+                title={a.title}
+                description={t('reading.words', { n: a.word_count }) + ' · ' + a.created_at.slice(0, 10)}
+              />
+            </List.Item>
+          )}
+        />
+        <Modal
+          open={pasteOpen}
+          title={t('reading.pasteTitle')}
+          okText={t('common.confirm')}
+          cancelText={t('common.cancel')}
+          onOk={() => {
+            if (content.trim().length < 10) {
+              message.warning(t('reading.pasteTooShort'));
+              return;
+            }
+            createArt.mutate();
+          }}
+          onCancel={() => setPasteOpen(false)}
+          confirmLoading={createArt.isPending}
+        >
+          <Space direction="vertical" size={10} style={{ width: '100%' }}>
+            <Input
+              placeholder={t('reading.pastePhTitle')}
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              maxLength={200}
+            />
+            <Input.TextArea
+              rows={8}
+              placeholder={t('reading.pastePhContent')}
+              value={content}
+              onChange={(e) => setContent(e.target.value)}
+              maxLength={20000}
+            />
+          </Space>
+        </Modal>
+      </Card>
+    );
+  }
 
   return (
     <Card
@@ -39,6 +136,9 @@ export default function Reading() {
       tabList={tabs.map((tb) => ({ key: tb.key, tab: tb.label }))}
       activeTabKey={level ?? ''}
       onTabChange={(k) => setLevel(k || undefined)}
+      extra={
+        <Button onClick={() => setLevel('mine')}>{t('reading.tabMine')}</Button>
+      }
     >
       <List
         loading={isLoading}

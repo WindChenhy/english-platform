@@ -26,14 +26,33 @@ def test_charts_shape(client):
     assert sum(h["n"] for h in c["heatmap"]) >= 1  # 新词复习会计入流水
 
 
-def test_export_v2(client):
-    """导出为 v2 格式，卡片携带 id/book_id 以支持恢复。"""
+def test_export_v3(client):
+    """导出为 v3 格式，卡片携带 id/book_id/FSRS 字段以支持恢复。"""
     _do_activity(client)
     d = client.get("/api/export").json()
-    assert d["version"] == 2
+    assert d["version"] == 3
     assert len(d["cards"]) == 2
-    assert {"id", "word", "book_id", "due"} <= set(d["cards"][0].keys())
+    assert {"id", "word", "book_id", "due", "stability", "state"} <= set(d["cards"][0].keys())
     assert d["review_logs"] and d["mistakes"] == []
+    assert "goals" in d and "dictation_logs" in d
+
+
+def test_import_accepts_v2(client):
+    """v2 备份仍可导入（兼容旧备份）。"""
+    _do_activity(client)
+    v3 = client.get("/api/export").json()
+    v2 = {
+        "version": 2,
+        "cards": [{k: c[k] for k in (
+            "id", "word", "meaning", "phonetic", "book_id", "source", "ease",
+            "interval", "reps", "lapses", "due", "created_at", "last_review_at",
+        ) if k in c} for c in v3["cards"]],
+        "review_logs": v3["review_logs"],
+        "reading_attempts": v3["reading_attempts"],
+        "mistakes": v3["mistakes"],
+    }
+    assert client.post("/api/import", json=v2).status_code == 200
+    assert len(client.get("/api/export").json()["cards"]) == 2
 
 
 def test_import_roundtrip(client):

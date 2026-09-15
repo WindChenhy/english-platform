@@ -31,4 +31,24 @@ describe('study store', () => {
     const persisted = JSON.parse(localStorage.getItem('study-settings')!);
     expect(persisted.state.battleAvatar).toBe('🐱');
   });
+
+  it('save/clear studySession 支持会话中断恢复', () => {
+    const snap = {
+      bookId: 1,
+      mode: 'normal' as const,
+      items: [],
+      idx: 2,
+      counts: { review: 3, new: 1 },
+      answers: {},
+      reveals: {},
+      newRight: 1,
+      newWrong: 0,
+      reviewDone: 2,
+      savedAt: Date.now(),
+    };
+    useStudyStore.getState().saveStudySession(snap);
+    expect(useStudyStore.getState().studySession?.idx).toBe(2);
+    useStudyStore.getState().clearStudySession();
+    expect(useStudyStore.getState().studySession).toBeNull();
+  });
 });

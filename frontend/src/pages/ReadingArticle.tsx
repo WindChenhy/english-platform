@@ -1,4 +1,4 @@
-/** 阅读详情页：衬线正文点词查词、收藏生词、理解题作答与判分反馈。 */
+/** 阅读详情页：衬线正文点词查词、收藏生词；标准文章带理解题，自贴材料仅阅读。 */
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { SoundOutlined } from '@ant-design/icons';
 import {
@@ -16,22 +16,26 @@ import {
 } from 'antd';
 import { useState, type CSSProperties } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate, useParams } from 'react-router-dom';
-import { api, Level, SubmitResp } from '../api';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { api, SubmitResp } from '../api';
 import { speak } from '../speech';
-
-const LEVEL_COLOR: Record<string, string> = { beginner: '#3b8c5a', cet4: '#2b4c7e', cet6: '#6b4fa0' };
+import LevelTag from '../components/LevelTag';
 
 export default function ReadingArticle() {
   const { id } = useParams();
+  const location = useLocation();
+  const isUser = location.pathname.includes('/user/');
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { message } = App.useApp();
   const articleId = Number(id);
 
   const { data, isLoading } = useQuery({
-    queryKey: ['article', articleId],
-    queryFn: () => api.article(articleId),
+    queryKey: ['article', articleId, isUser ? 'user' : 'seed'],
+    queryFn: () =>
+      (isUser ? api.userArticle(articleId) : api.article(articleId)) as Promise<
+        import('../api').ArticleDetail | import('../api').UserArticleDetail
+      >,
   });
 
   const [choices, setChoices] = useState<Record<number, number | null>>({});
@@ -55,15 +59,23 @@ export default function ReadingArticle() {
 
   if (isLoading || !data) return <Card loading style={{ minHeight: 400 }} />;
 
-  const attemptsNote = data.attempts.length > 0
-    ? t('reading.attemptsDone', { n: data.attempts.length })
-    : t('reading.firstRead');
+  const seed = !isUser ? (data as import('../api').ArticleDetail) : null;
+  const userArt = isUser ? (data as import('../api').UserArticleDetail) : null;
+  const content = seed?.content ?? userArt?.content ?? '';
+  const title = seed?.title ?? userArt?.title ?? '';
+  const wordCount = seed?.word_count ?? userArt?.word_count ?? 0;
+  const attemptsNote = seed
+    ? seed.attempts.length > 0
+      ? t('reading.attemptsDone', { n: seed.attempts.length })
+      : t('reading.firstRead')
+    : t('reading.userNote');
 
   /** 提交全部理解题：后端判分并自动登记错题。 */
   async function submit() {
+    if (!seed) return;
     try {
-      const answers = data!.questions.map((q) => ({ question_id: q.id, choice: choices[q.id] ?? null }));
-      const r = await api.submitArticle(data!.id, answers);
+      const answers = seed.questions.map((q) => ({ question_id: q.id, choice: choices[q.id] ?? null }));
+      const r = await api.submitArticle(seed.id, answers);
       setResult(r);
       message.success(`${r.correct} / ${r.total}`);
     } catch (e) {
@@ -90,27 +102,27 @@ export default function ReadingArticle() {
       <Card
         title={
           <Space>
-            <Typography.Text strong>{data.title}</Typography.Text>
-            <Tag style={{ color: LEVEL_COLOR[data.level], borderColor: LEVEL_COLOR[data.level], background: '#fff' }}>
-              {t(`common.level.${data.level}`)}
-            </Tag>
+            <Typography.Text strong>{title}</Typography.Text>
+            {seed && <LevelTag level={seed.level} />}
+            {userArt && <Tag color="purple">{t('reading.mineTag')}</Tag>}
           </Space>
         }
         extra={
           <Typography.Text type="secondary">
-            {t('reading.extra', { n: data.word_count, s: attemptsNote })}
+            {t('reading.extra', { n: wordCount, s: attemptsNote })}
           </Typography.Text>
         }
       >
-        {data.content.split('\n\n').map((para, i) => (
+        {content.split('\n\n').map((para, i) => (
           <Typography.Paragraph key={i} className="article-para">
             {tokenize(para)}
           </Typography.Paragraph>
         ))}
       </Card>
 
+      {seed && seed.questions.length > 0 && (
       <Card title={t('reading.quizTitle')} style={{ marginTop: 16 }}>
-        {data.questions.map((q, qi) => {
+        {seed.questions.map((q, qi) => {
           const r = result?.results.find((x) => x.question_id === q.id);
           return (
             <div key={q.id} style={{ marginBottom: 28 }}>
@@ -166,6 +178,7 @@ export default function ReadingArticle() {
           </Space>
         )}
       </Card>
+      )}
 
       <Drawer title={t('reading.lookup', { word: word ?? '' })} open={!!word} onClose={() => setWord(null)} width={380}>
         {dictQuery.isLoading && <Spin />}

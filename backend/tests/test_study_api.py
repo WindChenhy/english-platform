@@ -44,12 +44,15 @@ def test_queue_review_only_empty(client):
 
 
 def test_review_new_and_progression(client):
-    """新词首答建卡（间隔 1 天）；再次以新词身份提交复用已有卡（间隔阶梯到 6 天）。"""
+    """新词首答建卡（FSRS 初始间隔）；再次以新词身份提交复用已有卡。"""
     r = client.post("/api/study/review", json={"kind": "new", "word": "apple", "rating": 3, "book_id": 1})
     assert r.status_code == 200
-    assert r.json()["interval"] == 1
+    assert r.json()["interval"] >= 1
+    assert r.json()["stability"] is not None
+    first = r.json()["interval"]
     r2 = client.post("/api/study/review", json={"kind": "new", "word": "apple", "rating": 3, "book_id": 1})
-    assert r2.json()["interval"] == 6
+    assert r2.json()["interval"] >= 1
+    assert r2.json()["state"] in ("review", "learning", "relearning")
 
 
 def test_review_missing_card_404(client):
@@ -59,13 +62,13 @@ def test_review_missing_card_404(client):
 
 
 def test_review_rating1_penalizes(client):
-    """复习答"忘了"：间隔归 1 天，ease 下调。"""
+    """复习答"忘了"：间隔归 1 天，进入 relearning，计一次遗忘。"""
     client.post("/api/study/review", json={"kind": "new", "word": "apple", "rating": 3, "book_id": 1})
     r = client.post("/api/study/review", json={"kind": "review", "word": "apple", "rating": 1})
     assert r.status_code == 200
     body = r.json()
     assert body["interval"] == 1
-    assert body["ease"] == 2.4  # 2.5 + 0.1(答对) - 0.2(遗忘)
+    assert body["state"] == "relearning"
 
 
 def test_wordlist_flow(client):

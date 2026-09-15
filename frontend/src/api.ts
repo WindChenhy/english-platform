@@ -3,7 +3,7 @@
  * 所有请求走相对路径 /api，开发期由 Vite 代理，生产由 FastAPI 同源托管。
  */
 
-export type Level = 'beginner' | 'cet4' | 'cet6';
+export type Level = 'beginner' | 'cet4' | 'cet6' | 'kaoyan';
 
 /** 词书及其学习进度（learned/mastered/due_now 由后端聚合统计） */
 export interface Book {
@@ -25,7 +25,7 @@ export interface WordDetail {
   related?: { pos?: string; word: string; zh: string }[];
 }
 
-/** 学习队列中的新词项：quiz 区分英→中（options 为释义）与中→英（options 为单词） */
+/** 学习队列中的新词项 */
 export interface QueueItemNew {
   type: 'new';
   quiz: 'e2c' | 'c2e';
@@ -38,24 +38,23 @@ export interface QueueItemNew {
   detail?: WordDetail | null;
 }
 
-/** 学习队列中的复习项：翻面自评，不做四选一 */
+/** 学习队列中的复习项 */
 export interface QueueItemReview {
   type: 'review';
   card_id: number;
   word: string;
   phonetic?: string | null;
   meaning: string;
+  lapses?: number;
 }
 
 export type QueueItem = QueueItemNew | QueueItemReview;
 
-/** 学习队列响应：items 已由后端穿插排序，counts 为本轮构成 */
 export interface QueueResp {
   items: QueueItem[];
   counts: { review: number; new: number };
 }
 
-/** 一次复习的 SM-2 结算结果 */
 export interface ReviewResp {
   word: string;
   rating: number;
@@ -63,9 +62,11 @@ export interface ReviewResp {
   interval: number;
   due: string;
   ease: number;
+  stability?: number | null;
+  difficulty?: number | null;
+  state?: string;
 }
 
-/** 词典查询结果（ECDICT） */
 export interface DictWord {
   word: string;
   phonetic?: string | null;
@@ -74,35 +75,78 @@ export interface DictWord {
   tag?: string | null;
 }
 
-/** 文章列表项，best_score 为历史最好正确率 */
+export interface DictSearchItem {
+  word: string;
+  phonetic?: string | null;
+  translation?: string | null;
+  tag?: string | null;
+}
+
 export interface ArticleListItem {
   id: number;
   title: string;
   level: Level;
+  category?: string;
+  exam_label?: string | null;
   word_count: number;
   attempt_count: number;
   best_score: number | null;
 }
 
-/** 阅读理解题（不含答案，答案在提交后由后端返回） */
 export interface ArticleQuestion {
   id: number;
   question: string;
   options: string[];
 }
 
-/** 文章详情：正文 + 理解题 + 历史做题记录 */
 export interface ArticleDetail {
   id: number;
   title: string;
   level: Level;
+  category?: string;
+  exam_label?: string | null;
   content: string;
   word_count: number;
   questions: ArticleQuestion[];
   attempts: { correct: number; total: number; created_at: string }[];
 }
 
-/** 单题判分结果 */
+export interface SpeakingScenarioItem {
+  id: number;
+  code: string;
+  title: string;
+  scene: string;
+  level: string;
+  description: string;
+  line_count: number;
+}
+
+export interface SpeakingLine {
+  id: number;
+  ord: number;
+  role: string;
+  en: string;
+  zh: string;
+  tip?: string | null;
+}
+
+export interface SpeakingScenarioDetail extends SpeakingScenarioItem {
+  lines: SpeakingLine[];
+}
+
+export interface SpeakingRecordItem {
+  id: number;
+  scenario_id: number | null;
+  line_id: number | null;
+  target_text: string;
+  transcript: string;
+  score: number;
+  duration_ms: number;
+  has_audio: boolean;
+  study_date: string;
+  created_at: string;
+}
+
 export interface SubmitResult {
   question_id: number;
   choice: number | null;
@@ -111,14 +155,12 @@ export interface SubmitResult {
   explanation: string;
 }
 
-/** 整篇文章的提交判分响应 */
 export interface SubmitResp {
   correct: number;
   total: number;
   results: SubmitResult[];
 }
 
-/** 错题本条目：题目、文章与作答信息聚合 */
 export interface MistakeItem {
   id: number;
   user_answer: number;
@@ -134,7 +176,11 @@ export interface MistakeItem {
   article: { id: number; title: string };
 }
 
-/** 首页统计面板数据 */
+export interface Goals {
+  daily_new: number;
+  daily_review: number;
+}
+
 export interface Stats {
   new_today: number;
   review_today: number;
@@ -142,6 +188,9 @@ export interface Stats {
   streak_days: number;
   vocab_estimate: number;
   wordlist_count: number;
+  goals: Goals;
+  dictation_today: number;
+  battle_today: number;
   reading: {
     articles_done: number;
     articles_total: number;
@@ -150,7 +199,6 @@ export interface Stats {
   };
 }
 
-/** 生词本卡片 */
 export interface WordlistCard {
   id: number;
   word: string;
@@ -158,11 +206,29 @@ export interface WordlistCard {
   phonetic?: string | null;
   interval: number;
   due: string;
+  lapses?: number;
+  state?: string;
+}
+
+export interface CardDetail {
+  word: string;
+  meaning: string;
+  phonetic?: string | null;
+  interval: number;
+  due: string;
+  ease: number;
+  stability: number | null;
+  difficulty: number | null;
+  state: string;
+  lapses: number;
+  reps: number;
+  source: string;
+  suspended: boolean;
+  buried: boolean;
 }
 
 export type DictationKind = 'word' | 'phrase' | 'sentence';
 
-/** 默写出题项：prompt 为提示（中文释义/译文），answer 为需要默写的内容 */
 export interface DictationItem {
   id: string;
   prompt: string;
@@ -170,25 +236,47 @@ export interface DictationItem {
   source?: string;
 }
 
-/** 默写模块概览：各词书短语数、各级别句子数、生词本词数 */
 export interface DictationOverview {
   phrase_by_book: Record<string, number>;
   sentence_by_level: Record<string, number>;
   wordlist_count: number;
 }
 
-/** 统计图表页数据：每日学习量、词汇增长、打卡热力图、到期预测 */
 export interface ChartStats {
   daily: { date: string; new: number; review: number }[];
   cumulative: { date: string; total: number }[];
   heatmap: { date: string; n: number }[];
   forecast: { date: string; n: number }[];
+  dictation_daily?: { date: string; correct: number; wrong: number }[];
 }
 
-/**
- * 通用请求封装：统一 JSON 头与错误信息提取（后端错误的 detail 字段直接透出）。
- * @throws Error 携带后端返回的 detail 文案
- */
+export interface UserArticleItem {
+  id: number;
+  title: string;
+  word_count: number;
+  created_at: string;
+}
+
+export interface UserArticleDetail extends UserArticleItem {
+  content: string;
+}
+
+export interface BattleConfig {
+  suggested: 'easy' | 'normal' | 'hard';
+  win_rate: number | null;
+  recent: BattleLogItem[];
+}
+
+export interface BattleLogItem {
+  id: number;
+  difficulty: string;
+  result: 'win' | 'draw' | 'lose';
+  user_correct: number;
+  total_rounds: number;
+  avg_seconds: number;
+  created_at: string;
+}
+
 async function req<T>(url: string, init?: RequestInit): Promise<T> {
   const res = await fetch(url, { headers: { 'Content-Type': 'application/json' }, ...init });
   if (!res.ok) {
@@ -204,86 +292,204 @@ async function req<T>(url: string, init?: RequestInit): Promise<T> {
   return res.json() as Promise<T>;
 }
 
-/** 平台全部后端接口的客户端集合 */
 export const api = {
-  /** 词书列表及进度 */
   books: () => req<Book[]>('/api/books'),
 
-  /** 今日学习队列：bookId 为空表示"只复习全部到期卡"（无新词） */
-  queue: (bookId: number | null, newLimit: number, direction: string = 'e2c') =>
+  queue: (
+    bookId: number | null,
+    newLimit: number,
+    direction: string = 'e2c',
+    mode: 'normal' | 'weak' = 'normal',
+    reviewLimit = 60,
+  ) =>
     req<QueueResp>(
-      `/api/study/queue?new_limit=${newLimit}&direction=${direction}${bookId ? `&book_id=${bookId}` : ''}`,
+      `/api/study/queue?new_limit=${newLimit}&direction=${direction}&mode=${mode}&review_limit=${reviewLimit}` +
+        (bookId ? `&book_id=${bookId}` : ''),
     ),
 
-  /** 提交一次新词作答或复习自评，后端按 SM-2 结算 */
   review: (body: { kind: 'new' | 'review'; word: string; rating: number; book_id?: number }) =>
     req<ReviewResp>('/api/study/review', { method: 'POST', body: JSON.stringify(body) }),
 
-  /** 生词本列表 */
-  wordlist: () => req<WordlistCard[]>('/api/study/wordlist'),
+  wordlist: (q?: string, sort?: string) => {
+    const params = new URLSearchParams();
+    if (q) params.set('q', q);
+    if (sort) params.set('sort', sort);
+    const qs = params.toString();
+    return req<WordlistCard[]>(`/api/study/wordlist${qs ? `?${qs}` : ''}`);
+  },
 
-  /** 收藏生词：建卡并今日到期；已存在时仅把到期日提前到今天 */
   addWordlist: (word: string) =>
     req<{ created: boolean; moved_into_today: boolean; word: string; meaning: string }>(
       '/api/study/wordlist',
       { method: 'POST', body: JSON.stringify({ word }) },
     ),
 
-  /** 从生词本删除一个词 */
   removeWordlist: (word: string) =>
     req<{ deleted: boolean }>(`/api/study/wordlist/${encodeURIComponent(word)}`, {
       method: 'DELETE',
     }),
 
-  /** 点词查词 */
+  getCard: (word: string) => req<CardDetail>(`/api/study/cards/${encodeURIComponent(word)}`),
+  suspendCard: (word: string, days = 7) =>
+    req<{ word: string; suspended_until: string }>(
+      `/api/study/cards/${encodeURIComponent(word)}/suspend`,
+      { method: 'POST', body: JSON.stringify({ days }) },
+    ),
+  buryCard: (word: string, days = 1) =>
+    req<{ word: string; buried_until: string }>(
+      `/api/study/cards/${encodeURIComponent(word)}/bury`,
+      { method: 'POST', body: JSON.stringify({ days }) },
+    ),
+  unsuspendCard: (word: string) =>
+    req<{ word: string; active: boolean }>(
+      `/api/study/cards/${encodeURIComponent(word)}/unsuspend`,
+      { method: 'POST' },
+    ),
+
   dict: (word: string) => req<DictWord>(`/api/dictionary/${encodeURIComponent(word)}`),
+  dictSearch: (q: string, limit = 12) =>
+    req<{ items: DictSearchItem[] }>(
+      `/api/dictionary/search?q=${encodeURIComponent(q)}&limit=${limit}`,
+    ),
 
-  /** 文章列表（可按难度过滤） */
-  articles: (level?: string) =>
-    req<ArticleListItem[]>(`/api/articles${level ? `?level=${level}` : ''}`),
+  articles: (level?: string, category?: string) => {
+    const p = new URLSearchParams();
+    if (level) p.set('level', level);
+    if (category) p.set('category', category);
+    const qs = p.toString();
+    return req<ArticleListItem[]>(`/api/articles${qs ? `?${qs}` : ''}`);
+  },
 
-  /** 文章详情（理解题不含答案） */
   article: (id: number) => req<ArticleDetail>(`/api/articles/${id}`),
 
-  /** 提交阅读理解作答，后端判分并登记错题 */
   submitArticle: (id: number, answers: { question_id: number; choice: number | null }[]) =>
     req<SubmitResp>(`/api/articles/${id}/submit`, {
       method: 'POST',
       body: JSON.stringify({ answers }),
     }),
 
-  /** 错题本列表，resolved 区分未解决/已解决 */
+  userArticles: () => req<UserArticleItem[]>('/api/articles/user/list'),
+  userArticle: (id: number) => req<UserArticleDetail>(`/api/articles/user/${id}`),
+  createUserArticle: (title: string, content: string) =>
+    req<{ id: number; title: string; word_count: number }>('/api/articles/user', {
+      method: 'POST',
+      body: JSON.stringify({ title, content }),
+    }),
+  deleteUserArticle: (id: number) =>
+    req<{ deleted: boolean }>(`/api/articles/user/${id}`, { method: 'DELETE' }),
+
   mistakes: (resolved: boolean) => req<MistakeItem[]>(`/api/mistakes?resolved=${resolved}`),
 
-  /** 重练一道错题：答对后端自动将其标记为已解决 */
   practice: (questionId: number, choice: number | null) =>
     req<{ correct: boolean; answer: number; explanation: string }>(
       `/api/mistakes/${questionId}/practice`,
       { method: 'POST', body: JSON.stringify({ choice }) },
     ),
 
-  /** 首页统计数据 */
   stats: () => req<Stats>('/api/stats'),
-
-  /** 统计图表页数据 */
   charts: () => req<ChartStats>('/api/stats/charts'),
 
-  /** 从 v2 备份文件恢复学习数据（整库覆盖当前记录） */
-  importData: (payload: unknown) =>
-    req<{ cards: number; review_logs: number; reading_attempts: number; mistakes: number }>(
-      '/api/import',
-      { method: 'POST', body: JSON.stringify(payload) },
-    ),
+  goals: () => req<Goals>('/api/settings/goals'),
+  saveGoals: (goals: Goals) =>
+    req<Goals>('/api/settings/goals', { method: 'PUT', body: JSON.stringify(goals) }),
 
-  /** 默写模块概览 */
+  importData: (payload: unknown) =>
+    req<{
+      cards: number;
+      review_logs: number;
+      reading_attempts: number;
+      mistakes: number;
+      dictation_logs?: number;
+      battle_logs?: number;
+      user_articles?: number;
+    }>('/api/import', { method: 'POST', body: JSON.stringify(payload) }),
+
   dictationOverview: () => req<DictationOverview>('/api/dictation/overview'),
 
-  /** 默写随机出题（单词/短语/句子三种模式） */
   dictationQuiz: (body: {
     kind: DictationKind;
-    source?: 'book' | 'wordlist';
+    source?: 'book' | 'wordlist' | 'weak';
     book_id?: number | null;
     level?: string | null;
     count: number;
   }) => req<{ items: DictationItem[] }>('/api/dictation/quiz', { method: 'POST', body: JSON.stringify(body) }),
+
+  dictationResult: (
+    items: { kind: DictationKind; answer: string; correct: boolean; word?: string | null }[],
+  ) =>
+    req<{ saved: number }>('/api/dictation/result', {
+      method: 'POST',
+      body: JSON.stringify({ items }),
+    }),
+
+  battleConfig: () => req<BattleConfig>('/api/battle/config'),
+  battleResult: (body: {
+    difficulty: 'easy' | 'normal' | 'hard';
+    result: 'win' | 'draw' | 'lose';
+    user_correct: number;
+    total_rounds: number;
+    avg_seconds: number;
+    wrong_words: string[];
+  }) => req<{ id: number; result: string }>('/api/battle/result', {
+    method: 'POST',
+    body: JSON.stringify(body),
+  }),
+  battleHistory: (limit = 20) =>
+    req<{ total: number; wins: number; items: BattleLogItem[] }>(`/api/battle/history?limit=${limit}`),
+
+  speakingScenarios: (scene?: string) =>
+    req<SpeakingScenarioItem[]>(
+      `/api/speaking/scenarios${scene ? `?scene=${encodeURIComponent(scene)}` : ''}`,
+    ),
+  speakingWords: (opts: { book_id?: number; source?: 'book' | 'wordlist' | 'weak'; count?: number }) => {
+    const p = new URLSearchParams();
+    p.set('source', opts.source ?? 'book');
+    p.set('count', String(opts.count ?? 20));
+    if (opts.book_id != null) p.set('book_id', String(opts.book_id));
+    return req<{ items: { word: string; meaning: string; phonetic?: string | null }[]; count: number }>(
+      `/api/speaking/words?${p.toString()}`,
+    );
+  },
+  speakingScenario: (id: number) => req<SpeakingScenarioDetail>(`/api/speaking/scenarios/${id}`),
+  speakingRecords: (scenarioId?: number) =>
+    req<SpeakingRecordItem[]>(
+      `/api/speaking/records${scenarioId ? `?scenario_id=${scenarioId}` : ''}`,
+    ),
+  saveSpeakingRecord: async (body: {
+    target_text: string;
+    transcript?: string;
+    score?: number;
+    scenario_id?: number | null;
+    line_id?: number | null;
+    duration_ms?: number;
+    audio?: Blob | null;
+  }) => {
+    const fd = new FormData();
+    fd.set('target_text', body.target_text);
+    fd.set('transcript', body.transcript ?? '');
+    fd.set('score', String(body.score ?? 0));
+    if (body.scenario_id != null) fd.set('scenario_id', String(body.scenario_id));
+    if (body.line_id != null) fd.set('line_id', String(body.line_id));
+    fd.set('duration_ms', String(body.duration_ms ?? 0));
+    if (body.audio) fd.append('audio', body.audio, 'clip.webm');
+    const res = await fetch('/api/speaking/records', { method: 'POST', body: fd });
+    if (!res.ok) {
+      let msg = res.statusText;
+      try {
+        const j = await res.json();
+        msg = j.detail ?? msg;
+      } catch {
+        /* ignore */
+      }
+      throw new Error(msg);
+    }
+    return res.json() as Promise<{ id: number; score: number; has_audio: boolean; study_date: string }>;
+  },
+  speakingAudioUrl: (id: number) => `/api/speaking/records/${id}/audio`,
+  deleteSpeakingRecord: (id: number) =>
+    req<{ deleted: boolean }>(`/api/speaking/records/${id}`, { method: 'DELETE' }),
+  speakingStats: () =>
+    req<{ total: number; avg_score: number; daily: { date: string; count: number; avg_score: number | null }[] }>(
+      '/api/speaking/stats',
+    ),
 };

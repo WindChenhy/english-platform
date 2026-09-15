@@ -1,0 +1,97 @@
+{
+  "level": "cet4",
+  "category": "exam",
+  "exam_label": "四级阅读 · 真题题型",
+  "articles": [
+    {
+      "title": "Campus Library Hours Extended",
+      "content": "The university library will extend its opening hours during the final examination period. From Monday to Thursday, the main reading room will remain open until midnight, and group-study rooms may be reserved until eleven. Library officials say the change responds to repeated student requests and a survey showing that evening is the most popular study period.\n\nStudents must still present a valid campus card after nine in the evening. The café on the ground floor will close at eight, and no new borrowing will be accepted after ten, although returns may be made at any time using the outdoor chute. Staff note that quiet floors will keep stricter rules: phone calls and group discussion remain limited to designated zones.\n\nNot everyone welcomes the extension. Some student workers worry about late shifts, and a few faculty members argue that longer hours encourage unhealthy cramming. The administration has promised a review after the pilot term, including data on usage and safety. For now, most students seem relieved. As one sophomore put it, 'When the dorm is noisy, the library is the only place where I can think.'",
+      "questions": [
+        {
+          "question": "Why is the library extending its hours?",
+          "options": ["To hire more staff", "Because students requested it and evenings are peak study times", "To open a new café", "Because dorms will be closed"],
+          "answer": 1,
+          "explanation": "原文：responds to repeated student requests and a survey showing that evening is the most popular study period."
+        },
+        {
+          "question": "What must students do after nine in the evening?",
+          "options": ["Reserve a group room", "Show a valid campus card", "Leave before ten", "Avoid the quiet floors"],
+          "answer": 1,
+          "explanation": "原文：Students must still present a valid campus card after nine in the evening."
+        },
+        {
+          "question": "Which service ends earlier than the reading room?",
+          "options": ["Outdoor book return", "Café on the ground floor", "Phone charging", "Card verification"],
+          "answer": 1,
+          "explanation": "原文：The café on the ground floor will close at eight."
+        },
+        {
+          "question": "What is the administration's attitude toward the pilot?",
+          "options": ["It will make the extension permanent immediately", "It will cancel the plan after exams", "It will review usage and safety data later", "It will ignore faculty concerns"],
+          "answer": 2,
+          "explanation": "原文：promised a review after the pilot term, including data on usage and safety."
+        }
+      ]
+    },
+    {
+      "title": "Second-Hand Textbooks on Campus",
+      "content": "Every semester, piles of textbooks leave dormitories at a fraction of their original price. A student-run market now lists titles by course code, making it easier to match supply with demand. Sellers avoid shipping costs, and buyers often pay less than half the bookstore price.\n\nProfessors are divided. Some welcome the savings and even post required editions early so that second-hand copies circulate. Others warn that older editions may omit new problem sets or corrected errors. Publishers, facing declining new-copy sales, have expanded digital rentals and loose-leaf versions priced lower than hardcovers.\n\nEnvironmental groups point out that reuse saves paper and transport emissions. Yet the system only works when courses keep stable syllabi. If a department changes a book every year, second-hand stock becomes worthless overnight. A modest solution is emerging: libraries keep a few high-demand titles on reserve, and departments announce multi-year adoption plans whenever possible.",
+      "questions": [
+        {
+          "question": "What is one advantage of the student-run market?",
+          "options": ["It guarantees new editions", "It matches titles by course code and cuts costs", "It ships books nationwide", "It replaces professors' syllabi"],
+          "answer": 1,
+          "explanation": "原文：lists titles by course code... buyers often pay less than half."
+        },
+        {
+          "question": "Why do some professors discourage second-hand books?",
+          "options": ["They prefer digital rentals", "Older editions may miss new exercises or corrections", "Libraries forbid reuse", "Bookstores refuse to cooperate"],
+          "answer": 1,
+          "explanation": "原文：older editions may omit new problem sets or corrected errors."
+        },
+        {
+          "question": "How have publishers responded to falling new-copy sales?",
+          "options": ["By raising hardcover prices only", "By expanding digital rentals and cheaper formats", "By banning campus markets", "By shortening course terms"],
+          "answer": 1,
+          "explanation": "原文：expanded digital rentals and loose-leaf versions priced lower than hardcovers."
+        },
+        {
+          "question": "What does the passage suggest to keep reuse working?",
+          "options": ["Change books every semester", "Announce multi-year adoption plans", "Close campus markets", "Stop library reserves"],
+          "answer": 1,
+          "explanation": "末段：departments announce multi-year adoption plans whenever possible."
+        }
+      ]
+    },
+    {
+      "title": "Volunteering Abroad: Benefits and Doubts",
+      "content": "Short volunteer trips abroad attract thousands of students each year. Participants teach English, build facilities, or assist in clinics, often for two or three weeks. Supporters say the experience builds language skills, cultural awareness, and a sense of responsibility.\n\nResearchers urge caution. Brief visits can create more disruption than help when volunteers lack training. Children may form attachments to visitors who leave quickly, and poorly planned construction sometimes damages local livelihoods. Effective programmes, studies suggest, are designed with community partners, last longer, and match tasks to volunteers' real skills.\n\nUniversities have begun to respond. Some now require preparation courses and post-trip reflection essays. Others prefer long-term partnerships with a small number of locations rather than many shallow projects. The goal is not to discourage service, but to replace the idea of 'saving' others with the harder work of listening first.",
+      "questions": [
+        {
+          "question": "What benefit of short volunteer trips is mentioned?",
+          "options": ["Guaranteed employment", "Language skills and cultural awareness", "Free housing abroad", "University credit without work"],
+          "answer": 1,
+          "explanation": "原文：builds language skills, cultural awareness, and a sense of responsibility."
+        },
+        {
+          "question": "Why do researchers urge caution?",
+          "options": ["Because all trips are illegal", "Because brief untrained visits can disrupt communities", "Because students refuse to travel", "Because airports are overcrowded"],
+          "answer": 1,
+          "explanation": "原文：Brief visits can create more disruption than help when volunteers lack training."
+        },
+        {
+          "question": "What do effective programmes look like?",
+          "options": ["Many shallow projects", "Community-designed, longer, skill-matched work", "Unpaid construction only", "Online courses without contact"],
+          "answer": 1,
+          "explanation": "原文：designed with community partners, last longer, and match tasks to volunteers' real skills."
+        },
+        {
+          "question": "What is the author's main message?",
+          "options": ["Stop all volunteering", "Listen first instead of 'saving' others", "Travel only for tourism", "Avoid reflection essays"],
+          "answer": 1,
+          "explanation": "末段：replace the idea of 'saving' others with the harder work of listening first."
+        }
+      ]
+    }
+  ]
+}
