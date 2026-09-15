@@ -26,6 +26,9 @@ function stubFetch() {
         return response({
           new_today: 0, review_today: 0, due_today: 0, streak_days: 0,
           vocab_estimate: 0, wordlist_count: 0,
+          goals: { daily_new: 10, daily_review: 60 },
+          dictation_today: 0,
+          battle_today: 0,
           reading: { articles_done: 0, articles_total: 30, attempt_count: 0, accuracy: null },
         });
       }

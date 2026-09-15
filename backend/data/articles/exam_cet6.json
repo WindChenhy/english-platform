@@ -1,0 +1,97 @@
+{
+  "level": "cet6",
+  "category": "exam",
+  "exam_label": "六级阅读 · 真题题型",
+  "articles": [
+    {
+      "title": "The Attention Economy and Deep Work",
+      "content": "Digital platforms compete for a scarce resource: human attention. Notifications, infinite feeds, and autoplay are engineered to keep users engaged for as long as possible. Economists describe this as an attention economy, in which the product is not the content itself but the audience sold to advertisers.\n\nKnowledge workers pay a hidden tax. Even brief interruptions can force a restart of complex thinking, and studies of task-switching show measurable losses in accuracy and speed. Some professionals respond by scheduling 'deep work' blocks—periods free of email and chat—while others negotiate team norms that treat instant replies as optional rather than expected.\n\nCritics argue that individual discipline cannot offset system design. If platforms profit from distraction, they will optimise for it. Policy responses range from transparency requirements to limits on dark patterns that trick users into longer sessions. The deeper question is cultural: whether a society treats sustained attention as a private virtue or as infrastructure worth protecting.",
+      "questions": [
+        {
+          "question": "What is the real product in the attention economy?",
+          "options": ["Educational content", "The audience sold to advertisers", "Notification hardware", "Free software licenses"],
+          "answer": 1,
+          "explanation": "原文：the product is not the content itself but the audience sold to advertisers."
+        },
+        {
+          "question": "What is a 'deep work' block?",
+          "options": ["A period of uninterrupted focused work", "A mandatory overtime shift", "A social-media challenge", "A type of meeting"],
+          "answer": 0,
+          "explanation": "原文：periods free of email and chat."
+        },
+        {
+          "question": "Why do critics doubt individual discipline alone?",
+          "options": ["Because people dislike work", "Because platforms optimise for distraction when it is profitable", "Because deep work is illegal", "Because email is free"],
+          "answer": 1,
+          "explanation": "原文：If platforms profit from distraction, they will optimise for it."
+        },
+        {
+          "question": "What does the author treat as the deeper issue?",
+          "options": ["Whether attention is protected as infrastructure", "Whether apps should be free", "Whether offices should reopen", "Whether users prefer video"],
+          "answer": 0,
+          "explanation": "末段：whether a society treats sustained attention as a private virtue or as infrastructure worth protecting."
+        }
+      ]
+    },
+    {
+      "title": "Urban Mobility After the Car Peak",
+      "content": "In several wealthy cities, car ownership among young adults has declined even as incomes recovered. Analysts debate whether this is a temporary reaction to housing costs or a structural shift toward shared and active transport. Ride-hailing, e-bikes, and improved transit corridors all compete with private cars for short and medium trips.\n\nParking policy quietly shapes outcomes. Where street parking is cheap and abundant, driving remains attractive. Where cities price curb space and convert lanes to bus or cycle routes, mode share moves faster. Employers also matter: transit benefits and secure bike storage influence commuting more than slogans about sustainability.\n\nNone of this eliminates cars. Freight, night shifts, and suburban distances still rely on them. The realistic goal is a portfolio: dense cores with strong transit, suburbs with safe cycling links, and pricing that reflects congestion and land use. Cities that treat mobility as a system—rather than a race between vehicles—tend to move more people with less friction.",
+      "questions": [
+        {
+          "question": "What trend is observed in some wealthy cities?",
+          "options": ["Car ownership rises with income", "Young adults own fewer cars despite income recovery", "Transit ridership collapsed", "E-bikes were banned"],
+          "answer": 1,
+          "explanation": "原文：car ownership among young adults has declined even as incomes recovered."
+        },
+        {
+          "question": "Which policy most directly shifts mode share?",
+          "options": ["Free street parking", "Pricing curb space and converting lanes to bus or cycle routes", "Subsidising larger cars", "Removing bike storage"],
+          "answer": 1,
+          "explanation": "原文：Where cities price curb space and convert lanes... mode share moves faster."
+        },
+        {
+          "question": "Why will cars not disappear entirely?",
+          "options": ["Because people hate transit", "Because freight, night shifts and suburbs still need them", "Because e-bikes are illegal", "Because parking is free everywhere"],
+          "answer": 1,
+          "explanation": "原文：Freight, night shifts, and suburban distances still rely on them."
+        },
+        {
+          "question": "What does the author recommend?",
+          "options": ["A single vehicle type for all trips", "A mobility portfolio treated as a system", "Only ride-hailing services", "Abolishing transit funding"],
+          "answer": 1,
+          "explanation": "末段：treat mobility as a system... a portfolio of solutions."
+        }
+      ]
+    },
+    {
+      "title": "Scientific Peer Review Under Pressure",
+      "content": "Peer review remains the main gatekeeper of scholarly quality, yet it is under strain. Submission volumes have grown, reviewers are unpaid, and turnaround expectations have shortened. Journals experiment with open review, reviewer recognition, and AI tools that flag methodological weaknesses before human reading.\n\nOpen peer review—where identities or reports are public—aims to improve accountability. Evidence on quality is mixed: some studies find more civil tone and clearer critiques, others note that junior scholars may fear retaliation. Registered reports, in which journals accept a study based on its question and method before results exist, reduce publication bias toward surprising findings.\n\nTechnology can assist but not replace judgement. Automated checks catch missing data files and statistical red flags, yet cannot judge whether a research question matters. The enduring task is social: sustaining a community willing to scrutinise work carefully without turning review into a barrier that protects incumbents.",
+      "questions": [
+        {
+          "question": "What pressure does peer review face?",
+          "options": ["Fewer submissions", "Growing submissions and unpaid, time-pressed reviewers", "Bans on methodological checks", "Universities refusing journals"],
+          "answer": 1,
+          "explanation": "原文：Submission volumes have grown, reviewers are unpaid, and turnaround expectations have shortened."
+        },
+        {
+          "question": "What is a potential downside of open review?",
+          "options": ["Journals close", "Junior scholars may fear retaliation", "AI tools fail", "Studies become shorter"],
+          "answer": 1,
+          "explanation": "原文：junior scholars may fear retaliation."
+        },
+        {
+          "question": "How do registered reports help?",
+          "options": ["They accept papers only after results", "They reduce bias toward surprising results", "They remove human reviewers", "They ban statistics"],
+          "answer": 1,
+          "explanation": "原文：reduce publication bias toward surprising findings."
+        },
+        {
+          "question": "What can technology NOT do in review?",
+          "options": ["Flag statistical issues", "Judge whether a research question matters", "Check missing files", "Speed up paperwork"],
+          "answer": 1,
+          "explanation": "原文：cannot judge whether a research question matters."
+        }
+      ]
+    }
+  ]
+}

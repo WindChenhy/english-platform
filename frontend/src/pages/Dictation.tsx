@@ -38,7 +38,7 @@ export default function Dictation() {
 
   const [phase, setPhase] = useState<Phase>('setup');
   const [kind, setKind] = useState<DictationKind>('word');
-  const [wordSource, setWordSource] = useState<'book' | 'wordlist'>('book');
+  const [wordSource, setWordSource] = useState<'book' | 'wordlist' | 'weak'>('book');
   const [bookId, setBookId] = useState<number | undefined>();
   const [level, setLevel] = useState<string | undefined>();
   const [count, setCount] = useState(10);
@@ -84,7 +84,7 @@ export default function Dictation() {
       const body: {
         kind: DictationKind;
         count: number;
-        source?: 'book' | 'wordlist';
+        source?: 'book' | 'wordlist' | 'weak';
         book_id?: number | null;
         level?: string | null;
       } = { kind, count };
@@ -126,13 +126,30 @@ export default function Dictation() {
     if (ok) speak(item.answer);
   }
 
-  /** 进入下一题；最后一题完成时切到总结页。 */
+  /** 进入下一题；最后一题完成时提交结果并切到总结页。 */
   function next() {
-    if (idx + 1 >= items.length) setPhase('done');
-    else {
+    if (idx + 1 >= items.length) {
+      void saveResults();
+      setPhase('done');
+    } else {
       setIdx(idx + 1);
       setTyped('');
       submitLockRef.current = false;
+    }
+  }
+
+  /** 把本场判分结果提交后端，用于正确率统计与弱项词。 */
+  async function saveResults() {
+    try {
+      const payload = items.map((it, i) => ({
+        kind,
+        answer: it.answer,
+        correct: !!graded[i]?.ok,
+        word: kind === 'word' ? it.answer : it.source,
+      }));
+      await api.dictationResult(payload);
+    } catch {
+      /* 静默失败：统计落库不影响本场体验 */
     }
   }
 
@@ -175,6 +192,7 @@ export default function Dictation() {
                     options={[
                       { value: 'book', label: t('dict.book') },
                       { value: 'wordlist', label: t('dict.wordlistOpt', { n: overview?.wordlist_count ?? 0 }) },
+                      { value: 'weak', label: t('dict.weakOpt') },
                     ]}
                   />
                 </Col>
@@ -471,7 +489,6 @@ export default function Dictation() {
                 <div style={{ textAlign: 'center' }}>
                   {/* 听写模式：判分后揭示中文释义 */}
                   {audio && <Typography.Text type="secondary">{item.prompt}</Typography.Text>}
-                  <div style={{ display: audio ? 'block' : 'none' }} />
                   <span className="eyebrow" style={{ display: 'block', marginTop: 6 }}>
                     {t('dict.correctAnswer')}
                   </span>

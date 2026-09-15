@@ -1,0 +1,305 @@
+{
+  "level": "kaoyan",
+  "articles": [
+    {
+      "title": "The Productivity Paradox of Remote Work",
+      "content": "When knowledge workers shifted abruptly to remote work, many organisations expected a collapse in productivity. Early surveys seemed to support the fear: meetings multiplied, messages never stopped, and the boundary between office and home dissolved. Yet detailed studies of output tell a more nuanced story. For tasks that can be measured cleanly—software commits, call-centre resolutions, written reports—remote teams often match or exceed office performance. The gains concentrate among experienced employees who already know the work and can manage their own attention.\n\nThe costs appear elsewhere. Onboarding slows when newcomers cannot overhear a colleague solving a problem. Spontaneous collaboration, the brief conversation that launches a project, becomes a calendar invitation. Managers who equate visibility with effort struggle, and some respond with surveillance software, which in turn erodes trust. The result is a paradox: individuals may be more productive while the organisation as a whole becomes less adaptive.\n\nHybrid designs attempt a compromise, but they introduce a second paradox. If people come in only on days when their team is present, the office becomes a coordination tool rather than a place of focused work. If attendance is arbitrary, the commute feels pointless. The deepest lesson of remote work is not that offices are obsolete, but that productivity was never a single number. Output, learning, and institutional memory must be tracked together, or one will be quietly traded for the others.",
+      "questions": [
+        {
+          "question": "According to the passage, who benefits most from remote work in measurable tasks?",
+          "options": ["New employees who need guidance", "Experienced workers who can direct their attention", "Managers who monitor activity closely", "Teams that hold more online meetings"],
+          "answer": 1,
+          "explanation": "原文：The gains concentrate among experienced employees who already know the work and can manage their own attention."
+        },
+        {
+          "question": "What is the first productivity paradox described?",
+          "options": ["Remote work always reduces output", "Offices are completely obsolete", "Individuals may improve while organisations become less adaptive", "Hybrid schedules never work"],
+          "answer": 2,
+          "explanation": "原文：individuals may be more productive while the organisation as a whole becomes less adaptive."
+        },
+        {
+          "question": "Why can hybrid arrangements create a second paradox?",
+          "options": ["Because commuting is always faster at home", "Because offices only host social events", "Because attendance may either coordinate work or feel pointless", "Because managers refuse hybrid policies"],
+          "answer": 2,
+          "explanation": "文章指出：若按团队日到岗，办公室成为协作工具；若任意到岗，通勤则显得无意义。"
+        },
+        {
+          "question": "What does the author imply about measuring productivity?",
+          "options": ["A single output metric is sufficient", "Surveillance software solves most problems", "Output, learning and institutional memory must be considered together", "Remote work eliminates the need for measurement"],
+          "answer": 2,
+          "explanation": "末段：Output, learning, and institutional memory must be tracked together."
+        }
+      ]
+    },
+    {
+      "title": "Open Science and the Cost of Paywalls",
+      "content": "Scientific knowledge is often described as a public good, yet a large share of it sits behind paywalls maintained by commercial publishers. Universities pay substantial subscription fees, and researchers in less wealthy institutions frequently cannot afford access at all. Advocates of open science argue that this model slows discovery, because findings that cannot be read cannot be built upon.\n\nThe open-access movement has gained ground. Funders increasingly require that results be deposited in public repositories, sometimes immediately and sometimes after an embargo period. Preprint servers allow drafts to circulate before peer review, accelerating fields such as physics and, more recently, public health. Critics counter that rapid circulation can amplify error, and that article processing charges simply move the cost from readers to authors, favouring well-funded labs.\n\nA deeper issue concerns incentives. Academic careers still reward publication in a small set of prestigious journals, regardless of who can read the work. Until hiring and promotion committees value open datasets, replication studies and clear methods papers, open science will remain an add-on rather than a default. Reform, in other words, is not merely technical. It is a redesign of what the scholarly community treats as success.",
+      "questions": [
+        {
+          "question": "Why do advocates criticise paywalls?",
+          "options": ["They make journals look prestigious", "They prevent findings from being reused and extended", "They increase peer-review quality", "They reduce publication fees for authors"],
+          "answer": 1,
+          "explanation": "原文：findings that cannot be read cannot be built upon."
+        },
+        {
+          "question": "What concern do critics raise about open access?",
+          "options": ["Funders refuse open mandates", "Preprint servers slow physics research", "Processing charges may favour wealthy labs and speed can amplify error", "Universities pay higher subscriptions"],
+          "answer": 2,
+          "explanation": "原文：article processing charges simply move the cost from readers to authors, favouring well-funded labs；以及 rapid circulation can amplify error."
+        },
+        {
+          "question": "According to the passage, what still drives academic careers?",
+          "options": ["Open datasets and replication studies", "Publication in a small set of prestigious journals", "Immediate public deposit of all results", "Reduced subscription costs"],
+          "answer": 1,
+          "explanation": "原文：Academic careers still reward publication in a small set of prestigious journals."
+        },
+        {
+          "question": "What is the author's main conclusion?",
+          "options": ["Paywalls should be abolished overnight", "Open science is only a technical problem", "Success criteria in academia must be redesigned", "Preprint servers should replace journals"],
+          "answer": 2,
+          "explanation": "末段：reform is not merely technical; it is a redesign of what the scholarly community treats as success."
+        }
+      ]
+    },
+    {
+      "title": "Cities, Heat, and the Politics of Shade",
+      "content": "As heatwaves grow more frequent, cities are discovering that temperature is not evenly distributed. Neighbourhoods with dense tree cover can be several degrees cooler than those dominated by asphalt and concrete. The difference follows historical patterns of investment: wealthier districts often kept mature street trees, while industrial and low-income areas were paved without regard for canopy. Heat, in this sense, is not only a climate problem but a map of past decisions.\n\nUrban planners have begun to treat shade as infrastructure. Barcelona has designed superblocks that reclaim street space for trees and pedestrians. Medellín planted green corridors along busy roads and reported measurable drops in local temperature. Such projects require more than planting: saplings need years of watering, and roots fight utilities, parking, and underground cables. Maintenance budgets, not launch ceremonies, determine survival.\n\nThere is also a political question about who is served first. If greening raises property values, long-time residents may be displaced by the very improvements meant to protect them. Anti-displacement tools—community land trusts, tenant protections—must accompany canopy programmes, or climate adaptation will deepen inequality even as it cools the air. Shade, then, is a public resource, and its distribution is a matter of justice as much as engineering.",
+      "questions": [
+        {
+          "question": "Why is urban heat unevenly distributed?",
+          "options": ["Because weather forecasts are inaccurate", "Because trees and paving reflect historical investment patterns", "Because industrial areas are always cooler", "Because climate change ignores districts"],
+          "answer": 1,
+          "explanation": "原文：The difference follows historical patterns of investment."
+        },
+        {
+          "question": "What do Barcelona and Medellín illustrate?",
+          "options": ["Shade can be planned as urban infrastructure", "Trees only grow in wealthy areas", "Heatwaves are declining worldwide", "Superblocks eliminate all cars"],
+          "answer": 0,
+          "explanation": "两城均将绿化/树荫作为城市规划基础设施的案例。"
+        },
+        {
+          "question": "What often determines whether planted trees survive?",
+          "options": ["Launch ceremonies", "Long-term maintenance budgets", "Property-value increases", "Underground cable companies"],
+          "answer": 1,
+          "explanation": "原文：Maintenance budgets, not launch ceremonies, determine survival."
+        },
+        {
+          "question": "What risk does greening create without tenant protections?",
+          "options": ["Cooler air in industrial zones", "Displacement of long-time residents", "Fewer street trees", "Lower municipal spending"],
+          "answer": 1,
+          "explanation": "原文：long-time residents may be displaced by the very improvements meant to protect them."
+        }
+      ]
+    },
+    {
+      "title": "What Algorithms Cannot See in Hiring",
+      "content": "Automated hiring tools promise efficiency: scan thousands of résumés, rank candidates, and surface the best matches. In practice, the systems inherit the history encoded in past hiring decisions. If a company has rarely promoted people from certain universities or career paths, a model trained on that record will learn to ignore them. Bias is not a bug that appears; it is a pattern that is reproduced.\n\nSome firms have responded by stripping names and schools from applications. Others use structured interviews and work-sample tests, which research consistently links to better prediction than unstructured conversation. Yet technology alone cannot fix a process whose goals are unclear. If a firm cannot say what the role truly requires, optimising for proxies—years of experience, pedigree, keyword density—will only refine the wrong target.\n\nThere is also the problem of opacity. Candidates rejected by an algorithm rarely learn why, and regulators in several jurisdictions are beginning to require explanations. Transparency does not guarantee fairness, but it does create a surface for challenge. The mature view treats algorithms as instruments that amplify whatever standards an organisation already holds. Improving hiring therefore starts with defining competence carefully, measuring it honestly, and auditing outcomes over time.",
+      "questions": [
+        {
+          "question": "How do hiring algorithms inherit bias?",
+          "options": ["They invent new preferences randomly", "They learn patterns from historical hiring records", "They always prefer elite universities", "They ignore résumé keywords"],
+          "answer": 1,
+          "explanation": "原文：the systems inherit the history encoded in past hiring decisions."
+        },
+        {
+          "question": "What do researchers recommend over unstructured interviews?",
+          "options": ["Longer interviews", "Structured interviews and work-sample tests", "Removing all human reviewers", "Keyword-only screening"],
+          "answer": 1,
+          "explanation": "原文：structured interviews and work-sample tests, which research consistently links to better prediction."
+        },
+        {
+          "question": "Why is clear role definition essential?",
+          "options": ["Because algorithms cannot process text", "Because optimising vague proxies only refines the wrong target", "Because candidates dislike work samples", "Because regulators ban interviews"],
+          "answer": 1,
+          "explanation": "原文：If a firm cannot say what the role truly requires, optimising for proxies... will only refine the wrong target."
+        },
+        {
+          "question": "What is the author's view of hiring algorithms?",
+          "options": ["They are inherently unbiased", "They should replace all recruiters immediately", "They amplify the standards organisations already hold", "They make audits unnecessary"],
+          "answer": 2,
+          "explanation": "原文：algorithms as instruments that amplify whatever standards an organisation already holds."
+        }
+      ]
+    },
+    {
+      "title": "The Quiet Return of the Night Train",
+      "content": "For a generation of travellers in Europe, the night train seemed destined for museums. Budget airlines offered speed at low prices, and high-speed rail captured the daytime market. Yet over the last several years, sleeper services have returned on major routes. Austria's ÖBB expanded its network, France reinvested, and new operators announced connections linking capitals that had lost overnight options.\n\nThe revival is driven less by nostalgia than by climate accounting. Aviation emissions per passenger-kilometre remain far higher than rail, especially for journeys of six to twelve hours that can be completed overnight without a hotel stay. Young travellers and corporate sustainability policies have both shifted demand. Governments, meanwhile, treat rail capacity as strategic infrastructure rather than a relic.\n\nObstacles remain. Track access charges, border coordination, and ageing carriages limit how fast networks can grow. A night train is also a hospitality product: bedding, quiet hours, and security matter as much as departure times. Still, the broader lesson is useful. Technologies rarely disappear because a newer mode appears; they survive where they fit a purpose the newcomer does not serve well. Comfortable overnight travel, it turns out, is one of those purposes.",
+      "questions": [
+        {
+          "question": "What mainly drives the return of night trains?",
+          "options": ["Museum tourism", "Climate accounting and demand shifts", "Cheaper budget airlines", "Declining high-speed rail"],
+          "answer": 1,
+          "explanation": "原文：The revival is driven less by nostalgia than by climate accounting，并提到需求与政策变化。"
+        },
+        {
+          "question": "Why are overnight rail journeys climate-friendly?",
+          "options": ["They replace short flights and avoid hotel stays on 6–12h routes", "They use only electric airplanes", "They eliminate all travel emissions", "They are faster than high-speed day trains"],
+          "answer": 0,
+          "explanation": "原文强调航空排放远高于铁路，且过夜行程可省去酒店。"
+        },
+        {
+          "question": "Which of the following is NOT listed as an obstacle?",
+          "options": ["Track access charges", "Border coordination", "Ageing carriages", "Lack of passenger interest"],
+          "answer": 3,
+          "explanation": "障碍包括轨道费用、跨境协调、车厢老化；兴趣不足未被列为障碍。"
+        },
+        {
+          "question": "What broader lesson does the author draw?",
+          "options": ["Newer modes always kill older ones", "Older modes can survive where they fit unique purposes", "Rail should replace all aviation", "Hotels are unnecessary"],
+          "answer": 1,
+          "explanation": "末段：technologies rarely disappear... they survive where they fit a purpose the newcomer does not serve well."
+        }
+      ]
+    },
+    {
+      "title": "Antibiotic Stewardship Beyond the Hospital",
+      "content": "Hospitals have long led antibiotic stewardship programmes, tracking prescriptions and restricting last-resort drugs. Yet most antibiotic use in many countries occurs outside hospitals: clinics, outpatient pharmacies, and, in some regions, informal markets where drugs are sold without a prescription. Stewardship that ignores these channels addresses only a fraction of the problem.\n\nOveruse accelerates resistance, but so does incomplete treatment and agricultural use in livestock. A One Health perspective therefore links human medicine, veterinary practice, and environmental monitoring. Rapid diagnostic tests, where available, help clinicians distinguish bacterial from viral illness and reduce 'just in case' prescribing. In low-resource settings, the constraint is often not knowledge but supply chains: when the correct narrow-spectrum drug is unavailable, broad-spectrum options become the only practical choice.\n\nPublic communication is equally delicate. Campaigns that shame patients for demanding antibiotics can backfire, because the underlying issue is often poor access to clinicians who can explain alternatives. Effective programmes combine training, diagnostics, reliable supply, and honest messaging. Resistance is not a distant catastrophe; it is already shortening the useful life of drugs discovered decades ago. Stewardship is how that life is extended.",
+      "questions": [
+        {
+          "question": "Where does most antibiotic use occur in many countries?",
+          "options": ["Only inside hospitals", "Mostly outside hospitals", "Only on farms", "Only in research labs"],
+          "answer": 1,
+          "explanation": "原文：most antibiotic use in many countries occurs outside hospitals."
+        },
+        {
+          "question": "What does a One Health perspective include?",
+          "options": ["Human medicine only", "Veterinary practice only", "Human, veterinary and environmental dimensions", "Hospital audits only"],
+          "answer": 2,
+          "explanation": "原文：links human medicine, veterinary practice, and environmental monitoring."
+        },
+        {
+          "question": "Why may broad-spectrum drugs be chosen in low-resource settings?",
+          "options": ["Because they are always more effective", "Because narrow-spectrum drugs may be unavailable", "Because patients refuse diagnostics", "Because resistance is rare"],
+          "answer": 1,
+          "explanation": "原文：when the correct narrow-spectrum drug is unavailable, broad-spectrum options become the only practical choice."
+        },
+        {
+          "question": "What does the author say about public campaigns that shame patients?",
+          "options": ["They always succeed", "They can backfire", "They eliminate informal markets", "They replace diagnostics"],
+          "answer": 1,
+          "explanation": "原文：campaigns that shame patients... can backfire."
+        }
+      ]
+    },
+    {
+      "title": "Memory, Forgetting, and the Learning Brain",
+      "content": "Popular culture treats memory as a recording device: experiences are stored and later replayed. Cognitive science paints a different picture. Memory is reconstructive, shaped by emotion, context, and later conversation. Each act of recall can strengthen a trace, but it can also edit it, blending details from separate events. Forgetting is not simply failure; it is also a filter that prevents the brain from being flooded by irrelevant detail.\n\nThese insights have practical consequences for education. Spaced practice—returning to material over expanding intervals—produces more durable learning than massed cramming. Testing itself is a powerful study tool: retrieving an answer strengthens access pathways more than re-reading the same paragraph. Interleaving different problem types feels harder in the moment yet often improves transfer to new questions.\n\nResistance to these methods is understandable. Fluency while reading creates an illusion of mastery, and students equate comfort with competence. Teachers who design desirable difficulties must also explain why struggle is productive, or learners will abandon strategies that feel inefficient. The goal is not to make study unpleasant, but to align practice with how memory actually works.",
+      "questions": [
+        {
+          "question": "How does the passage characterise human memory?",
+          "options": ["As a perfect video recording", "As reconstructive and editable during recall", "As independent of emotion", "As unable to strengthen over time"],
+          "answer": 1,
+          "explanation": "原文：Memory is reconstructive... Each act of recall can strengthen a trace, but it can also edit it."
+        },
+        {
+          "question": "Which study strategy is most supported by the research cited?",
+          "options": ["Massed cramming the night before", "Spaced practice and retrieval testing", "Only re-reading notes", "Avoiding difficult problem types"],
+          "answer": 1,
+          "explanation": "原文推荐 spaced practice 与 testing（检索练习）。"
+        },
+        {
+          "question": "Why might interleaving feel less effective to students?",
+          "options": ["Because it never improves transfer", "Because it feels harder in the moment", "Because teachers refuse to use it", "Because it replaces all reading"],
+          "answer": 1,
+          "explanation": "原文：Interleaving... feels harder in the moment yet often improves transfer."
+        },
+        {
+          "question": "What does 'illusion of mastery' refer to?",
+          "options": ["Fluency while reading mistaken for competence", "Perfect exam scores", "Teachers grading too harshly", "Forgetting all details"],
+          "answer": 0,
+          "explanation": "原文：Fluency while reading creates an illusion of mastery."
+        }
+      ]
+    },
+    {
+      "title": "Housing as Infrastructure",
+      "content": "Economists once treated housing mainly as an asset market: prices reflected local income, interest rates, and expected growth. A growing literature now frames housing as infrastructure, as essential to labour-market function as roads or broadband. When workers cannot live near jobs, commuting times lengthen, labour supply thins, and productivity suffers. Firms in high-cost cities report difficulty hiring even when wages rise, because housing costs absorb the increase.\n\nPolicy responses vary. Zoning reform allows more multifamily construction near transit. Social and non-profit housing models reduce exposure to speculative cycles. Some cities tax vacant units or land value rather than improvements, encouraging use of existing stock. None of these tools is sufficient alone, and each faces political resistance from owners who benefit from scarcity.\n\nThe measurement problem is also real. Headline prices dominate news coverage, but affordability for a teacher or nurse depends on rent, utilities, and transport together. A housing strategy that ignores energy efficiency may create homes that are cheap to buy and expensive to inhabit. Treating housing as infrastructure means planning for capacity, location, and running costs—decades ahead of the next crisis, not only in response to it.",
+      "questions": [
+        {
+          "question": "How does the new literature frame housing?",
+          "options": ["As a luxury good only", "As infrastructure essential to labour markets", "As unrelated to productivity", "As a short-term consumer trend"],
+          "answer": 1,
+          "explanation": "原文：frames housing as infrastructure, as essential to labour-market function as roads or broadband."
+        },
+        {
+          "question": "Why may higher wages fail to attract workers in costly cities?",
+          "options": ["Because workers refuse jobs", "Because housing costs absorb wage increases", "Because firms lower salaries", "Because transit is free"],
+          "answer": 1,
+          "explanation": "原文：housing costs absorb the increase."
+        },
+        {
+          "question": "What is a limitation of any single policy tool?",
+          "options": ["It always increases prices", "It faces political resistance from owners benefiting from scarcity", "It eliminates commuting", "It replaces energy efficiency"],
+          "answer": 1,
+          "explanation": "原文：each faces political resistance from owners who benefit from scarcity."
+        },
+        {
+          "question": "What does the author mean by planning housing as infrastructure?",
+          "options": ["Reacting only to crises", "Considering capacity, location and running costs decades ahead", "Focusing only on headline prices", "Ignoring transport links"],
+          "answer": 1,
+          "explanation": "末段：planning for capacity, location, and running costs—decades ahead of the next crisis."
+        }
+      ]
+    },
+    {
+      "title": "The Limits of Personal Carbon Footprints",
+      "content": "Carbon footprint calculators invite individuals to tally flights, diets, and home energy use. The exercise is educational, yet it can also mislead. Aggregate emissions are dominated by energy systems, industrial processes, and agricultural land use. Personal choices matter, but they operate inside infrastructures that make high-carbon options the default. Telling people to bike while cities remain unsafe for cyclists shifts responsibility without redesigning streets.\n\nScholars distinguish between private-sphere behaviours—recycling, thermostat settings—and public-sphere actions such as voting, organising, and supporting policy. The latter often have larger leverage because they change rules for thousands of households at once. Corporate messaging that highlights individual duty while lobbying against regulation has been criticised for exactly this asymmetry.\n\nNone of this makes personal action worthless. Dietary shifts, reduced flying, and durable goods send market signals and normalise new norms. The mature position is dual: act as a consumer where choices are real, and as a citizen where systems constrain those choices. Climate outcomes will be decided less by the sum of private virtue than by the institutions that structure everyday life.",
+      "questions": [
+        {
+          "question": "What limitation of footprint calculators is emphasised?",
+          "options": ["They are too expensive", "They overemphasise individual control inside structural defaults", "They ignore flights completely", "They ban dietary data"],
+          "answer": 1,
+          "explanation": "原文：Personal choices matter, but they operate inside infrastructures that make high-carbon options the default."
+        },
+        {
+          "question": "Why can public-sphere actions have larger leverage?",
+          "options": ["Because they never affect markets", "Because they can change rules for many households at once", "Because they replace all consumer choices", "Because calculators measure them better"],
+          "answer": 1,
+          "explanation": "原文：change rules for thousands of households at once."
+        },
+        {
+          "question": "What corporate behaviour is criticised in the passage?",
+          "options": ["Investing in renewables", "Highlighting individual duty while lobbying against regulation", "Publishing full emissions data", "Supporting bike infrastructure"],
+          "answer": 1,
+          "explanation": "原文：Corporate messaging that highlights individual duty while lobbying against regulation."
+        },
+        {
+          "question": "What position does the author endorse?",
+          "options": ["Ignore personal action entirely", "Only rely on private virtue", "Combine consumer choices with citizen action on systems", "Wait for technology alone"],
+          "answer": 2,
+          "explanation": "末段：act as a consumer... and as a citizen where systems constrain those choices."
+        }
+      ]
+    },
+    {
+      "title": "Why Translation Still Needs Humans",
+      "content": "Machine translation has improved dramatically, especially for high-resource language pairs and everyday web content. Users now expect instant rendering of menus, messages, and product reviews. For many purposes this is good enough. Yet professional translators remain essential where errors are costly: legal contracts, clinical instructions, literary voice, and diplomatic language.\n\nThe residual difficulty is not vocabulary but intent. A single sentence can be polite, ironic, or threatening depending on context a model may not observe. Legal systems also require that a translation be attributable—someone must stand behind its accuracy. Literary work adds style: rhythm, ambiguity, and cultural reference cannot be reduced to the most probable phrase.\n\nThe realistic future is collaboration. Translators use machine drafts to accelerate routine text and spend human attention on judgement. This changes the profession's economics and its training: fluency alone is insufficient without subject expertise and editorial skill. Technology that removes drudgery is welcome; technology that pretends nuance is optional is not. Between those poles lies the everyday practice of bilingual craft.",
+      "questions": [
+        {
+          "question": "When are professional translators still essential?",
+          "options": ["Only for menus and reviews", "Where errors are costly: legal, clinical, literary, diplomatic text", "Never, models are complete", "Only for low-resource languages"],
+          "answer": 1,
+          "explanation": "原文列举 legal contracts, clinical instructions, literary voice, and diplomatic language."
+        },
+        {
+          "question": "What is the residual difficulty in translation?",
+          "options": ["Vocabulary lists", "Intent and context a model may not observe", "Keyboard speed", "Internet access"],
+          "answer": 1,
+          "explanation": "原文：The residual difficulty is not vocabulary but intent."
+        },
+        {
+          "question": "Why does legal translation require human accountability?",
+          "options": ["Because machines cannot type", "Because translations must be attributable to someone", "Because lawyers dislike software", "Because contracts are short"],
+          "answer": 1,
+          "explanation": "原文：someone must stand behind its accuracy."
+        },
+        {
+          "question": "What future does the author describe?",
+          "options": ["Full replacement of translators", "Collaboration: machine drafts plus human judgement", "Abolition of literary translation", "Legal texts handled only by models"],
+          "answer": 1,
+          "explanation": "原文：The realistic future is collaboration."
+        }
+      ]
+    }
+  ]
+}

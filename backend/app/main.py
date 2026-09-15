@@ -10,7 +10,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 from starlette.middleware.gzip import GZipMiddleware
 
-from .api import articles, books, dictionary, dictation, mistakes, stats, study
+from .api import articles, battle, books, dictionary, dictation, mistakes, settings as settings_api, speaking, stats, study
 from .config import DATA_DIR, settings
 
 
@@ -33,7 +33,7 @@ app.add_middleware(
 # 静态资源与 API 响应启用 gzip（前端含 recharts，包体较大）
 app.add_middleware(GZipMiddleware, minimum_size=1024)
 
-for mod in (books, study, dictionary, articles, mistakes, stats, dictation):
+for mod in (books, study, dictionary, articles, mistakes, stats, dictation, battle, settings_api, speaking):
     app.include_router(mod.router)
 
 # 生产形态：前端 build 产物由 FastAPI 托管（运行时检查 dist，先启动后端再构建前端也无需重启）

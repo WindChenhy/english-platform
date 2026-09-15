@@ -1,9 +1,11 @@
 /** 全局导航与页头：wordmark、多语言主导航菜单、语言切换器、连续打卡徽章。 */
 import {
+  AudioOutlined,
   BarChartOutlined,
   BookOutlined,
   DashboardOutlined,
   EditOutlined,
+  ExperimentOutlined,
   HighlightOutlined,
   ReadOutlined,
   StarOutlined,
@@ -61,6 +63,8 @@ export default function AppLayout() {
     { key: '/', icon: <DashboardOutlined />, label: t('nav.home') },
     { key: '/study', icon: <BookOutlined />, label: t('nav.study') },
     { key: '/dictation', icon: <HighlightOutlined />, label: t('nav.dictation') },
+    { key: '/exam', icon: <ExperimentOutlined />, label: t('nav.exam') },
+    { key: '/speaking', icon: <AudioOutlined />, label: t('nav.speaking') },
     { key: '/battle', icon: <ThunderboltOutlined />, label: t('nav.battle') },
     { key: '/stats', icon: <BarChartOutlined />, label: t('nav.charts') },
     { key: '/reading', icon: <ReadOutlined />, label: t('nav.reading') },

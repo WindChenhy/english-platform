@@ -72,12 +72,16 @@ export default function Battle() {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { data: books } = useQuery({ queryKey: ['books'], queryFn: api.books });
+  const { data: battleCfg } = useQuery({ queryKey: ['battle-config'], queryFn: api.battleConfig });
   const { battleAvatar, setBattleAvatar } = useStudyStore();
 
   const [phase, setPhase] = useState<Phase>('setup');
-  const [diff, setDiff] = useState<Difficulty>('normal');
+  const [diff, setDiff] = useState<Difficulty | null>(null);
   const [bookId, setBookId] = useState<number | undefined>(3);
   const [starting, setStarting] = useState(false);
+  const [saved, setSaved] = useState(false);
+  const wrongWordsRef = useRef<string[]>([]);
+  const effectiveDiff: Difficulty = diff ?? battleCfg?.suggested ?? 'normal';
 
   const [pool, setPool] = useState<DictationItem[]>([]);
   const [round, setRound] = useState<Round | null>(null);
@@ -210,8 +214,29 @@ export default function Battle() {
       userOk: s.userOk + (userOk ? 1 : 0),
       timeSum: s.timeSum + (timeout ? ROUND_SECONDS : elapsed),
     }));
+    if (!userOk && r.answer) {
+      wrongWordsRef.current = [...wrongWordsRef.current, r.answer];
+    }
     setOutcome({ userOk, compOk, userDmg, compDmg, userElapsed: elapsed, compElapsed: r.compTime, msg });
     setPhase('roundResult');
+  }
+
+  /** 战局结束时落库战绩。 */
+  async function persistResult(result: 'win' | 'draw' | 'lose') {
+    if (saved) return;
+    setSaved(true);
+    try {
+      await api.battleResult({
+        difficulty: effectiveDiff,
+        result,
+        user_correct: stats.userOk,
+        total_rounds: Math.max(stats.rounds, 1),
+        avg_seconds: stats.rounds > 0 ? stats.timeSum / stats.rounds : 0,
+        wrong_words: wrongWordsRef.current,
+      });
+    } catch {
+      /* 静默 */
+    }
   }
 
   /** 按当前难度和词书开一局新对战：重新抽词、满血、进入第 1 回合。 */
@@ -221,6 +246,8 @@ export default function Battle() {
       return;
     }
     setStarting(true);
+    setSaved(false);
+    wrongWordsRef.current = [];
     try {
       const r = await api.dictationQuiz({ kind: 'word', source: 'book', book_id: bookId, count: 50 });
       if (r.items.length < 3) {
@@ -233,7 +260,7 @@ export default function Battle() {
       setUserHp(MAX_HP);
       setCompHp(MAX_HP);
       setStats({ rounds: 0, userOk: 0, timeSum: 0 });
-      beginRound(r.items, 0, diff);
+      beginRound(r.items, 0, effectiveDiff);
     } catch (e) {
       message.error((e as Error).message);
     } finally {
@@ -244,10 +271,16 @@ export default function Battle() {
   /** 结算倒计时结束后的流转：有人倒下则进入结算屏，否则开下一回合。 */
   function handleNext() {
     if (userHpRef.current <= 0 || compHpRef.current <= 0) {
+      const result = userHpRef.current > 0 && compHpRef.current <= 0
+        ? 'win'
+        : userHpRef.current <= 0 && compHpRef.current <= 0
+          ? 'draw'
+          : 'lose';
+      void persistResult(result);
       setPhase('over');
       return;
     }
-    beginRound(pool, roundNo, diff);
+    beginRound(pool, roundNo, effectiveDiff);
   }
 
   const handleNextRef = useRef(handleNext);
@@ -307,7 +340,7 @@ export default function Battle() {
               <Col span={19}>
                 <Segmented
                   block
-                  value={diff}
+                  value={effectiveDiff}
                   onChange={(v) => setDiff(v as Difficulty)}
                   options={(Object.keys(DIFFS) as Difficulty[]).map((k) => ({
                     value: k,
@@ -315,7 +348,12 @@ export default function Battle() {
                   }))}
                 />
                 <Typography.Text type="secondary" style={{ fontSize: 12 }}>
-                  {t(`battle.${diff}Desc`)}
+                  {battleCfg?.win_rate != null
+                    ? t('battle.suggested', {
+                        d: t(`battle.${battleCfg.suggested}`),
+                        r: Math.round(battleCfg.win_rate * 100),
+                      })
+                    : t(`battle.${effectiveDiff}Desc`)}
                 </Typography.Text>
               </Col>
             </Row>
@@ -409,7 +447,7 @@ export default function Battle() {
           <Col span={7} className={`fighter ${lastHit === 'comp' ? 'hit-anim' : ''}`}>
             <span className="fighter-avatar">🤖</span>
             <div className="fighter-name">
-              {t('battle.comp')} · {t(`battle.${diff}`)}
+              {t('battle.comp')} · {t(`battle.${effectiveDiff}`)}
             </div>
             <div className="hp-hearts">{hearts(compHp)}</div>
           </Col>

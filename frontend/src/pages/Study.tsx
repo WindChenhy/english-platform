@@ -1,8 +1,9 @@
-/** 背单词页：选词书 → 每日队列（新词四选一 + 到期翻面自评），SM-2 结算。 */
+/** 背单词页：选词书 → 每日队列（新词四选一 + 到期翻面自评），FSRS 结算；支持弱项训练与中断恢复。 */
 import { useQuery } from '@tanstack/react-query';
-import { CheckCircleFilled, CloseCircleFilled, SoundOutlined } from '@ant-design/icons';
+import { CheckCircleFilled, CloseCircleFilled, PauseCircleOutlined, SoundOutlined } from '@ant-design/icons';
 import {
   App,
+  Alert,
   Badge,
   Button,
   Card,
@@ -23,9 +24,9 @@ import { useNavigate } from 'react-router-dom';
 import { api, Book, QueueItem, QueueItemNew, QueueItemReview } from '../api';
 import { speak } from '../speech';
 import { useStudyStore } from '../store';
+import LevelTag from '../components/LevelTag';
 
 const LETTERS = ['A', 'B', 'C', 'D'];
-const LEVEL_COLOR: Record<string, string> = { beginner: '#3b8c5a', cet4: '#2b4c7e', cet6: '#6b4fa0' };
 
 type Phase = 'select' | 'session' | 'done';
 
@@ -33,11 +34,22 @@ export default function Study() {
   const { message } = App.useApp();
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const { newLimit, setNewLimit, newDirection, setNewDirection } = useStudyStore();
+  const {
+    newLimit,
+    setNewLimit,
+    newDirection,
+    setNewDirection,
+    reviewLimit,
+    setReviewLimit,
+    studySession,
+    saveStudySession,
+    clearStudySession,
+  } = useStudyStore();
   const { data: books, isLoading } = useQuery({ queryKey: ['books'], queryFn: api.books });
 
   const [phase, setPhase] = useState<Phase>('select');
   const [starting, setStarting] = useState(false);
+  const [mode, setMode] = useState<'normal' | 'weak'>('normal');
   const [items, setItems] = useState<QueueItem[]>([]);
   const [idx, setIdx] = useState(0);
   const [counts, setCounts] = useState({ review: 0, new: 0 });
@@ -46,16 +58,66 @@ export default function Study() {
   const [newWrong, setNewWrong] = useState(0);
   const [reviewDone, setReviewDone] = useState(0);
   const [reveals, setReveals] = useState<Record<number, boolean>>({});
+  const [sessionBookId, setSessionBookId] = useState<number | null>(null);
 
-  /** 拉取学习队列并进入会话；bookId 为 null 表示只复习全部到期卡片。 */
-  async function beginQueue(bookId: number | null) {
+  /** 会话状态变化时写入本地快照，刷新后可继续。 */
+  useEffect(() => {
+    if (phase === 'session' && items.length > 0) {
+      saveStudySession({
+        bookId: sessionBookId,
+        mode,
+        items,
+        idx,
+        counts,
+        answers,
+        reveals,
+        newRight,
+        newWrong,
+        reviewDone,
+        savedAt: Date.now(),
+      });
+    }
+  }, [phase, items, idx, answers, reveals, newRight, newWrong, reviewDone, sessionBookId, mode, counts, saveStudySession]);
+
+  /** 从本地快照恢复未完成会话。 */
+  function resumeSession() {
+    if (!studySession) return;
+    setSessionBookId(studySession.bookId);
+    setMode(studySession.mode);
+    setItems(studySession.items);
+    setIdx(studySession.idx);
+    setCounts(studySession.counts);
+    setAnswers(studySession.answers);
+    setReveals(studySession.reveals);
+    setNewRight(studySession.newRight);
+    setNewWrong(studySession.newWrong);
+    setReviewDone(studySession.reviewDone);
+    setPhase('session');
+  }
+
+  /** 拉取学习队列并进入会话；bookId 为 null 表示只复习到期/弱项卡片。 */
+  async function beginQueue(bookId: number | null, queueMode: 'normal' | 'weak' = 'normal') {
     setStarting(true);
     try {
-      const q = await api.queue(bookId, bookId ? newLimit : 0, bookId ? newDirection : 'e2c');
+      const q = await api.queue(
+        bookId,
+        bookId && queueMode === 'normal' ? newLimit : 0,
+        bookId ? newDirection : 'e2c',
+        queueMode,
+        reviewLimit,
+      );
       if (q.items.length === 0) {
-        message.info(bookId ? t('study.emptyBook') : t('study.emptyReview'));
+        message.info(
+          queueMode === 'weak'
+            ? t('study.emptyWeak')
+            : bookId
+              ? t('study.emptyBook')
+              : t('study.emptyReview'),
+        );
         return;
       }
+      setSessionBookId(bookId);
+      setMode(queueMode);
       setItems(q.items);
       setIdx(0);
       setCounts(q.counts);
@@ -72,7 +134,17 @@ export default function Study() {
     }
   }
 
-  /** 新词四选一作答：按题型比对正确项，答对记 3 答错记 1 并提交 SM-2 结算。 */
+  function exitSession() {
+    clearStudySession();
+    setPhase('select');
+  }
+
+  function finishSession() {
+    clearStudySession();
+    setPhase('done');
+  }
+
+  /** 新词四选一作答：按题型比对正确项，答对记 3 答错记 1 并提交 FSRS 结算。 */
   async function rateNew(item: QueueItemNew, choice: number) {
     if (answers[idx]) return;
     const expected = item.quiz === 'c2e' ? item.word : item.meaning;
@@ -100,8 +172,30 @@ export default function Study() {
 
   /** 前进到队列下一项；走完则进入本轮总结页。 */
   function goNext() {
-    if (idx + 1 >= items.length) setPhase('done');
+    if (idx + 1 >= items.length) finishSession();
     else setIdx(idx + 1);
+  }
+
+  /** 挂起当前复习卡，跳到下一项。 */
+  async function suspendCurrent(item: QueueItemReview) {
+    try {
+      await api.suspendCard(item.word, 7);
+      message.success(t('study.suspended', { w: item.word }));
+      goNext();
+    } catch (e) {
+      message.error((e as Error).message);
+    }
+  }
+
+  /** 埋藏当前复习卡（今日不再出现）。 */
+  async function buryCurrent(item: QueueItemReview) {
+    try {
+      await api.buryCard(item.word, 1);
+      message.success(t('study.buried', { w: item.word }));
+      goNext();
+    } catch (e) {
+      message.error((e as Error).message);
+    }
   }
 
   // Anki 风格键盘快捷键：空格 翻面/继续，1-3 评分，A-D 或 1-4 选项
@@ -160,7 +254,7 @@ export default function Study() {
               </Typography.Text>
             </Col>
             <Col>
-              <Button size="small" onClick={() => setPhase('select')}>
+              <Button size="small" onClick={exitSession}>
                 {t('common.exit')}
               </Button>
             </Col>
@@ -182,6 +276,8 @@ export default function Study() {
               revealed={!!reveals[idx]}
               onReveal={() => setReveals((s) => ({ ...s, [idx]: true }))}
               onRate={(r) => rateReview(item, r)}
+              onSuspend={() => suspendCurrent(item)}
+              onBury={() => buryCurrent(item)}
             />
           )}
         </Card>
@@ -189,7 +285,7 @@ export default function Study() {
           type="secondary"
           style={{ display: 'block', textAlign: 'center', fontSize: 12 }}
         >
-          {t('study.roundInfo', { n: counts.new, m: counts.review })}
+          {mode === 'weak' ? t('study.weakBanner') : t('study.roundInfo', { n: counts.new, m: counts.review })}
         </Typography.Text>
         <Typography.Text
           type="secondary"
@@ -227,15 +323,46 @@ export default function Study() {
   // ---------- 选择词书 ----------
   return (
     <div>
+      {studySession && studySession.idx < studySession.items.length && (
+        <Alert
+          type="info"
+          showIcon
+          style={{ marginBottom: 12 }}
+          message={t('study.resumeMsg', {
+            n: studySession.items.length - studySession.idx,
+          })}
+          action={
+            <Space>
+              <Button size="small" type="primary" onClick={resumeSession}>
+                {t('study.resumeBtn')}
+              </Button>
+              <Button
+                size="small"
+                onClick={() => {
+                  clearStudySession();
+                  message.info(t('study.resumeDiscarded'));
+                }}
+              >
+                {t('study.resumeDiscard')}
+              </Button>
+            </Space>
+          }
+        />
+      )}
       <Card size="small" style={{ marginBottom: 16, background: '#fff' }}>
         <Row align="middle" justify="space-between" style={{ marginBottom: 10 }}>
           <Col>
             <Typography.Text type="secondary">{t('study.desc')}</Typography.Text>
           </Col>
           <Col>
-            <Button onClick={() => beginQueue(null)} loading={starting}>
-              {t('study.reviewOnly')}
-            </Button>
+            <Space>
+              <Button loading={starting} onClick={() => beginQueue(null, 'weak')}>
+                {t('study.weakTrain')}
+              </Button>
+              <Button onClick={() => beginQueue(null)} loading={starting}>
+                {t('study.reviewOnly')}
+              </Button>
+            </Space>
           </Col>
         </Row>
         <Row align="middle" justify="space-between">
@@ -254,9 +381,16 @@ export default function Study() {
             </Space>
           </Col>
           <Col>
-            <Space>
+            <Space wrap>
               <Typography.Text type="secondary">{t('study.dailyNew')}</Typography.Text>
               <InputNumber min={3} max={50} value={newLimit} onChange={(v) => setNewLimit(v ?? 10)} />
+              <Typography.Text type="secondary">{t('study.dailyReview')}</Typography.Text>
+              <InputNumber
+                min={10}
+                max={200}
+                value={reviewLimit}
+                onChange={(v) => setReviewLimit(v ?? 60)}
+              />
             </Space>
           </Col>
         </Row>
@@ -275,9 +409,7 @@ export default function Study() {
                 title={
                   <Space>
                     {b.name}
-                    <Tag style={{ color: LEVEL_COLOR[b.level], borderColor: LEVEL_COLOR[b.level], background: '#fff' }}>
-                      {t(`common.level.${b.level}`)}
-                    </Tag>
+                    <LevelTag level={b.level} />
                   </Space>
                 }
                 actions={[
@@ -497,17 +629,21 @@ function NewCard({
   );
 }
 
-/** 复习卡：翻面自评（先回想，再翻面按忘了/模糊/记得打分）；翻面状态由父组件控制以支持键盘。 */
+/** 复习卡：翻面自评；支持挂起/埋藏跳过本词。 */
 function ReviewCard({
   item,
   revealed,
   onReveal,
   onRate,
+  onSuspend,
+  onBury,
 }: {
   item: QueueItemReview;
   revealed: boolean;
   onReveal: () => void;
   onRate: (rating: 1 | 2 | 3) => void;
+  onSuspend: () => void;
+  onBury: () => void;
 }) {
   const { t } = useTranslation();
   return (
@@ -517,6 +653,14 @@ function ReviewCard({
           <span className="marker-ink">{item.word}</span>
         </span>
         <Button type="text" icon={<SoundOutlined />} onClick={() => speak(item.word)} />
+        <Space size={4} style={{ display: 'block', marginTop: 4 }}>
+          <Button size="small" type="text" icon={<PauseCircleOutlined />} onClick={onSuspend}>
+            {t('study.suspend')}
+          </Button>
+          <Button size="small" type="text" onClick={onBury}>
+            {t('study.bury')}
+          </Button>
+        </Space>
       </div>
       <div className="study-phonetic">
         {item.phonetic ? `/ ${item.phonetic} /` : t('study.reviewFallback')}

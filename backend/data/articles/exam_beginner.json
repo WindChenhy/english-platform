@@ -1,0 +1,67 @@
+{
+  "level": "beginner",
+  "category": "exam",
+  "exam_label": "入门阅读 · 题型训练",
+  "articles": [
+    {
+      "title": "A Letter from a New Student",
+      "content": "Dear Tom,\n\nHow are you? I am writing to tell you about my new school. It is bigger than my old one. There are two playgrounds and a small garden behind the library. My classroom is on the third floor. From the window I can see the sports field.\n\nI have six classes every day. English is my favourite because our teacher plays games with us. At noon I eat lunch with my deskmate, Li Hua. He is funny and helps me with maths. After school we sometimes ride bikes to the bookshop near the gate.\n\nI hope you can visit me this autumn. We can play basketball and read comics together. Please write back soon.\n\nYours,\nWang Ming",
+      "questions": [
+        {
+          "question": "Where is Wang Ming's classroom?",
+          "options": ["On the first floor", "On the third floor", "Behind the library", "Near the bookshop"],
+          "answer": 1,
+          "explanation": "原文：My classroom is on the third floor."
+        },
+        {
+          "question": "Why does Wang Ming like English?",
+          "options": ["The teacher plays games", "It is easy", "He has no homework", "Li Hua teaches him"],
+          "answer": 0,
+          "explanation": "原文：English is my favourite because our teacher plays games with us."
+        },
+        {
+          "question": "What do the two boys sometimes do after school?",
+          "options": ["Play basketball at school", "Ride bikes to a bookshop", "Visit Tom", "Work in the garden"],
+          "answer": 1,
+          "explanation": "原文：we sometimes ride bikes to the bookshop near the gate."
+        },
+        {
+          "question": "When does Wang Ming hope Tom will visit?",
+          "options": ["This summer", "This autumn", "Next winter", "Tomorrow"],
+          "answer": 1,
+          "explanation": "原文：I hope you can visit me this autumn."
+        }
+      ]
+    },
+    {
+      "title": "How to Make a Simple Fruit Salad",
+      "content": "Fruit salad is easy to make and good for you. First, wash your hands and the fruit. You will need two apples, one banana, some grapes, and a little honey. Ask an adult to help if you use a knife.\n\nCut the apples and the banana into small pieces. Put them in a large bowl. Add the grapes. If you like, you can also add orange pieces. Pour a spoon of honey on top and mix gently. Keep the salad in the fridge for ten minutes before you eat it.\n\nDo not leave the salad outside for too long, especially in summer. Share it with your family. Cooking together is more fun than cooking alone, and a clean kitchen is part of the recipe too.",
+      "questions": [
+        {
+          "question": "What should you do first?",
+          "options": ["Add honey", "Wash hands and fruit", "Cut the banana", "Open the fridge"],
+          "answer": 1,
+          "explanation": "原文：First, wash your hands and the fruit."
+        },
+        {
+          "question": "Which fruit is cut with a knife?",
+          "options": ["Grapes only", "Apples and banana", "Oranges only", "None"],
+          "answer": 1,
+          "explanation": "原文：Cut the apples and the banana into small pieces."
+        },
+        {
+          "question": "How long should the salad stay in the fridge?",
+          "options": ["One minute", "Ten minutes", "One hour", "Overnight"],
+          "answer": 1,
+          "explanation": "原文：Keep the salad in the fridge for ten minutes."
+        },
+        {
+          "question": "Why should you not leave salad out in summer?",
+          "options": ["It looks nicer cold", "It may go bad quickly", "It needs more honey", "The fridge is empty"],
+          "answer": 1,
+          "explanation": "食品安全常识：夏天不宜久放，原文提醒勿在外面放太久。"
+        }
+      ]
+    }
+  ]
+}
