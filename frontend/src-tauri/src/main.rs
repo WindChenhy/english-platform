@@ -60,12 +60,14 @@ fn spawn_backend(backend: &Path) -> Option<Child> {
                 .unwrap_or_else(|| std::path::PathBuf::from("."))
         })
         .join("word-traces");
+    // 默认 0.0.0.0：同一局域网手机可直连；可用 EP_BIND_HOST=127.0.0.1 收回仅本机
+    let bind_host = std::env::var("EP_BIND_HOST").unwrap_or_else(|_| "0.0.0.0".into());
     let mut cmd = Command::new(py);
     cmd.arg("-m")
         .arg("uvicorn")
         .arg("app.main:app")
         .arg("--host")
-        .arg("127.0.0.1")
+        .arg(&bind_host)
         .arg("--port")
         .arg("8000")
         .env("EP_USER_DATA_DIR", &user_data)

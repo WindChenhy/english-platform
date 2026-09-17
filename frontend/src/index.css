@@ -111,6 +111,78 @@ body {
   cursor: pointer;
   border-radius: 0 6px 6px 0;
 }
+.api-base-lan {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+.api-base-lan-chip {
+  border: 1px dashed var(--rule);
+  background: transparent;
+  color: var(--ink-primary);
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-family: var(--font-mono);
+}
+.api-base-lan-chip:hover {
+  border-color: var(--highlight);
+  background: var(--highlight-soft);
+}
+.lan-hint {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ink-soft);
+  margin-right: 12px;
+  white-space: nowrap;
+}
+
+/* ---------- 小屏：学习/默写/口语等通用密度 ---------- */
+@media (max-width: 768px) {
+  .study-paper {
+    padding: 14px 12px 18px !important;
+  }
+  .app-content .ant-card {
+    border-radius: 10px;
+  }
+  .app-content .ant-card-head {
+    padding: 12px 14px;
+    min-height: auto;
+  }
+  .app-content .ant-card-body {
+    padding: 14px;
+  }
+  .app-content .ant-space {
+    row-gap: 8px;
+  }
+  .app-content .ant-segmented {
+    max-width: 100%;
+    overflow-x: auto;
+  }
+  .app-content .ant-select {
+    max-width: 100%;
+  }
+  /* 表单行：标签在上、控件全宽 */
+  .app-content .ant-form-item {
+    margin-bottom: 12px;
+  }
+  .app-content .ant-form-item .ant-form-item-control {
+    width: 100%;
+  }
+  /* 默写输入更大，便于手机键盘 */
+  .app-content .ant-input {
+    font-size: 16px;
+  }
+  /* 口语场景列表触控友好 */
+  .app-content .ant-list-item {
+    padding: 12px 14px;
+  }
+  .app-content .ant-btn {
+    min-height: 34px;
+  }
+}
 .app-shell.is-mobile .wordmark {
   font-size: 18px;
 }

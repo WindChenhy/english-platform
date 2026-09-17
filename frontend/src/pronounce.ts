@@ -1,7 +1,7 @@
 /**
- * 发音识别与评分：Web Speech API + 词级对齐。
- * 依赖 Chrome/Edge 的 SpeechRecognition；不支持时返回明确错误。
+ * 发音识别与评分：ASR 走平台适配器；词级对齐评分为纯函数。
  */
+import { getSpeechAdapter } from './platform';
 
 export interface PronounceWord {
   word: string;
@@ -47,7 +47,6 @@ export function scorePronunciation(target: string, transcript: string): Pronounc
       used[hit] = true;
       words.push({ word: w, ok: true });
     } else {
-      // 模糊匹配：前 3 字母相同也算部分命中
       let fuzzy = -1;
       for (let i = 0; i < uWords.length; i++) {
         if (used[i]) continue;
@@ -71,88 +70,17 @@ export function scorePronunciation(target: string, transcript: string): Pronounc
 
   const exact = words.filter((x) => x.ok).length;
   const hitRate = exact / tWords.length;
-  // 识别长度差惩罚：过短/过长都扣分
   const lenPenalty =
     uWords.length === 0 ? 0.5 : Math.min(0.25, Math.abs(uWords.length - tWords.length) / (tWords.length * 2));
   const score = Math.round(Math.max(0, Math.min(100, (hitRate - lenPenalty) * 100)));
   return { score, transcript, words, missing };
 }
 
-type SpeechRecognitionCtor = new () => {
-  lang: string;
-  interimResults: boolean;
-  maxAlternatives: number;
-  onresult: ((e: { results: { 0: { 0: { transcript: string } } } }) => void) | null;
-  onerror: ((e: { error?: string }) => void) | null;
-  onend: (() => void) | null;
-  start: () => void;
-  stop: () => void;
-};
-
-function getRecognitionCtor(): SpeechRecognitionCtor | null {
-  const w = window as unknown as {
-    SpeechRecognition?: SpeechRecognitionCtor;
-    webkitSpeechRecognition?: SpeechRecognitionCtor;
-  };
-  return w.SpeechRecognition || w.webkitSpeechRecognition || null;
-}
-
 export function speechRecognitionSupported(): boolean {
-  return !!getRecognitionCtor();
+  return getSpeechAdapter().speechRecognitionSupported();
 }
 
-/**
- * 识别一次英文语音（约数秒），resolve 识别文本。
- * @throws Error 浏览器不支持或用户拒绝麦克风时
- */
+/** 识别一次英文语音；不支持或失败时 reject（UNSUPPORTED 等）。 */
 export function recognizeEnglish(timeoutMs = 8000): Promise<string> {
-  return new Promise((resolve, reject) => {
-    const Ctor = getRecognitionCtor();
-    if (!Ctor) {
-      reject(new Error('UNSUPPORTED'));
-      return;
-    }
-    const rec = new Ctor();
-    rec.lang = 'en-US';
-    rec.interimResults = false;
-    rec.maxAlternatives = 1;
-    let done = false;
-    const timer = window.setTimeout(() => {
-      if (!done) {
-        done = true;
-        try {
-          rec.stop();
-        } catch {
-          /* ignore */
-        }
-      }
-    }, timeoutMs);
-
-    rec.onresult = (e) => {
-      if (done) return;
-      done = true;
-      window.clearTimeout(timer);
-      const text = e.results?.[0]?.[0]?.transcript ?? '';
-      resolve(text);
-    };
-    rec.onerror = (e) => {
-      if (done) return;
-      done = true;
-      window.clearTimeout(timer);
-      reject(new Error(e.error || 'ERROR'));
-    };
-    rec.onend = () => {
-      if (done) return;
-      done = true;
-      window.clearTimeout(timer);
-      resolve('');
-    };
-    try {
-      rec.start();
-    } catch (e) {
-      done = true;
-      window.clearTimeout(timer);
-      reject(e as Error);
-    }
-  });
+  return getSpeechAdapter().recognizeEnglish(timeoutMs);
 }

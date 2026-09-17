@@ -1,16 +1,13 @@
 /**
- * 单词/例句发音：使用浏览器内置 Web Speech API，零依赖、离线可用。
+ * 单词/例句发音：经平台适配器调用 TTS（Web/Tauri/Capacitor 可替换实现）。
  */
+import { getSpeechAdapter } from './platform';
 
-/**
- * 朗读一段英文文本（重复调用会打断上一次朗读）。
- * @param text 要朗读的英文内容
- */
+/** 朗读一段英文文本（重复调用会打断上一次朗读）。 */
 export function speak(text: string) {
-  if (!('speechSynthesis' in window)) return;
-  window.speechSynthesis.cancel();
-  const utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = 'en-US';
-  utterance.rate = 0.95;
-  window.speechSynthesis.speak(utterance);
+  getSpeechAdapter().speak(text);
+}
+
+export function cancelSpeak() {
+  getSpeechAdapter().cancelSpeak();
 }
