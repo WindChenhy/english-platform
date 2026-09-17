@@ -4,9 +4,11 @@ import {
   BarChartOutlined,
   BookOutlined,
   ExportOutlined,
+  HighlightOutlined,
   ImportOutlined,
   ReadOutlined,
   SettingOutlined,
+  ThunderboltOutlined,
 } from '@ant-design/icons';
 import {
   App,
@@ -25,6 +27,7 @@ import { useRef, useState, type ChangeEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { api } from '../api';
+import { downloadApiFile } from '../env';
 
 /** 单个统计盒：衬线大数字 + 顶边分类色（alert=红笔提醒，warm=荧光黄）。 */
 function StatBox(props: {
@@ -115,95 +118,98 @@ export default function Dashboard() {
       : t('dash.greetIdle');
 
   return (
-    <div>
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'flex-end',
-          margin: '2px 0 20px',
-          gap: 12,
-          flexWrap: 'wrap',
-        }}
-      >
+    <div className="dash-page">
+      <div className="dash-hero">
         <div>
           <div className="greet-date">{dayjs().format(t('dash.dateFmt'))}</div>
           <div className="greet-line">{greeting}</div>
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
-          <span className="hand" style={{ color: 'var(--green-ink)', fontSize: 15 }}>
+        <div className="dash-hero-side">
+          <span className="hand dash-streak" style={{ color: 'var(--green-ink)' }}>
             {stats.streak_days > 0
               ? t('dash.streakChip', { n: stats.streak_days })
               : t('dash.noStreak')}
           </span>
-          <button
-            className="export-chip"
-            onClick={() => navigate('/stats')}
-            title={t('nav.charts')}
-          >
-            <BarChartOutlined />
-            {t('dash.viewCharts')}
-          </button>
-          <button
-            className="export-chip"
-            onClick={() => window.open('/api/export')}
-            title={t('dash.exportTitle')}
-          >
-            <ExportOutlined />
-            {t('dash.exportChip')}
-          </button>
-          <button className="export-chip" onClick={() => fileRef.current?.click()}>
-            <ImportOutlined />
-            {t('dash.importChip')}
-          </button>
-          <button className="export-chip" onClick={openGoals} title={t('dash.goalsTitle')}>
-            <SettingOutlined />
-            {t('dash.goalsChip')}
-          </button>
-          <input ref={fileRef} type="file" accept=".json,application/json" hidden onChange={onImportFile} />
         </div>
       </div>
 
-      <Card size="small" style={{ marginBottom: 14, background: '#fff' }}>
-        <Row gutter={16} align="middle">
-          <Col flex="auto">
-            <Typography.Text strong>{t('dash.goalsTitle')}</Typography.Text>
-            <div style={{ marginTop: 8 }}>
-              <Space size="large" wrap>
-                <span>
-                  <Typography.Text type="secondary">{t('dash.goalNew')} </Typography.Text>
-                  <b>
-                    {stats.new_today}/{stats.goals?.daily_new ?? 0}
-                  </b>
-                  <Progress
-                    percent={Math.min(100, Math.round((stats.new_today / Math.max(stats.goals?.daily_new || 1, 1)) * 100))}
-                    showInfo={false}
-                    size="small"
-                    style={{ width: 120, display: 'inline-block', marginLeft: 8, verticalAlign: 'middle' }}
-                  />
-                </span>
-                <span>
-                  <Typography.Text type="secondary">{t('dash.goalReview')} </Typography.Text>
-                  <b>
-                    {stats.review_today}/{stats.goals?.daily_review ?? 0}
-                  </b>
-                  <Progress
-                    percent={Math.min(
-                      100,
-                      Math.round((stats.review_today / Math.max(stats.goals?.daily_review || 1, 1)) * 100),
-                    )}
-                    showInfo={false}
-                    size="small"
-                    style={{ width: 120, display: 'inline-block', marginLeft: 8, verticalAlign: 'middle' }}
-                  />
-                </span>
-                <Typography.Text type="secondary">
-                  {t('dash.extraToday', { d: stats.dictation_today, b: stats.battle_today })}
-                </Typography.Text>
-              </Space>
-            </div>
-          </Col>
-        </Row>
+      <div className="dash-cta-row">
+        <div className="dash-quick">
+          <button className="quick-btn" onClick={() => navigate('/dictation')} title={t('dash.goDictation')}>
+            <HighlightOutlined />
+            <span>{t('dash.goDictation')}</span>
+          </button>
+          <button className="quick-btn" onClick={() => navigate('/battle')} title={t('dash.goBattle')}>
+            <ThunderboltOutlined />
+            <span>{t('dash.goBattle')}</span>
+          </button>
+          <button className="quick-btn" onClick={() => navigate('/reading')} title={t('dash.goReading')}>
+            <ReadOutlined />
+            <span>{t('dash.goReading')}</span>
+          </button>
+          <button className="quick-btn" onClick={() => navigate('/stats')} title={t('nav.charts')}>
+            <BarChartOutlined />
+            <span>{t('dash.viewCharts')}</span>
+          </button>
+          <button className="quick-btn" onClick={openGoals} title={t('dash.goalsTitle')}>
+            <SettingOutlined />
+            <span>{t('dash.goalsChip')}</span>
+          </button>
+          <button
+            className="quick-btn"
+            title={t('dash.exportTitle')}
+            onClick={async () => {
+              try {
+                await downloadApiFile('/api/export', 'english-platform-export.json');
+                message.success(t('dash.exportDone', { defaultValue: '已导出备份文件' }));
+              } catch (e) {
+                message.error((e as Error).message);
+              }
+            }}
+          >
+            <ExportOutlined />
+            <span>{t('dash.exportChip')}</span>
+          </button>
+          <button className="quick-btn" onClick={() => fileRef.current?.click()} title={t('dash.importChip')}>
+            <ImportOutlined />
+            <span>{t('dash.importChip')}</span>
+          </button>
+        </div>
+        <input ref={fileRef} type="file" accept=".json,application/json" hidden onChange={onImportFile} />
+      </div>
+
+      <Card size="small" className="dash-goals">
+        <div className="dash-goals-title">
+          <Typography.Text strong>{t('dash.goalsTitle')}</Typography.Text>
+        </div>
+        <div className="dash-goals-rows">
+          <div className="dash-goal-row">
+            <span className="dash-goal-label">{t('dash.goalNew')}</span>
+            <b>{stats.new_today}/{stats.goals?.daily_new ?? 0}</b>
+            <Progress
+              percent={Math.min(100, Math.round((stats.new_today / Math.max(stats.goals?.daily_new || 1, 1)) * 100))}
+              showInfo={false}
+              size="small"
+              className="dash-goal-bar"
+            />
+          </div>
+          <div className="dash-goal-row">
+            <span className="dash-goal-label">{t('dash.goalReview')}</span>
+            <b>{stats.review_today}/{stats.goals?.daily_review ?? 0}</b>
+            <Progress
+              percent={Math.min(
+                100,
+                Math.round((stats.review_today / Math.max(stats.goals?.daily_review || 1, 1)) * 100),
+              )}
+              showInfo={false}
+              size="small"
+              className="dash-goal-bar"
+            />
+          </div>
+          <div className="dash-goal-extra">
+            {t('dash.extraToday', { d: stats.dictation_today, b: stats.battle_today })}
+          </div>
+        </div>
       </Card>
 
       <Modal
@@ -238,31 +244,19 @@ export default function Dashboard() {
         </Space>
       </Modal>
 
-      <Row gutter={[14, 14]}>
-        <Col xs={12} sm={8} md={4} flex="1">
-          <StatBox label={t('dash.statNew')} value={stats.new_today} unit={t('dash.unitWord')} />
-        </Col>
-        <Col xs={12} sm={8} md={4} flex="1">
-          <StatBox label={t('dash.statReview')} value={stats.review_today} unit={t('dash.unitCard')} />
-        </Col>
-        <Col xs={12} sm={8} md={4} flex="1">
-          <StatBox
-            label={t('dash.statDue')}
-            value={stats.due_today}
-            unit={t('dash.unitCard')}
-            tone={stats.due_today > 0 ? 'alert' : 'default'}
-          />
-        </Col>
-        <Col xs={12} sm={8} md={4} flex="1">
-          <StatBox label={t('dash.statStreak')} value={stats.streak_days} unit={t('dash.unitDay')} tone="warm" />
-        </Col>
-        <Col xs={12} sm={8} md={4} flex="1">
-          <StatBox label={t('dash.statVocab')} value={stats.vocab_estimate} unit={t('dash.unitWord')} />
-        </Col>
-        <Col xs={12} sm={8} md={4} flex="1">
-          <StatBox label={t('dash.statWordlist')} value={stats.wordlist_count} unit={t('dash.unitWord')} />
-        </Col>
-      </Row>
+      <div className="dash-stats">
+        <StatBox label={t('dash.statNew')} value={stats.new_today} unit={t('dash.unitWord')} />
+        <StatBox label={t('dash.statReview')} value={stats.review_today} unit={t('dash.unitCard')} />
+        <StatBox
+          label={t('dash.statDue')}
+          value={stats.due_today}
+          unit={t('dash.unitCard')}
+          tone={stats.due_today > 0 ? 'alert' : 'default'}
+        />
+        <StatBox label={t('dash.statStreak')} value={stats.streak_days} unit={t('dash.unitDay')} tone="warm" />
+        <StatBox label={t('dash.statVocab')} value={stats.vocab_estimate} unit={t('dash.unitWord')} />
+        <StatBox label={t('dash.statWordlist')} value={stats.wordlist_count} unit={t('dash.unitWord')} />
+      </div>
 
       <Row gutter={[14, 14]} style={{ marginTop: 14 }}>
         <Col xs={24} md={12}>

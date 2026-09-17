@@ -12,12 +12,12 @@ from sqlalchemy import func, or_, select
 from sqlalchemy.orm import Session
 
 from .. import models
-from ..config import DATA_DIR
+from ..config import settings
 from ..db import get_db
 
 router = APIRouter(prefix="/api/speaking", tags=["speaking"])
 
-RECORD_DIR = DATA_DIR / "recordings"
+RECORD_DIR = settings.user_data_dir / "recordings"
 ALLOWED_AUDIO = {".webm", ".ogg", ".wav", ".mp3", ".m4a"}
 
 

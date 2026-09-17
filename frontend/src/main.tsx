@@ -8,8 +8,9 @@ import 'dayjs/locale/zh-cn';
 import React, { type ReactNode } from 'react';
 import ReactDOM from 'react-dom/client';
 import { I18nextProvider, useTranslation } from 'react-i18next';
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter, BrowserRouter } from 'react-router-dom';
 import App from './App';
+import { isNativeShell } from './env';
 import i18n from './i18n';
 import './index.css';
 
@@ -35,9 +36,16 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       <QueryClientProvider client={queryClient}>
         <AntdLocaleBridge>
           <AntApp>
-            <BrowserRouter>
-              <App />
-            </BrowserRouter>
+            {/* Tauri/Capacitor 资源协议无 SPA 回退，必须用 HashRouter */}
+            {isNativeShell() ? (
+              <HashRouter>
+                <App />
+              </HashRouter>
+            ) : (
+              <BrowserRouter>
+                <App />
+              </BrowserRouter>
+            )}
           </AntApp>
         </AntdLocaleBridge>
       </QueryClientProvider>
