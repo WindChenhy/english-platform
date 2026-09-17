@@ -1,7 +1,9 @@
 /**
  * 后端 API 客户端：集中定义与后端契约相关的类型和请求函数。
- * 所有请求走相对路径 /api，开发期由 Vite 代理，生产由 FastAPI 同源托管。
+ * Web：相对路径 /api（Vite 代理或 FastAPI 同源托管）。
+ * Tauri：经 apiUrl() 拼到本地后端绝对地址。
  */
+import { apiUrl } from './env';
 
 export type Level = 'beginner' | 'cet4' | 'cet6' | 'kaoyan';
 
@@ -278,7 +280,7 @@ export interface BattleLogItem {
 }
 
 async function req<T>(url: string, init?: RequestInit): Promise<T> {
-  const res = await fetch(url, { headers: { 'Content-Type': 'application/json' }, ...init });
+  const res = await fetch(apiUrl(url), { headers: { 'Content-Type': 'application/json' }, ...init });
   if (!res.ok) {
     let msg = res.statusText;
     try {
@@ -472,7 +474,7 @@ export const api = {
     if (body.line_id != null) fd.set('line_id', String(body.line_id));
     fd.set('duration_ms', String(body.duration_ms ?? 0));
     if (body.audio) fd.append('audio', body.audio, 'clip.webm');
-    const res = await fetch('/api/speaking/records', { method: 'POST', body: fd });
+    const res = await fetch(apiUrl('/api/speaking/records'), { method: 'POST', body: fd });
     if (!res.ok) {
       let msg = res.statusText;
       try {
@@ -485,7 +487,7 @@ export const api = {
     }
     return res.json() as Promise<{ id: number; score: number; has_audio: boolean; study_date: string }>;
   },
-  speakingAudioUrl: (id: number) => `/api/speaking/records/${id}/audio`,
+  speakingAudioUrl: (id: number) => apiUrl(`/api/speaking/records/${id}/audio`),
   deleteSpeakingRecord: (id: number) =>
     req<{ deleted: boolean }>(`/api/speaking/records/${id}`, { method: 'DELETE' }),
   speakingStats: () =>

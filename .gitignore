@@ -8,3 +8,14 @@ backend/data/books/*.zip
 backend/data/ecdict.csv
 backend/data/recordings/
 /tmp/
+frontend/src-tauri/target/
+frontend/src-tauri/gen/schemas/
+frontend/android/.gradle/
+frontend/android/app/build/
+frontend/android/build/
+frontend/android/local.properties
+frontend/android/.idea/
+*.apk
+*.aab
+
+

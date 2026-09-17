@@ -27,8 +27,13 @@ export default function Exam() {
 
   return (
     <Card
+      className="exam-card"
       title={t('exam.title')}
-      extra={<Typography.Text type="secondary">{t('exam.subtitle')}</Typography.Text>}
+      extra={
+        <Typography.Text type="secondary" className="exam-subtitle">
+          {t('exam.subtitle')}
+        </Typography.Text>
+      }
       tabList={TABS.map((tb) => ({
         key: tb.key,
         tab: t(tb.i18nKey),
@@ -37,11 +42,13 @@ export default function Exam() {
       onTabChange={(k) => setLevel(k || undefined)}
     >
       <List
+        className="exam-list"
         loading={isLoading}
         locale={{ emptyText: <Empty description={t('exam.empty')} /> }}
         dataSource={data ?? []}
         renderItem={(a) => (
           <List.Item
+            className="exam-item"
             actions={[
               <Button key="go" type="link" onClick={() => navigate(`/reading/${a.id}`)}>
                 {a.attempt_count > 0 ? t('reading.reread') : t('exam.start')}

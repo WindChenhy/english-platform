@@ -16,8 +16,11 @@ from pathlib import Path
 from sqlalchemy import delete, func, select
 
 from . import models
-from .config import DATA_DIR
+from .config import settings
 from .db import SessionLocal
+
+# 种子数据根目录（只读）
+DATA_DIR = settings.seed_dir
 
 # (code, 名称, 级别, [data/books/ 下的 zip 词书分卷...])
 # 中考/高考第 1 卷在源仓库已下架，用现存的正序版+新东方版合并去重。

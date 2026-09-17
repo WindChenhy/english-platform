@@ -11,22 +11,34 @@ from fastapi.responses import FileResponse
 from starlette.middleware.gzip import GZipMiddleware
 
 from .api import articles, battle, books, dictionary, dictation, mistakes, settings as settings_api, speaking, stats, study
-from .config import DATA_DIR, settings
+from .config import ensure_user_dirs, settings
 
 
 @asynccontextmanager
 async def lifespan(_app: FastAPI):
-    """应用生命周期：启动时确保数据目录存在。"""
-    DATA_DIR.mkdir(parents=True, exist_ok=True)
+    """应用生命周期：启动时确保用户数据目录存在。"""
+    ensure_user_dirs()
     yield
 
 
 app = FastAPI(title="English Learning Platform", lifespan=lifespan)
 
-# 开发期允许 Vite dev server 跨域访问
+# 开发期 Vite、桌面端 Tauri / Capacitor WebView 均访问本机后端
+_TAURI_ORIGINS = [
+    "tauri://localhost",
+    "http://tauri.localhost",
+    "https://tauri.localhost",
+    "tauri://127.0.0.1",
+    "http://localhost:1420",
+]
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],
+    allow_origins=[
+        "http://localhost:5173",
+        "http://127.0.0.1:5173",
+        *_TAURI_ORIGINS,
+    ],
+    allow_origin_regex=r"^(https?://(localhost|127\.0\.0\.1)(:\d+)?|tauri://.+|capacitor://.+|ionic://.+)$",
     allow_methods=["*"],
     allow_headers=["*"],
 )

@@ -58,16 +58,17 @@ export default function Reading() {
   if (level === 'mine') {
     return (
       <Card
+        className="reading-card"
         title={t('reading.title')}
         tabList={tabs.map((tb) => ({ key: tb.key, tab: tb.label }))}
         activeTabKey="mine"
         onTabChange={(k) => setLevel(k || undefined)}
-        extra={
-          <Button type="primary" onClick={() => setPasteOpen(true)}>
+      >
+        <div className="reading-mine-toolbar">
+          <Button type="primary" block onClick={() => setPasteOpen(true)}>
             {t('reading.pasteBtn')}
           </Button>
-        }
-      >
+        </div>
         <List
           locale={{ emptyText: <Empty description={t('reading.mineEmpty')} /> }}
           dataSource={userArts ?? []}
@@ -132,13 +133,11 @@ export default function Reading() {
 
   return (
     <Card
+      className="reading-card"
       title={t('reading.title')}
       tabList={tabs.map((tb) => ({ key: tb.key, tab: tb.label }))}
       activeTabKey={level ?? ''}
       onTabChange={(k) => setLevel(k || undefined)}
-      extra={
-        <Button onClick={() => setLevel('mine')}>{t('reading.tabMine')}</Button>
-      }
     >
       <List
         loading={isLoading}
