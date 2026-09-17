@@ -18,7 +18,7 @@ import { useEffect, useState, type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { api } from './api';
-import { apiBase, isMobileViewport, isNativeShell, setApiBase } from './env';
+import { apiBase, apiUrl, isMobileViewport, isNativeShell, isTauri, setApiBase } from './env';
 
 /** 页头右侧的连续打卡徽章。 */
 function StreakChip() {
@@ -52,6 +52,16 @@ function LangSwitch() {
 function ApiBaseEditor() {
   const { t } = useTranslation();
   const [value, setValue] = useState(() => apiBase());
+  const [lanIps, setLanIps] = useState<string[]>([]);
+  useEffect(() => {
+    // 尝试从当前后端拉取本机局域网 IP，方便手机填写
+    fetch(apiUrl('/api/settings/lan'))
+      .then((r) => (r.ok ? r.json() : null))
+      .then((j: { ips?: string[] } | null) => {
+        if (j?.ips?.length) setLanIps(j.ips);
+      })
+      .catch(() => undefined);
+  }, []);
   if (!isNativeShell()) return null;
   return (
     <div className="api-base-editor">
@@ -80,7 +90,43 @@ function ApiBaseEditor() {
           OK
         </button>
       </Space.Compact>
+      {lanIps.length > 0 && (
+        <div className="api-base-lan">
+          {lanIps.map((ip) => (
+            <button
+              key={ip}
+              type="button"
+              className="api-base-lan-chip"
+              onClick={() => {
+                const url = `http://${ip}:8000`;
+                setValue(url);
+                setApiBase(url);
+                window.location.reload();
+              }}
+            >
+              http://{ip}:8000
+            </button>
+          ))}
+        </div>
+      )}
     </div>
+  );
+}
+
+/** 桌面 Tauri：显示本机局域网地址，方便手机端填写。 */
+function LanHint() {
+  const [ip, setIp] = useState<string | null>(null);
+  useEffect(() => {
+    fetch(apiUrl('/api/settings/lan'))
+      .then((r) => (r.ok ? r.json() : null))
+      .then((j: { ips?: string[] } | null) => setIp(j?.ips?.[0] ?? null))
+      .catch(() => setIp(null));
+  }, []);
+  if (!ip) return null;
+  return (
+    <span className="lan-hint" title="手机端后端地址">
+      LAN {ip}:8000
+    </span>
   );
 }
 
@@ -210,6 +256,7 @@ export default function AppLayout() {
           />
         )}
         <div style={{ flex: 1 }} />
+        {!mobile && isTauri() && <LanHint />}
         <LangSwitch />
         {!mobile && <div style={{ width: 14 }} />}
         {!mobile && <StreakChip />}
